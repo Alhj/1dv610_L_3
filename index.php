@@ -17,3 +17,11 @@ $lv = new LayoutView();
 
 $lv->render(false, $v, $dtv);
 
+
+$userName = $_POST['LoginView::UserName'];
+$passWord = $_POST['LoginView::Password'];
+$loggin = $_POST['LoginView::KeepMeLoggedIn'];
+
+echo "$userName <br>";
+echo "$passWord";
+echo "$loggin";
