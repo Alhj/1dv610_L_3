@@ -17,11 +17,26 @@ $lv = new LayoutView();
 
 $lv->render(false, $v, $dtv);
 
+getLogginInformation();
 
-$userName = $_POST['LoginView::UserName'];
-$passWord = $_POST['LoginView::Password'];
-$loggin = $_POST['LoginView::KeepMeLoggedIn'];
+function getLogginInformation () {
 
-echo "$userName <br>";
-echo "$passWord";
-echo "$loggin";
+$doUsernameAndPasswordHaveInput = checkUserInfo();
+
+    if($doUsernameAndPasswordHaveInput === true) {
+        echo "loggin";
+    }
+
+}
+
+function checkUserInfo () {
+    if(isset($_POST['LoginView::UserName'])) {
+         if(isset($_POST['LoginView::Password'])){
+             return true;
+         } else {
+             return false;
+         }
+     } else {
+         return false;
+     }
+}
