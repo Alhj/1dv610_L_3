@@ -6,9 +6,10 @@ require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
+/* 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
-
+*/
 //CREATE OBJECTS OF THE VIEWS
 $v = new LoginView();
 $dtv = new DateTimeView();
@@ -25,18 +26,16 @@ $doUsernameAndPasswordHaveInput = checkUserInfo();
 
     if($doUsernameAndPasswordHaveInput === true) {
         echo "loggin";
+    } else {
+        throw new Exception ();
     }
 
 }
 
 function checkUserInfo () {
-    if(isset($_POST['LoginView::UserName'])) {
-         if(isset($_POST['LoginView::Password'])){
-             return true;
-         } else {
-             return false;
-         }
-     } else {
-         return false;
-     }
+    try {
+
+    } catch () {
+        
+    }
 }
