@@ -40,11 +40,12 @@ function isSetCheck ($userInput) {
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
                 echo "password check";
             } else {
-                $test = $view->getLoggin("Password is missing");
+                $view->getLoggin("Password is missing");
+                $view->setUsername($_POST["LoginView::UserName"]);
             }
         }
     } else {
-        $test = $view->getLoggin("Username is missing");
+        $view->getLoggin("Username is missing");
     }
 }
 

@@ -12,6 +12,8 @@ class LoginView {
 
 	private $logginMessage = "";
 
+	private $userName = "";
+
 	
 
 	/**
@@ -56,7 +58,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '"value="' .$this->userName .'" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
@@ -78,5 +80,8 @@ class LoginView {
 	public function getLoggin($text){
 		$this->logginMessage = "$text";
 		$this->response();
+	}
+	public function setUsername ($theName) {
+		$this->userName = "$theName";
 	}
 }
