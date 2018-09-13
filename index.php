@@ -11,31 +11,53 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 */
 //CREATE OBJECTS OF THE VIEWS
+
+
 $v = new LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
 
 
-$lv->render(false, $v, $dtv);
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-getLogginInformation();
-
-function getLogginInformation () {
-
-$doUsernameAndPasswordHaveInput = checkUserInfo();
-
-    if($doUsernameAndPasswordHaveInput === true) {
-        echo "loggin";
-    } else {
-        throw new Exception ();
-    }
+getLogginInformation($v);
 
 }
 
-function checkUserInfo () {
+function isSetCheck ($userInput) {
+    return isset($userInput);
+}
+
+
+    function getLogginInformation ($view) {
+    $checkFildUserName = isset($_POST["LoginView::UserName"]);
+
+    if(!empty($_POST["LoginView::UserName"])) {
+
+        if($checkFildUserName === true){
+            $checkIfPasswordIsFild = isset($_POST["LoginView::Password"]);
+        
+            if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
+                echo "password check";
+            } else {
+                $test = $view->getLoggin("Password is missing");
+            }
+        }
+    } else {
+        $test = $view->getLoggin("Username is missing");
+    }
+}
+
+
+
+$lv->render(false, $v, $dtv);
+
+
+/*function checkUserInfo () {
     try {
 
     } catch () {
         
     }
 }
+*/

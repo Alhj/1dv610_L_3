@@ -10,6 +10,8 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 
+	private $logginMessage = "";
+
 	
 
 	/**
@@ -20,7 +22,7 @@ class LoginView {
 	 * @return  void BUT writes to standard output and cookies!
 	 */
 	public function response() {
-		$message = '';
+		$message = "$this->logginMessage";
 		
 		$response = $this->generateLoginFormHTML($message);
 		//$response .= $this->generateLogoutButtonHTML($message);
@@ -73,4 +75,8 @@ class LoginView {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
 	
+	public function getLoggin($text){
+		$this->logginMessage = "$text";
+		$this->response();
+	}
 }
