@@ -63,9 +63,27 @@ $lv->render(false, $v, $dtv);
 
 function readTextFile() {
 
-    $userArray = explode(" ", file_get_contents('user.txt'));
+    $host = "localhost";
 
-    echo $userArray[1];
+    $username = "root";
 
-    return $userArray;
+    $password = "";
+
+    $dbName = "users";
+
+    $dataBass = mysqli_connect("localhost","root","", $dbName);
+    
+    $getFrom = "SELECT userName, Password FROM user";
+
+    $date = mysqli_query($dataBass, $getFrom);
+
+    if(!$date){
+        echo "hello world";
+        exit;
+    }
+    if ($date->num_rows > 0) {
+        while($row = $date->fetch_assoc()){
+            echo ''. $row["Password"];
+        }
+    }
 }
