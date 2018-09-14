@@ -18,6 +18,8 @@ $dtv = new DateTimeView();
 $lv = new LayoutView();
 
 
+readTextFile();
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 getLogginInformation($v);
@@ -38,7 +40,13 @@ function isSetCheck ($userInput) {
             $checkIfPasswordIsFild = isset($_POST["LoginView::Password"]);
         
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
-                echo "password check";
+              
+                $users = readTextFile();
+
+                if($_POST["LoginView::UserName"] === ''.$users[0].'' && $_POST["LoginView::Password"] === $users[1]){
+                }else {
+                    $view->getLoggin("Wrong name or password");
+                }
             } else {
                 $view->getLoggin("Password is missing");
                 $view->setUsername($_POST["LoginView::UserName"]);
@@ -53,12 +61,11 @@ function isSetCheck ($userInput) {
 
 $lv->render(false, $v, $dtv);
 
+function readTextFile() {
 
-/*function checkUserInfo () {
-    try {
+    $userArray = explode(" ", file_get_contents('user.txt'));
 
-    } catch () {
-        
-    }
+    echo $userArray[1];
+
+    return $userArray;
 }
-*/
