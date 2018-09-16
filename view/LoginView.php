@@ -26,8 +26,11 @@ class LoginView {
 	public function response() {
 		$message = "$this->logginMessage";
 		
+		if(!isset($_SESSION["loggin"])){
 		$response = $this->generateLoginFormHTML($message);
-		//$response .= $this->generateLogoutButtonHTML($message);
+		}else {
+		$response = $this->generateLogoutButtonHTML($message);
+		}
 		return $response;
 	}
 

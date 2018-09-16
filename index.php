@@ -4,6 +4,7 @@
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
+require_once('model/DatabassModel.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 /* 
@@ -12,17 +13,23 @@ ini_set('display_errors', 'On');
 */
 //CREATE OBJECTS OF THE VIEWS
 
+session_start();
+
 
 $v = new LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
+$dataBass = new DataBass();
 
-
-readTextFile();
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-getLogginInformation($v);
+if(!isset($_SESSION["loggin"])) {
+
+    getLogginInformation($v,$dataBass);
+} else {
+    echo "hello world";
+}
 
 }
 
@@ -31,7 +38,7 @@ function isSetCheck ($userInput) {
 }
 
 
-    function getLogginInformation ($view) {
+    function getLogginInformation ($view,$dataBass) {
     $checkFildUserName = isset($_POST["LoginView::UserName"]);
 
     if(!empty($_POST["LoginView::UserName"])) {
@@ -41,12 +48,17 @@ function isSetCheck ($userInput) {
         
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
               
-                $users = readTextFile();
+                $checkWithUser = $dataBass->readTextFile($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
 
-                if($_POST["LoginView::UserName"] === ''.$users[0].'' && $_POST["LoginView::Password"] === $users[1]){
+                if($checkWithUser === true)
+                {
+                    $view->getLoggin('Welcome ' . $_POST["LoginView::UserName"]);
+                    $_SESSION["loggin"] = "loggin";
                 }else {
-                    $view->getLoggin("Wrong name or password");
+                $view->getLoggin("Wrong username or password");
+                $view->setUsername($_POST["LoginView::UserName"]);
                 }
+
             } else {
                 $view->getLoggin("Password is missing");
                 $view->setUsername($_POST["LoginView::UserName"]);
@@ -57,33 +69,5 @@ function isSetCheck ($userInput) {
     }
 }
 
-
-
 $lv->render(false, $v, $dtv);
 
-function readTextFile() {
-
-    $host = "localhost";
-
-    $username = "root";
-
-    $password = "";
-
-    $dbName = "users";
-
-    $dataBass = mysqli_connect("localhost","root","", $dbName);
-    
-    $getFrom = "SELECT userName, Password FROM user";
-
-    $date = mysqli_query($dataBass, $getFrom);
-
-    if(!$date){
-        echo "hello world";
-        exit;
-    }
-    if ($date->num_rows > 0) {
-        while($row = $date->fetch_assoc()){
-            echo ''. $row["Password"];
-        }
-    }
-}
