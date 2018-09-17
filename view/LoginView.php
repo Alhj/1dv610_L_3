@@ -26,10 +26,18 @@ class LoginView {
 	public function response() {
 		$message = "$this->logginMessage";
 		
-		if(!isset($_SESSION["loggin"])){
-		$response = $this->generateLoginFormHTML($message);
+		if(isset($_SESSION["loggin"])){
+			if($_SESSION["loggin"] === "loggin"){
+				echo "<br> loggin";
+				$response = $this->generateLogoutButtonHTML($message);
+			} else {
+				$response = $this->generateLoginFormHTML($message);
+			}
+			
 		}else {
-		$response = $this->generateLogoutButtonHTML($message);
+			
+			echo "<br> not loggin";
+			$response = $this->generateLoginFormHTML($message);
 		}
 		return $response;
 	}
@@ -82,7 +90,6 @@ class LoginView {
 	
 	public function getLoggin($text){
 		$this->logginMessage = "$text";
-		$this->response();
 	}
 	public function setUsername ($theName) {
 		$this->userName = "$theName";

@@ -5,6 +5,7 @@ require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 require_once('model/DatabassModel.php');
+require_once('model/loggout.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 /* 
@@ -20,19 +21,18 @@ $v = new LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
 $dataBass = new DataBass();
+$loggOut = new LoggOutModel();
 
+$userLoggin = true;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-if(!isset($_SESSION["loggin"])) {
-
-    getLogginInformation($v,$dataBass);
-} else {
-    echo "hello world";
+    if(isset($_POST["LoginView::Logout"])){
+        session_destroy();
+        $_SESSION["loggin"] = "loggout";
+    } else {
+    getLogginInformation($v,$dataBass); 
+    }
 }
-
-}
-
 function isSetCheck ($userInput) {
     return isset($userInput);
 }
@@ -69,5 +69,9 @@ function isSetCheck ($userInput) {
     }
 }
 
-$lv->render(false, $v, $dtv);
+if(!isset($_SESSION["loggin"])) {
+    $userLoggin = false;
+}
 
+
+$lv->render($userLoggin, $v, $dtv);
