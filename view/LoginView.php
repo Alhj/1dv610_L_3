@@ -28,15 +28,12 @@ class LoginView {
 		
 		if(isset($_SESSION["loggin"])){
 			if($_SESSION["loggin"] === "loggin"){
-				echo "<br> loggin";
 				$response = $this->generateLogoutButtonHTML($message);
 			} else {
 				$response = $this->generateLoginFormHTML($message);
 			}
 			
 		}else {
-			
-			echo "<br> not loggin";
 			$response = $this->generateLoginFormHTML($message);
 		}
 		return $response;

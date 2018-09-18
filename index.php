@@ -6,6 +6,7 @@ require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
 require_once('model/DatabassModel.php');
 require_once('model/loggout.php');
+require_once('model/CheckLoginInformation.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 /* 
@@ -23,11 +24,11 @@ $lv = new LayoutView();
 $dataBass = new DataBass();
 $loggOut = new LoggOutModel();
 
-$userLoggin = true;
+$userLoggin = false;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
-        session_destroy();
+        $v->getLoggin("Bye bye!");
         $_SESSION["loggin"] = "loggout";
     } else {
     getLogginInformation($v,$dataBass); 
@@ -48,14 +49,14 @@ function isSetCheck ($userInput) {
         
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
               
-                $checkWithUser = $dataBass->readTextFile($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
+                $checkWithUser = $dataBass->checkIfUserExist($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
 
                 if($checkWithUser === true)
                 {
-                    $view->getLoggin('Welcome ' . $_POST["LoginView::UserName"]);
+                    $view->getLoggin('Welcome');
                     $_SESSION["loggin"] = "loggin";
                 }else {
-                $view->getLoggin("Wrong username or password");
+                $view->getLoggin("Wrong name or password");
                 $view->setUsername($_POST["LoginView::UserName"]);
                 }
 
@@ -69,8 +70,10 @@ function isSetCheck ($userInput) {
     }
 }
 
-if(!isset($_SESSION["loggin"])) {
-    $userLoggin = false;
+if(isset($_SESSION["loggin"])) {
+    if($_SESSION["loggin"] === "loggin" ){
+    $userLoggin = true;
+    }
 }
 
 

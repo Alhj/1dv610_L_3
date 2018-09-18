@@ -10,7 +10,7 @@ class DataBass {
     
     private $dbName = "users";
 
-    function readTextFile($userName, $password) {
+    function checkIfUserExist($userName, $password) {
 
         $correctInformation = false;
 
