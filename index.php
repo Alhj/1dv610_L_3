@@ -26,11 +26,22 @@ $loggOut = new LoggOutModel();
 
 $userLoggin = false;
 
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
         $v->getLoggin("Bye bye!");
         $_SESSION["loggin"] = "loggout";
+        
+        session_destroy();
     } else {
+
+        if(isset($_SESSION["loggin"])) {
+            if($_SESSION["loggin"]){
+                $lv->render(true, $v, $dtv);
+                exit();
+            }
+        
+        }
     getLogginInformation($v,$dataBass); 
     }
 }
@@ -75,6 +86,5 @@ if(isset($_SESSION["loggin"])) {
     $userLoggin = true;
     }
 }
-
 
 $lv->render($userLoggin, $v, $dtv);
