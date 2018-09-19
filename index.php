@@ -35,6 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
         $v->getLoggin("Bye bye!");
         $_SESSION["loggin"] = "loggout";
+        setcookie("keepMeLoggidIn","", time() - 3600);
         
         session_destroy();
     } else {
