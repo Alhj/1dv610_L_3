@@ -26,6 +26,10 @@ $loggOut = new LoggOutModel();
 
 $userLoggin = false;
 
+if(isset($_COOKIE["keepMeLoggidIn"])){
+    $_SESSION["loggin"] = "loggin";
+}
+
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
@@ -36,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else {
 
         if(isset($_SESSION["loggin"])) {
-            if($_SESSION["loggin"]){
+            if($_SESSION["loggin"] === "loggin"){
                 $lv->render(true, $v, $dtv);
                 exit();
             }
@@ -64,6 +68,10 @@ function isSetCheck ($userInput) {
 
                 if($checkWithUser === true)
                 {
+                    if(isset($_POST["LoginView::KeepMeLoggedIn"])){
+                        setcookie("keepMeLoggidIn", "loggin", time() + 86400);
+                    }
+
                     $view->getLoggin('Welcome');
                     $_SESSION["loggin"] = "loggin";
                 }else {
