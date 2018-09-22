@@ -6,9 +6,9 @@ class logginCheck {
     public function checkLogginInformation ($userName,$password) {
             $allCorrect = false;
 
-            if($userName === "") {
+            if($userName === "Admin") {
 
-                if($password === "") {
+                if($password === "Password") {
                     $allCorrect = true;
                 }
             }

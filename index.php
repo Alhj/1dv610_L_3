@@ -1,4 +1,7 @@
 <?php
+if(!isset($_SESSION)) {
+session_start();
+}
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
@@ -9,20 +12,18 @@ require_once('model/loggout.php');
 require_once('model/CheckLoginInformation.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
-/* 
+/*
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 */
 //CREATE OBJECTS OF THE VIEWS
 
-session_start();
-
-
 $v = new LoginView();
 $dtv = new DateTimeView();
 $lv = new LayoutView();
-$dataBass = new DataBass();
+//$dataBass = new DataBass();
 $loggOut = new LoggOutModel();
+$logginCheck = new logginCheck();
 
 $userLoggin = false;
 
@@ -33,13 +34,17 @@ if(isset($_COOKIE["keepMeLoggidIn"])){
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
+         
+         if(isset($_SESSION["loggin"])) {
+            if($_SESSION["loggin"] === "loggout"){
+                $_SESSION["loggin"] = "";
+                 $lv->render($userLoggin, $v, $dtv);
+                exit();
+            }
+         }
         $v->getLoggin("Bye bye!");
         $_SESSION["loggin"] = "loggout";
-        setcookie("keepMeLoggidIn","", time() - 3600);
-        
-        session_destroy();
     } else {
-
         if(isset($_SESSION["loggin"])) {
             if($_SESSION["loggin"] === "loggin"){
                 $lv->render(true, $v, $dtv);
@@ -47,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
         
         }
-    getLogginInformation($v,$dataBass); 
+    getLogginInformation($v,$logginCheck); 
     }
 }
 function isSetCheck ($userInput) {
@@ -65,7 +70,7 @@ function isSetCheck ($userInput) {
         
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
               
-                $checkWithUser = $dataBass->checkIfUserExist($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
+                $checkWithUser = $dataBass->checkLogginInformation($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
 
                 if($checkWithUser === true)
                 {

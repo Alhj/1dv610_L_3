@@ -1,5 +1,5 @@
-<?php
-
+ <?php
+ /*
 class DataBass {
 
     private $host = "localhost";
@@ -11,7 +11,7 @@ class DataBass {
     private $dbName = "users";
 
     function checkIfUserExist($userName, $password) {
-
+        /*
         $correctInformation = false;
 
         $dataBass = mysqli_connect($this->host,$this->username,$this->password, $this->dbName);
@@ -39,3 +39,4 @@ class DataBass {
         return $correctInformation;
     }
 }
+*/
