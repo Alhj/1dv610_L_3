@@ -1,14 +1,7 @@
 <?php
 if(!isset($_SESSION)) {
-session_start();
-}
-
-if(isset($_SESSION["setCookie"])){
-    if(!isset($_Cookie["setCookie"]))
-    {
-        setcookie("setCookie", "true", time() + (86400 * 30), "/");
+    session_start();
     }
-}
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
@@ -17,11 +10,6 @@ require_once('view/LayoutView.php');
 require_once('model/DatabassModel.php');
 require_once('model/loggout.php');
 require_once('model/CheckLoginInformation.php');
-
-//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
 
 //CREATE OBJECTS OF THE VIEWS
 
@@ -32,12 +20,38 @@ $lv = new LayoutView();
 $loggOut = new LoggOutModel();
 $logginCheck = new logginCheck();
 
-$userLoggin = false;
 
-if(isset($_COOKIE["keepMeLoggidIn"])){
+$cookieUserName = "cookieUserName";
+$cookiePassword = "cookiePassword";
+
+
+if(isset($_POST["LoginView::KeepMeLoggedIn"])){
+   if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
     $_SESSION["loggin"] = "loggin";
+    
+    $v->getLoggin('Welcome back with cookie');
+
+    $lv->render(true, $v, $dtv);
+    exit;
+   }else{
+      if(isset($_POST["LoginView::UserName"]) and !empty($_POST["LoginView::Password"])){
+            if (isset($_POST["LoginView::Password"]) and !empty($_POST["LoginView::Password"])){
+                setcookie($cookieUserName,$_POST["LoginView::UserName"], time() + 60 * 60 * 48);
+                setcookie($cookiePassword,$_POST["LoginView::Password"], time() + 60 * 60 * 48);
+            }
+      }
+   }
 }
 
+//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
+
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+
+
+
+$userLoggin = false;
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     if(isset($_POST["LoginView::Logout"])){
@@ -54,8 +68,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else {
         if(isset($_SESSION["loggin"])) {
             if($_SESSION["loggin"] === "loggin"){
+                $v->getLoggin("");
                 $lv->render(true, $v, $dtv);
                 exit();
+
             }
         
         }
@@ -81,15 +97,6 @@ function isSetCheck ($userInput) {
 
                 if($checkWithUser === true)
                 {
-                    if(isset($_POST["LoginView::KeepMeLoggedIn"])){
-                        echo "works";
-                        $_SESSION["setCookie"] = "true";
-                    }
-
-                    if(isset($_Cookie["setCookie"]){
-                        echo "funkar";
-                    }
-
                     $view->getLoggin('Welcome');
                     $_SESSION["loggin"] = "loggin";
                     
