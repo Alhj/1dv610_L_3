@@ -3,6 +3,23 @@ if(!isset($_SESSION)) {
     session_start();
     }
 
+    $cookieUserName = "cookieUserName";
+    $cookiePassword = "cookiePassword";
+
+    if(isset($_POST["LoginView::KeepMeLoggedIn"])){
+        if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
+        }else{
+           if(isset($_POST["LoginView::UserName"]) and !empty($_POST["LoginView::UserName"])){
+                 if (isset($_POST["LoginView::Password"]) and !empty($_POST["LoginView::Password"])){
+     
+                     setcookie("cookieUserName",$_POST["LoginView::UserName"], time() + 60 * 60 * 24 * 30);
+                     setcookie("cookiePassword",$_POST["LoginView::Password"], time() + 60 * 60 * 24 * 30);
+
+                 }
+           }
+        }
+     }
+
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
@@ -20,14 +37,10 @@ $lv = new LayoutView();
 $loggOut = new LoggOutModel();
 $logginCheck = new logginCheck();
 
-$cookieUserName = "cookieUserName";
-    $cookiePassword = "cookiePassword";
-
 if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
 
-    echo "1 <br>";
     if(!isset($_SESSION["loggin"])){
-        echo " 2<br>";
+    
        $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
 
         if($cookieRight === true){
@@ -39,18 +52,6 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
             exit();
         }
     }
-}
-
-if(isset($_POST["LoginView::KeepMeLoggedIn"])){
-   if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
-   }else{
-      if(isset($_POST["LoginView::UserName"]) and !empty($_POST["LoginView::Password"])){
-            if (isset($_POST["LoginView::Password"]) and !empty($_POST["LoginView::Password"])){
-                setcookie($cookieUserName,$_POST["LoginView::UserName"], time() + 60 * 60 * 48);
-                setcookie($cookiePassword,$_POST["LoginView::Password"], time() + 60 * 60 * 48);
-            }
-      }
-   }
 }
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
