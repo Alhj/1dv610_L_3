@@ -20,19 +20,29 @@ $lv = new LayoutView();
 $loggOut = new LoggOutModel();
 $logginCheck = new logginCheck();
 
-
 $cookieUserName = "cookieUserName";
-$cookiePassword = "cookiePassword";
+    $cookiePassword = "cookiePassword";
 
+if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
+
+    echo "1 <br>";
+    if(!isset($_SESSION["loggin"])){
+        echo " 2<br>";
+       $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
+
+        if($cookieRight === true){
+            $_SESSION["loggin"] = "loggin";
+    
+            $v->getLoggin('Welcome back with cookie');
+    
+            $lv->render(true, $v, $dtv);
+            exit();
+        }
+    }
+}
 
 if(isset($_POST["LoginView::KeepMeLoggedIn"])){
    if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
-    $_SESSION["loggin"] = "loggin";
-    
-    $v->getLoggin('Welcome back with cookie');
-
-    $lv->render(true, $v, $dtv);
-    exit;
    }else{
       if(isset($_POST["LoginView::UserName"]) and !empty($_POST["LoginView::Password"])){
             if (isset($_POST["LoginView::Password"]) and !empty($_POST["LoginView::Password"])){
@@ -94,6 +104,7 @@ function isSetCheck ($userInput) {
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
               
                 $checkWithUser = $dataBass->checkLogginInformation($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
+                
 
                 if($checkWithUser === true)
                 {
