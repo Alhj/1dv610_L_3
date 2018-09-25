@@ -13,7 +13,7 @@ class LayoutView {
         <body>
           <h1>Assignment 2</h1>
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
-          
+          <a href="index.php?get">test</a>
           <div class="container">
               ' . $v->response() . '
               

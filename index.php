@@ -6,19 +6,32 @@ if(!isset($_SESSION)) {
     $cookieUserName = "cookieUserName";
     $cookiePassword = "cookiePassword";
 
+    $cookieWrong = "test";
+
     if(isset($_POST["LoginView::KeepMeLoggedIn"])){
         if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
         }else{
            if(isset($_POST["LoginView::UserName"]) and !empty($_POST["LoginView::UserName"])){
                  if (isset($_POST["LoginView::Password"]) and !empty($_POST["LoginView::Password"])){
      
-                     setcookie("cookieUserName",$_POST["LoginView::UserName"], time() + 60 * 60 * 24 * 30);
-                     setcookie("cookiePassword",$_POST["LoginView::Password"], time() + 60 * 60 * 24 * 30);
-
+                     setcookie("cookieUserName",$_POST["LoginView::UserName"], time() + 60 * 60 * 24 * 30, "/");
+                     setcookie("cookiePassword",$_POST["LoginView::Password"], time() + 60 * 60 * 24 * 30, "/");
                  }
            }
         }
      }
+
+     if(isset($_SESSION["cookiesWrong"])) {
+         echo "123";
+        setcookie("cookieUserName", '', time() - 3600, "/");
+        setcookie("cookiePassword",'' , time() - 3600, "/");
+        unset($_SESSION["cookiesWrong"]);
+
+        $cookieWrong = false;
+        
+     }
+
+
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
@@ -37,28 +50,47 @@ $lv = new LayoutView();
 $loggOut = new LoggOutModel();
 $logginCheck = new logginCheck();
 
-if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE["$cookiePassword"])){
+if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
-    if(!isset($_SESSION["loggin"])){
-    
-       $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
+    $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
 
         if($cookieRight === true){
-            $_SESSION["loggin"] = "loggin";
-    
-            $v->getLoggin('Welcome back with cookie');
-    
-            $lv->render(true, $v, $dtv);
-            exit();
+
+        if(!isset($_SESSION["loggin"])){
+        
+        $cookieWrong = true ;
         }
+    }  else {
+        $_SESSION["cookiesWrong"] = "remove";
     }
-}
+  }
+
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+
+if($cookieWrong === true){
+    $_SESSION["loggin"] = "loggin";
+                
+                $v->getLoggin('Welcome back with cookie');
+        
+                $lv->render(true, $v, $dtv);
+                exit();
+}
+
+if($cookieWrong === false){
+
+    $v->getLoggin('Wrong information in cookies');
+    
+            $_SESSION["loggin"] = "loggout";
+    
+            $lv->render(false, $v, $dtv);
+            exit();
+
+}
 
 
 
@@ -79,6 +111,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     } else {
         if(isset($_SESSION["loggin"])) {
             if($_SESSION["loggin"] === "loggin"){
+
+                
                 $v->getLoggin("");
                 $lv->render(true, $v, $dtv);
                 exit();
@@ -111,7 +145,7 @@ function isSetCheck ($userInput) {
                 {
                     $view->getLoggin('Welcome');
                     $_SESSION["loggin"] = "loggin";
-                    
+                     
                 }else {
                 $view->getLoggin("Wrong name or password");
                 $view->setUsername($_POST["LoginView::UserName"]);
