@@ -1,4 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
+
+
 if(!isset($_SESSION)) {
     session_start();
     }
@@ -16,28 +20,27 @@ if(!isset($_SESSION)) {
      
                      setcookie("cookieUserName",$_POST["LoginView::UserName"], time() + 60 * 60 * 24 * 30, "/");
                      setcookie("cookiePassword",$_POST["LoginView::Password"], time() + 60 * 60 * 24 * 30, "/");
+
                  }
            }
         }
      }
-
+     
      if(isset($_SESSION["cookiesWrong"])) {
-         echo "123";
-        setcookie("cookieUserName", '', time() - 3600, "/");
-        setcookie("cookiePassword",'' , time() - 3600, "/");
-        unset($_SESSION["cookiesWrong"]);
-
-        $cookieWrong = false;
-        
+        setcookie("cookieUserName",$_POST["LoginView::UserName"], time() - 3600, "/");
+        setcookie("cookiePassword",$_POST["LoginView::Password"], time() - 3600, "/");  
      }
-
-
+     
+     if(isset($_SESSION["cookiesWrong"])) {
+         unset($_SESSION["cookiesWrong"]);
+         $cookieWrong = false;
+     }
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');
 require_once('view/LayoutView.php');
-require_once('model/DatabassModel.php');
+//require_once('model/DatabassModel.php');
 require_once('model/loggout.php');
 require_once('model/CheckLoginInformation.php');
 
@@ -56,20 +59,26 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
         if($cookieRight === true){
 
-        if(!isset($_SESSION["loggin"])){
+        if(!isset($_SESSION["loggin"]))
         
         $cookieWrong = true ;
+        {
         }
     }  else {
-        $_SESSION["cookiesWrong"] = "remove";
+        setcookie("cookieUserName", '', time() - 3600, "/");
+        setcookie("cookiePassword",'' , time() - 3600, "/");
+        
+        $v->getLoggin('Wrong information in cookies');
+    
+            $_SESSION["loggin"] = "loggout";
+    
+            $lv->render(false, $v, $dtv);
+            exit();
     }
   }
 
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
-
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
 
 
 if($cookieWrong === true){
@@ -80,18 +89,6 @@ if($cookieWrong === true){
                 $lv->render(true, $v, $dtv);
                 exit();
 }
-
-if($cookieWrong === false){
-
-    $v->getLoggin('Wrong information in cookies');
-    
-            $_SESSION["loggin"] = "loggout";
-    
-            $lv->render(false, $v, $dtv);
-            exit();
-
-}
-
 
 
 $userLoggin = false;
