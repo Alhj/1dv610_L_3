@@ -26,13 +26,13 @@ class LayoutView {
                   <legend>Register a new user - Write username and password</legend>
                   <p id = "'. $message .'"> </p>
 
-                  <label id = "RegisterView::UserName">Username:</label>
+                  <label for = "RegisterView::UserName">Username:</label>
                   <input id = "RegisterView::UserName"  type = "text">
                   <br>
-                  <label id = "RegisterView::Password">Password:</label>
+                  <label for = "RegisterView::Password">Password:</label>
                   <input id = "RegisterView::Password" type="password">
                   <br>
-                  <label id = "RegisterView::PasswordRepeat">Repeat password:</label>
+                  <label for = "RegisterView::PasswordRepeat">Repeat password:</label>
                   <input id = "RegisterView::PasswordRepeat" type="password">
                     
                     <br>
@@ -83,3 +83,4 @@ class LayoutView {
     }
   }
 }
+  
