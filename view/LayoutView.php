@@ -2,6 +2,9 @@
 
 
 class LayoutView {
+
+  $UserName = "RegisterView::UserName";
+  $passWord = "RegisterView::Password";
   
   public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
     if(isset($_GET["get"])){
@@ -16,6 +19,7 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           <a href="index.php">back</a>
           <div class="container">
+          <h2>Register new user</h2>
            
           </div>
           </body>
@@ -32,7 +36,7 @@ class LayoutView {
         <body>
           <h1>Assignment 2</h1>
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
-          <a href="index.php?get">test</a>
+          <a href="index.php?get">Register a new user</a>
           <div class="container">
               ' . $v->response() . '
               

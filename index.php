@@ -25,16 +25,6 @@ if(!isset($_SESSION)) {
            }
         }
      }
-     
-     if(isset($_SESSION["cookiesWrong"])) {
-        setcookie("cookieUserName",$_POST["LoginView::UserName"], time() - 3600, "/");
-        setcookie("cookiePassword",$_POST["LoginView::Password"], time() - 3600, "/");  
-     }
-     
-     if(isset($_SESSION["cookiesWrong"])) {
-         unset($_SESSION["cookiesWrong"]);
-         $cookieWrong = false;
-     }
 
 //INCLUDE THE FILES NEEDED...
 require_once('view/LoginView.php');
@@ -55,21 +45,27 @@ $logginCheck = new logginCheck();
 
 if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
-    $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
+    if(!isset($_SESSION["loggin"])){
+
+
+        $cookieRight = $logginCheck->checkLogginInformation($_COOKIE[$cookieUserName], $_COOKIE[$cookiePassword]);
 
         if($cookieRight === true){
-
-        if(!isset($_SESSION["loggin"])){
-
             $v->getLoggin('Welcome back with cookie');
-        
-            $lv->render(true, $v, $dtv);
-            exit();
-        }
-    }  else {
+    
+        $lv->render(true, $v, $dtv);
+        exit();
+    }
+
+
+
+    }   else {
         setcookie("cookieUserName", '', time() - 3600, "/");
         setcookie("cookiePassword",'' , time() - 3600, "/");
         
+            unset($_COOKIE[$cookieUserName]);
+            unset($_COOKIE[$cookiePassword]);
+
         $v->getLoggin('Wrong information in cookies');
     
             $_SESSION["loggin"] = "loggout";
@@ -142,7 +138,11 @@ function isSetCheck ($userInput) {
 
                 if($checkWithUser === true)
                 {
+                    if(isset($_POST["LoginView::KeepMeLoggedIn"])){
+                        $view->getLoggin('Welcome and you will be remembered');    
+                    }else {
                     $view->getLoggin('Welcome');
+                    }
                     $_SESSION["loggin"] = "loggin";
                      
                 }else {
