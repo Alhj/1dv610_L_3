@@ -59,10 +59,12 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
         if($cookieRight === true){
 
-        if(!isset($_SESSION["loggin"]))
+        if(!isset($_SESSION["loggin"])){
+
+            $v->getLoggin('Welcome back with cookie');
         
-        $cookieWrong = true ;
-        {
+            $lv->render(true, $v, $dtv);
+            exit();
         }
     }  else {
         setcookie("cookieUserName", '', time() - 3600, "/");
