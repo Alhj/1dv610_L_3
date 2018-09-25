@@ -6,10 +6,6 @@ class LayoutView {
   
   public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
     if(isset($_GET["register"])){
-
-      $userName = "RegisterView::UserName";
-      $passWord = "RegisterView::Password";
-      $conPassWord = "RegisterView::PasswordRepeat";
       $message = "RegisterView::Message";
       $sumbit = "submit";
 
@@ -21,7 +17,7 @@ class LayoutView {
         </head>
         <body>
           <h1>Assignment 2</h1>
-            <a href="index.php">back</a> '
+            <a href="index.php">Back to login</a> '
            . $this->renderIsLoggedIn($isLoggedIn) . '
           <div class="container">
             <h2>Register new user</h2>
@@ -30,15 +26,16 @@ class LayoutView {
                   <legend>Register a new user - Write username and password</legend>
                   <p id = "'. $message .'"> </p>
 
-                  <label id = " '. $userName . '">Username:</label>
-                  <input id = " '. $userName . '"  type = "text">
+                  <label id = "RegisterView::UserName">Username:</label>
+                  <input id = "RegisterView::UserName"  type = "text">
                   <br>
-                  <label id = " '. $passWord . '">Password:</label>
-                  <input id = " '. $passWord . '" type="password">
+                  <label id = "RegisterView::Password">Password:</label>
+                  <input id = "RegisterView::Password" type="password">
                   <br>
-                  <label id = " '. $conPassWord . '">Repeat password:</label>
-                  <input id = " '. $conPassWord . '" type="password">
-                  <br>
+                  <label id = "RegisterView::PasswordRepeat">Repeat password:</label>
+                  <input id = "RegisterView::PasswordRepeat" type="password">
+                    
+                    <br>
                   <input id= " '. $sumbit. ' "  type="submit" value="Register">
                 </fieldset>
              </form>
