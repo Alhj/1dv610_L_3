@@ -165,5 +165,5 @@ if(isset($_SESSION["loggin"])) {
     $userLoggin = true;
     }
 }
-
+echo password_hash($_POST["LoginView::Password"], PASSWORD_DEFAULT);
 $lv->render($userLoggin, $v, $dtv);
