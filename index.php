@@ -56,14 +56,12 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
         if($cookieRight === true){
             $v->getLoggin('Welcome back with cookie');
-    
+            $_SESSION["loggin"] = "loggin";
         $lv->render(true, $v, $dtv);
         exit();
-    }
+    } else {
 
-
-
-    }   else {
+        
         setcookie("cookieUserName", '', time() - 3600, "/");
         setcookie("cookiePassword",'' , time() - 3600, "/");
         
@@ -77,16 +75,8 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
             $lv->render(false, $v, $dtv);
             exit();
     }
-  }
 
-
-if($cookieWrong === true){
-    $_SESSION["loggin"] = "loggin";
-                
-                $v->getLoggin('Welcome back with cookie');
-        
-                $lv->render(true, $v, $dtv);
-                exit();
+    }  
 }
 
 
@@ -125,6 +115,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
        $registerProblem = $checkNewUser->userInfoSet();
        if(strlen($registerProblem) > 0) {
         $v->getLoggin($registerProblem);
+
+        if(isset($_POST["RegisterView::UserName"])) {
+            if(strlen($_POST["RegisterView::UserName"]) >= 3) {
+                $v->setUsername($_POST["RegisterView::UserName"]);
+            } 
+          }
        }
     }
 

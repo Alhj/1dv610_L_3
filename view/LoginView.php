@@ -95,7 +95,7 @@ class LoginView {
 		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
 
 		  <label for = "'. $newUserName .'">Username:</label>
-		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text">
+		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text" value = "' . $this->userName .' ">
 		  <br>
 		  <label for = "'. $newPassword .'">Password:</label>
 		  <input id = "'. $newPassword .'" name ="'. $newPassword .'" type="password">
