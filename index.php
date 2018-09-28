@@ -111,16 +111,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
     }
 
-    if(isset($_POST["Register"])) {
+    if(isset($_POST["RegisterView::Register"])) {
        $registerProblem = $checkNewUser->userInfoSet();
        if(strlen($registerProblem) > 0) {
         $v->getLoggin($registerProblem);
 
-        if(isset($_POST["RegisterView::UserName"])) {
-            if(strlen($_POST["RegisterView::UserName"]) >= 3) {
-                $v->setUsername($_POST["RegisterView::UserName"]);
-            } 
-          }
+        $v->setUsername($_POST["RegisterView::UserName"]);
        }
     }
 

@@ -92,7 +92,7 @@ class LoginView {
 		<form method="post">
 		<fieldset>
 		  <legend>Register a new user - Write username and password</legend>
-		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
+		  <p id = "' . $message .' ">'. $this->logginMessage .'</p>
 
 		  <label for = "'. $newUserName .'">Username:</label>
 		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text" value = "' . $this->userName .' ">
@@ -104,7 +104,7 @@ class LoginView {
 		  <input id = "'. $repaetPassword .'" name = "'. $repaetPassword .'" type="password">
 			
 			<br>
-		  <input id= "'. $sumbit. '" name="Register" type="submit" value="Register">
+		  <input id= "'. $sumbit. '" name="RegisterView::Register" type="submit" value="Register">
 		</fieldset>
 	 </form>';
 	}
