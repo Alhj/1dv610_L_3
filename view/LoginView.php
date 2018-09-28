@@ -60,7 +60,7 @@ class LoginView {
 	*/
 	private function generateLoginFormHTML($message) {
 		return '
-			<form method="post" > 
+			<form method="post"> 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
 					<p id="' . self::$messageId . '">' . $message . '</p>
@@ -78,6 +78,31 @@ class LoginView {
 				</fieldset>
 			</form>
 		';
+	}
+
+	public function registerUserFormHTML() {
+
+		$message = "RegisterView::Message";
+		  $sumbit = "submit";
+		  return'
+		<form method="post">
+		<fieldset>
+		  <legend>Register a new user - Write username and password</legend>
+		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
+
+		  <label for = "RegisterView::UserName">Username:</label>
+		  <input id = "RegisterView::UserName"  type = "text">
+		  <br>
+		  <label for = "RegisterView::Password">Password:</label>
+		  <input id = "RegisterView::Password" type="password">
+		  <br>
+		  <label for = "RegisterView::PasswordRepeat">Repeat password:</label>
+		  <input id = "RegisterView::PasswordRepeat" type="password">
+			
+			<br>
+		  <input id= "'. $sumbit. '" name="Register" type="submit" value="Register">
+		</fieldset>
+	 </form>';
 	}
 	
 	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES

@@ -6,9 +6,6 @@ class LayoutView {
   
   public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
     if(isset($_GET["register"])){
-      $message = "RegisterView::Message";
-      $sumbit = "submit";
-
       echo '<!DOCTYPE html>
       <html>
         <head>
@@ -21,24 +18,7 @@ class LayoutView {
            . $this->renderIsLoggedIn($isLoggedIn) . '
           <div class="container">
             <h2>Register new user</h2>
-              <form action ="">
-                <fieldset>
-                  <legend>Register a new user - Write username and password</legend>
-                  <p id = "'. $message .'"> </p>
-
-                  <label for = "RegisterView::UserName">Username:</label>
-                  <input id = "RegisterView::UserName"  type = "text">
-                  <br>
-                  <label for = "RegisterView::Password">Password:</label>
-                  <input id = "RegisterView::Password" type="password">
-                  <br>
-                  <label for = "RegisterView::PasswordRepeat">Repeat password:</label>
-                  <input id = "RegisterView::PasswordRepeat" type="password">
-                    
-                    <br>
-                  <input id= " '. $sumbit. ' "  type="submit" value="Register">
-                </fieldset>
-             </form>
+              '. $v->registerUserFormHTML() . '
              ' . $dtv->show() . '
             </div>
           </body>

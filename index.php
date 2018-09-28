@@ -1,4 +1,6 @@
 <?php
+
+//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
@@ -33,6 +35,7 @@ require_once('view/LayoutView.php');
 //require_once('model/DatabassModel.php');
 require_once('model/loggout.php');
 require_once('model/CheckLoginInformation.php');
+require_once('model/CheckNewUserRegModel.php');
 
 //CREATE OBJECTS OF THE VIEWS
 
@@ -42,6 +45,7 @@ $lv = new LayoutView();
 //$dataBass = new DataBass();
 $loggOut = new LoggOutModel();
 $logginCheck = new logginCheck();
+$checkNewUser = new checNewUserInfo();
 
 if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
 
@@ -74,9 +78,6 @@ if(isset($_COOKIE[$cookieUserName]) and isset($_COOKIE[$cookiePassword])){
             exit();
     }
   }
-
-
-//MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 
 
 if($cookieWrong === true){
@@ -115,8 +116,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             }
         
         }
+    if(isset($_POST["LoginView::Login"])) {
     getLogginInformation($v,$logginCheck); 
     }
+    }
+
+    if(isset($_POST["Register"])) {
+       $registerProblem = $checkNewUser->userInfoSet();
+       if(strlen($registerProblem) > 0) {
+        $v->getLoggin($registerProblem);
+       }
+    }
+
 }
 function isSetCheck ($userInput) {
     return isset($userInput);
@@ -165,5 +176,4 @@ if(isset($_SESSION["loggin"])) {
     $userLoggin = true;
     }
 }
-echo password_hash($_POST["LoginView::Password"], PASSWORD_DEFAULT);
 $lv->render($userLoggin, $v, $dtv);

@@ -1,5 +1,5 @@
 <?php
- /*
+
 class DataBass {
 
     private $host = "localhost";
@@ -39,4 +39,3 @@ class DataBass {
         return $correctInformation;
     }
 }
-*/
