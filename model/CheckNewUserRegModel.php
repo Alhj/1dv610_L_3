@@ -12,9 +12,7 @@ class checNewUserInfo {
     private function checkData() {
 
         if(isset($_POST["RegisterView::UserName"])) {
-            echo "1<br>";
             if(strlen($_POST["RegisterView::UserName"]) >= 3) {
-                echo "2";
             } else {
                 $this->userNameShort();
             }

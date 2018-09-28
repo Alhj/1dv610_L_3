@@ -83,21 +83,25 @@ class LoginView {
 	public function registerUserFormHTML() {
 
 		$message = "RegisterView::Message";
-		  $sumbit = "submit";
+		$sumbit = "submit";
+		$newUserName = "RegisterView::UserName";
+		$newPassword = "RegisterView::Password";
+		$repaetPassword = "RegisterView::PasswordRepeat" ;
+
 		  return'
 		<form method="post">
 		<fieldset>
 		  <legend>Register a new user - Write username and password</legend>
 		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
 
-		  <label for = "RegisterView::UserName">Username:</label>
-		  <input id = "RegisterView::UserName"  type = "text">
+		  <label for = "'. $newUserName .'">Username:</label>
+		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text">
 		  <br>
-		  <label for = "RegisterView::Password">Password:</label>
-		  <input id = "RegisterView::Password" type="password">
+		  <label for = "'. $newPassword .'">Password:</label>
+		  <input id = "'. $newPassword .'" name ="'. $newPassword .'" type="password">
 		  <br>
-		  <label for = "RegisterView::PasswordRepeat">Repeat password:</label>
-		  <input id = "RegisterView::PasswordRepeat" type="password">
+		  <label for = "'. $repaetPassword .'">Repeat password:</label>
+		  <input id = "'. $repaetPassword .'" name = "'. $repaetPassword .'" type="password">
 			
 			<br>
 		  <input id= "'. $sumbit. '" name="Register" type="submit" value="Register">
