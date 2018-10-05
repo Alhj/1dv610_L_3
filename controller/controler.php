@@ -4,10 +4,10 @@
 require_once('./view/LoginView.php');
 require_once('./view/DateTimeView.php');
 require_once('./view/LayoutView.php');
-//require_once('model/DatabassModel.php');
 require_once('./model/loggout.php');
 require_once('./model/CheckLoginInformation.php');
 require_once('./model/CheckNewUserRegModel.php');
+require_once('./model/allInfoSet.php');
 
 
   class Controller {
@@ -22,6 +22,7 @@ require_once('./model/CheckNewUserRegModel.php');
     private $loggOut;
     private $logginCheck;
     private $checkNewUser;
+    private $allInfoSet;
 
     public function setNewClasses ()
     {
@@ -31,6 +32,7 @@ require_once('./model/CheckNewUserRegModel.php');
       $this->loggOut = new LoggOutModel();
       $this ->logginCheck = new logginCheck();
       $this->checkNewUser = new checNewUserInfo();
+      $this->allInfoSet = new allInfoSet();
     }
 
    private function setcookie(){
@@ -121,46 +123,20 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 }
 
 }
-private function isSetCheck ($userInput) {
-    return isset($userInput);
-}
 
 
   private function getLogginInformation () {
-    $checkFildUserName = isset($_POST["LoginView::UserName"]);
 
-    if(!empty($_POST["LoginView::UserName"])) {
+    $postUserName = $this->v->getUserName();
+    $postPassword = $this->v->getPassword();
+    try{
+        $this->allInfoSet->isLogginInfoSet($postUserName, $postPassword);
 
-        if($checkFildUserName === true){
-            $checkIfPasswordIsFild = isset($_POST["LoginView::Password"]);
-        
-            if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
-              
-                $checkWithUser = $this->logginCheck->checkLogginInformation($this->v->getUserName(),$this->v->getPassword());
-                
-
-                if($checkWithUser === true)
-                {
-                    if(isset($_POST["LoginView::KeepMeLoggedIn"])){
-                        $this->v->setMessage('Welcome and you will be remembered');    
-                    }else {
-                        $this->v->setMessage('Welcome');
-                    }
-                    $_SESSION["loggin"] = "loggin";
-                     
-                }else {
-                    $this->v->setMessage("Wrong name or password");
-                    $this->v->setUsername($_POST["LoginView::UserName"]);
-                }
-
-            } else {
-                $this->v->setMessage("Password is missing");
-                $this->v->setUsername($_POST["LoginView::UserName"]);
-            }
-        }
-    } else {
-        $this->v->setMessage("Username is missing");
+        $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
+    }catch (Exception $e){
+        $this->v->setMessage($e->getMessage());
     }
+    $this->v->setMessage();
 }
 public function render () {
 $this->två();

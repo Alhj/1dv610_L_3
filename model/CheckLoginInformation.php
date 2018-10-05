@@ -7,14 +7,15 @@ class logginCheck {
 
             $hash = '$2y$10$Z/DCVZpx9581g5bjn3JeuuaHBuud0Dn4fkPVdGdObOkGNqmNf6z1m';
 
-            $allCorrect = false;
-
             if($userName === "Admin") {
 
                 if(password_verify($password, $hash)) {
                     $allCorrect = true;
+                } else {
+                    throw new Exception("wrong username or password");
                 }
+            } else {
+              throw new Exception("wrong username or password");  
             }
-            return $allCorrect;
         }
 }
