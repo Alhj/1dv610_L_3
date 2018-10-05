@@ -114,7 +114,7 @@ class LoginView {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
 	
-	public function getLoggin($text){
+	public function setMessage($text){
 		$this->logginMessage = "$text";
 	}
 	public function setUsername ($theName) {
