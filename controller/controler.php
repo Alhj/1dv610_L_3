@@ -136,7 +136,7 @@ private function isSetCheck ($userInput) {
         
             if($checkIfPasswordIsFild === true && !empty($_POST["LoginView::Password"])) {
               
-                $checkWithUser = $this->logginCheck->checkLogginInformation($_POST["LoginView::UserName"],$_POST["LoginView::Password"]);
+                $checkWithUser = $this->logginCheck->checkLogginInformation($this->v->getUserName(),$this->v->getPassword());
                 
 
                 if($checkWithUser === true)

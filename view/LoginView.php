@@ -1,7 +1,7 @@
 <?php
 
 class LoginView {
-	private static $login = 'LoginView::Login';
+	private static $login = "LoginView::Login";
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
 	private static $password = 'LoginView::Password';
@@ -81,7 +81,6 @@ class LoginView {
 	}
 
 	public function registerUserFormHTML() {
-
 		$message = "RegisterView::Message";
 		$sumbit = "submit";
 		$newUserName = "RegisterView::UserName";
@@ -120,4 +119,20 @@ class LoginView {
 	public function setUsername ($theName) {
 		$this->userName = "$theName";
 	}
+
+	public function getUserName () {
+		if(isset($_POST[self::$name])) {
+			return $_POST[self::$name];
+		} else {
+			return "";
+		}
+	}
+
+	public function getPassword() {
+		if(isset($_POST[self::$password])) {
+			return $_POST["LoginView::Password"] ; 
+		}else {
+			return "";
+		}		
+	} 
 }
