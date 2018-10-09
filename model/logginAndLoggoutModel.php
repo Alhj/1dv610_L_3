@@ -1,17 +1,23 @@
 <?php
 
-class loggInAndOut {
+class loggInAndOutCheck
+{
 
     private $loggin = "loggin";
 
-    private $loggout = "loggout";
+    public function setSeasion()
+    {
 
-    public function setSeasion(){
-
-        $_SESSION[$loggin] = $loggin;
+        $_SESSION[$this->loggin] = $this->loggin;
     }
 
-    public function removeSeasion (){
-        unset($_SESSION[$loggin]);
+    public function removeSeasion()
+    {
+        unset($_SESSION[$this->loggin]);
+    }
+
+    public function isUserLoggin()
+    {
+        return isset($_SESSION[$this->loggin]);
     }
 }
