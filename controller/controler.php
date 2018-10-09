@@ -4,6 +4,7 @@
 require_once('./view/LoginView.php');
 require_once('./view/DateTimeView.php');
 require_once('./view/LayoutView.php');
+require_once('./view/RegisterView.php');
 require_once('./model/CheckLoginInformation.php');
 require_once('./model/CheckNewUserRegModel.php');
 require_once('./model/allInfoSet.php');
@@ -19,6 +20,7 @@ class Controller
     private $v;
     private $dtv;
     private $lv;
+    private $registerView;
     private $loggOut;
     private $logginCheck;
     private $checkNewUser;
@@ -30,6 +32,7 @@ class Controller
         $this->v = new LoginView();
         $this->dtv = new DateTimeView();
         $this->lv = new LayoutView();
+        $this->registerView = new RegisterView();
         $this->logginCheck = new logginCheck();
         $this->checkNewUser = new checNewUserInfo();
         $this->allInfoSet = new allInfoSet();
@@ -39,7 +42,11 @@ class Controller
     public function render()
     {
         $this->checkWhatToDo();
-        $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->v, $this->dtv);
+        if ($this->lv->RegisterViewOrNot()) {
+            $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->registerView, $this->dtv);
+        } else {
+            $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->v, $this->dtv);
+        }
     }
 
 
@@ -56,19 +63,23 @@ class Controller
 
             case "loggout":
                 if ($this->logginAndOutCheck->isUserLoggin()) {
-                        $this->v->setMessage("Bye bye!");
-                        $this->logginAndOutCheck->removeSeasion();
-                    }
+                    $this->v->setMessage("Bye bye!");
+                    $this->logginAndOutCheck->removeSeasion();
+                }
                 break;
+        }
 
-            case "addUser": 
-            $registerProblem = $this->checkNewUser->userInfoSet();
+        if ($this->registerView->haveYouPost()) {
+            $userName = $this->registerView->getUserName();
+
+            $password = $this->registerView->getPassword();
+
+            $registerProblem = $this->checkNewUser->userInfoSet($userName, $password);
+
             if (strlen($registerProblem) > 0) {
-                $this->v->setMessage($registerProblem);
-
-                $this->v->setUsername($_POST["RegisterView::UserName"]);
+                $this->registerView->setMessage($registerProblem);
+                $this->registerView->setUsername($userName);
             }
-            break;
         }
     }
 

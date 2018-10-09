@@ -4,31 +4,23 @@ class checNewUserInfo {
 
     private $wrongMessage = "";
 
-    public function userInfoSet () {
-        $this->checkData();
+    public function userInfoSet ($userName, $password) {
+        $this->checkData($userName, $password);
         return $this->wrongMessage;
 }
 
-    private function checkData() {
+    private function checkData($userName, $password) {
 
-        if(isset($_POST["RegisterView::UserName"])) {
+        
             if(strlen($_POST["RegisterView::UserName"]) >= 3) {
             } else {
                 $this->userNameShort();
             }
-        } else {
-            $this->userNameShort();
-        }
-        if(isset($_POST["RegisterView::Password"])){
+    
             if(strlen($_POST["RegisterView::Password"]) >= 6){
             } else {
                 $this->passwordShort();
             }
-        } else {
-            $this->passwordShort();
-        }
-        if(isset($_POST["RegisterView::PasswordRepeat"])) {
-        }
     }
 
     private function userNameShort () {
