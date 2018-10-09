@@ -1,20 +1,30 @@
 <?php
 
 class LoginView {
-	private static $login = "LoginView::Login";
-	private static $logout = 'LoginView::Logout';
-	private static $name = 'LoginView::UserName';
-	private static $password = 'LoginView::Password';
-	private static $cookieName = 'LoginView::CookieName';
-	private static $cookiePassword = 'LoginView::CookiePassword';
-	private static $keep = 'LoginView::KeepMeLoggedIn';
-	private static $messageId = 'LoginView::Message';
+	private static $login;
+	private static $logout;
+	private static $name;
+	private static $password;
+	private static $cookieName;
+	private static $cookiePassword;
+	private static $keep;
+	private static $messageId;
 
 	private $logginMessage = "";
 
 	private $userName = "";
 
-	
+	public function __construct()
+	{
+		self::$login = get_class($this) . "::" . "Login";
+		self::$logout = get_class($this) . "::" . "Logout";
+		self::$name = get_class($this) . "::" . "UserName";
+		self::$password = get_class($this) . "::" . "Password";
+		self::$cookieName = get_class($this) . "::" . "CookieName";
+		self::$cookiePassword = get_class($this) . "::" . "CookiePassword";
+		self::$keep = get_class($this) . "::" . "KeepMeLoggedIn";
+		self::$messageId = get_class($this) . "::" . "Message";
+	}
 
 	/**
 	 * Create HTTP response
