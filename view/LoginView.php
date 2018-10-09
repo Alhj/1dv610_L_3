@@ -39,6 +39,35 @@ class LoginView {
 		return $response;
 	}
 
+
+	public function registerUserFormHTML() {
+		$message = "RegisterView::Message";
+		$sumbit = "submit";
+		$newUserName = "RegisterView::UserName";
+		$newPassword = "RegisterView::Password";
+		$repaetPassword = "RegisterView::PasswordRepeat" ;
+
+		  return'
+		<form method="post">
+		<fieldset>
+		  <legend>Register a new user - Write username and password</legend>
+		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
+
+		  <label for = "'. $newUserName .'">Username:</label>
+		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text" value = "' . $this->userName .'">
+		  <br>
+		  <label for = "'. $newPassword .'">Password:</label>
+		  <input id = "'. $newPassword .'" name ="'. $newPassword .'" type="password">
+		  <br>
+		  <label for = "'. $repaetPassword .'">Repeat password:</label>
+		  <input id = "'. $repaetPassword .'" name = "'. $repaetPassword .'" type="password">
+			
+			<br>
+		  <input id= "'. $sumbit. '" name="RegisterView::Register" type="submit" value="Register">
+		</fieldset>
+	 </form>';
+	}
+
 	/**
 	* Generate HTML code on the output buffer for the logout button
 	* @param $message, String output message
@@ -79,39 +108,6 @@ class LoginView {
 			</form>
 		';
 	}
-
-	public function registerUserFormHTML() {
-		$message = "RegisterView::Message";
-		$sumbit = "submit";
-		$newUserName = "RegisterView::UserName";
-		$newPassword = "RegisterView::Password";
-		$repaetPassword = "RegisterView::PasswordRepeat" ;
-
-		  return'
-		<form method="post">
-		<fieldset>
-		  <legend>Register a new user - Write username and password</legend>
-		  <p id = "' . $message .'">'. $this->logginMessage .'</p>
-
-		  <label for = "'. $newUserName .'">Username:</label>
-		  <input id = "'. $newUserName .'" name = "'. $newUserName .'"  type = "text" value = "' . $this->userName .'">
-		  <br>
-		  <label for = "'. $newPassword .'">Password:</label>
-		  <input id = "'. $newPassword .'" name ="'. $newPassword .'" type="password">
-		  <br>
-		  <label for = "'. $repaetPassword .'">Repeat password:</label>
-		  <input id = "'. $repaetPassword .'" name = "'. $repaetPassword .'" type="password">
-			
-			<br>
-		  <input id= "'. $sumbit. '" name="RegisterView::Register" type="submit" value="Register">
-		</fieldset>
-	 </form>';
-	}
-	
-	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
-	private function getRequestUserName() {
-		//RETURN REQUEST VARIABLE: USERNAME
-	}
 	
 	public function setMessage($text){
 		$this->logginMessage = "$text";
@@ -130,9 +126,22 @@ class LoginView {
 
 	public function getPassword() {
 		if(isset($_POST[self::$password])) {
-			return $_POST["LoginView::Password"] ; 
+			return $_POST[self::$password] ; 
 		}else {
 			return "";
 		}		
-	} 
+	}
+
+	public function withPost() {
+		if(isset($_POST[self::$login])){
+			echo"loggin";
+			return "loggin";
+		}
+		if(isset($_Post[self::$logout])){
+			echo "loggout";
+			return "loggout";
+		}
+		echo "no";
+		return "";
+	}
 }

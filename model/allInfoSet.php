@@ -5,8 +5,8 @@ class allInfoSet {
 
     public function isLogginInfoSet ($UserName, $Password) {
     
-            if(!$this->isItSet($UserName)){
-                    if(!$this->isItSet($Password)) {
+            if(!$this->isItEmpty($UserName)){
+                    if(!$this->isItEmpty($Password)) {
                         return true;
             }else {
                 throw new Exception("password is missing");
@@ -16,7 +16,7 @@ class allInfoSet {
           }
         }
     
-        private function isItSet($input){
+        private function isItEmpty($input){
         return empty($input);
     }
 }

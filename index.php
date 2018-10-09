@@ -7,5 +7,5 @@ require_once('controller/controler.php');
 
 $controller = new Controller();
 
-$controller->setNewClasses();
- $controller->render();
+
+$controller->render();
