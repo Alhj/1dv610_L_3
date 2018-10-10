@@ -7,7 +7,7 @@ class LayoutView
 
   public function render($isLoggedIn, $v, DateTimeView $dtv)
   {
-      echo '<!DOCTYPE html>
+    echo '<!DOCTYPE html>
       <html>
         <head>
           <meta charset="utf-8">
@@ -25,7 +25,7 @@ class LayoutView
          </body>
       </html>
     ';
-    }
+  }
 
   public function RegisterViewOrNot()
   {
@@ -46,7 +46,11 @@ class LayoutView
     if ($isLoggedIn) {
       return '';
     } else {
-      return '<a href="index.php?register">Register a new user</a>';
+      if (isset($_GET["register"])) {
+        return '<a href="index.php">Back to login</a>';
+      } else {
+        return '<a href="index.php?register">Register a new user</a>';
+      }
     }
   }
 }
