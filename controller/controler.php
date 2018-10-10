@@ -93,8 +93,12 @@ class Controller
             $this->allInfoSet->isLogginInfoSet($postUserName, $postPassword);
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
-
-            $this->v->setMessage('welcome');
+            if ($this->v->doWeSetCookie()) {
+                $this->v->setMessage('Welcome and you will be remembered');
+                $this->v->setcookie();
+            } else {
+                $this->v->setMessage('welcome');
+            }
 
             $this->logginAndOutCheck->setSeasion();
         } catch (Exception $e) {

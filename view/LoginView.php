@@ -21,8 +21,8 @@ class LoginView
 		self::$logout = get_class($this) . "::" . "Logout";
 		self::$name = get_class($this) . "::" . "UserName";
 		self::$password = get_class($this) . "::" . "Password";
-		self::$cookieName = get_class($this) . "::" . "CookieName";
-		self::$cookiePassword = get_class($this) . "::" . "CookiePassword";
+		self::$cookieName = "cookieUserName";
+		self::$cookiePassword = "CookiePassword";
 		self::$keep = get_class($this) . "::" . "KeepMeLoggedIn";
 		self::$messageId = get_class($this) . "::" . "Message";
 	}
@@ -49,36 +49,6 @@ class LoginView
 			$response = $this->generateLoginFormHTML($message);
 		}
 		return $response;
-	}
-
-
-	public function registerUserFormHTML()
-	{
-		$message = "RegisterView::Message";
-		$sumbit = "submit";
-		$newUserName = "RegisterView::UserName";
-		$newPassword = "RegisterView::Password";
-		$repaetPassword = "RegisterView::PasswordRepeat";
-
-		return '
-		<form method="post">
-		<fieldset>
-		  <legend>Register a new user - Write username and password</legend>
-		  <p id = "' . $message . '">' . $this->logginMessage . '</p>
-
-		  <label for = "' . $newUserName . '">Username:</label>
-		  <input id = "' . $newUserName . '" name = "' . $newUserName . '"  type = "text" value = "' . $this->userName . '">
-		  <br>
-		  <label for = "' . $newPassword . '">Password:</label>
-		  <input id = "' . $newPassword . '" name ="' . $newPassword . '" type="password">
-		  <br>
-		  <label for = "' . $repaetPassword . '">Repeat password:</label>
-		  <input id = "' . $repaetPassword . '" name = "' . $repaetPassword . '" type="password">
-			
-			<br>
-		  <input id= "' . $sumbit . '" name="RegisterView::Register" type="submit" value="Register">
-		</fieldset>
-	 </form>';
 	}
 
 	/**
@@ -159,9 +129,48 @@ class LoginView
 		if (isset($_POST[self::$logout])) {
 			return "loggout";
 		}
-		if(isset($_POST["RegisterView::Register"])) {
-			return "addUser";
+		return "";
+	}
+
+	public function doWeSetCookie()
+	{
+		return isset($_POST[self::$keep]);
+	}
+
+	public function getCookieUserName()
+	{
+		if (isset($_COOKIE[self::$cookieName])) {
+			return $_COOKIE[self::$cookieName];
 		}
 		return "";
+	}
+	public function getCookiePassword()
+	{
+		if (isset($_COOKIE[self::$cookiePassword])) {
+			return $_COOKIE[self::$cookiePassword];
+		}
+		return "";
+	}
+
+	public function setCookie()
+	{
+		setCookie(self::$cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30, "/");
+		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30, "/");
+	}
+
+	private function randomString()
+	{
+		$getFromThisString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+		$stringLength = strlen($getFromThisString);
+
+		$length = 50;
+
+		$randomString = '';
+
+		for ($time = 0; $time < $length; $time++) {
+			$randomString .= $getFromThisString[rand(0, $stringLength - 1)];
+		}
+		return $randomString;
 	}
 }
