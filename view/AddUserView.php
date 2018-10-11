@@ -1,10 +1,12 @@
 <?php
 
 
-class AddUserView {
+class AddUserView
+{
 
-    public function show () {
-        echo '<!DOCTYPE html>
+  public function show()
+  {
+    echo '<!DOCTYPE html>
         <html>
           <head>
             <meta charset="utf-8">
@@ -22,5 +24,5 @@ class AddUserView {
            </body>
         </html>
       ';
-    }
+  }
 }

@@ -1,11 +1,13 @@
 <?php
 
-class DateTimeView {
+class DateTimeView
+{
 
 
-	public function show() {
+	public function show()
+	{
 
-		$timeString = date("l") . ', the ' . date("jS") . " of " . date("F Y,") . ' The time is '  ;
+		$timeString = date("l") . ', the ' . date("jS") . " of " . date("F Y,") . ' The time is ';
 
 		return '<p>' . $timeString . '</p>';
 	}
