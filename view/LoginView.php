@@ -152,10 +152,15 @@ class LoginView
 		return "";
 	}
 
+	public function removeCookies(){
+		setCookie(self::$cookieName, $this->getUserName(), time() - 3600);
+		setCookie(self::$cookiePassword, $this->randomString(), time() - 3600 );
+	}
+
 	public function setCookie()
 	{
-		setCookie(self::$cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30, "/");
-		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30, "/");
+		setCookie(self::$cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30);
+		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30);
 	}
 
 	private function randomString()

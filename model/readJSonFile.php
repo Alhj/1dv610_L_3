@@ -2,8 +2,12 @@
 
 class ReadJsonFile
 {
-    public function readJsonFile()
+    public function JsonFile()
     {
+        $jsonFile = fopen("./snips.json", 'w');
 
+        $Snipps = new RecursiveArrayIterator($jsonFile);
+        
+        return $Snipps;
     }
 }

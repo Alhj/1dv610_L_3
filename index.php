@@ -10,5 +10,4 @@ if (!isset($_SESSION)) {
 
 $controller = new Controller();
 
-
 $controller->render();

@@ -5,6 +5,7 @@ require_once('./view/LoginView.php');
 require_once('./view/DateTimeView.php');
 require_once('./view/LayoutView.php');
 require_once('./view/RegisterView.php');
+require_once('./view/snippesView.php');
 require_once('./model/CheckLoginInformation.php');
 require_once('./model/CheckNewUserRegModel.php');
 require_once('./model/allInfoSet.php');
@@ -21,6 +22,8 @@ class Controller
     private $dtv;
     private $lv;
     private $registerView;
+    private $snippsView;
+    
     private $loggOut;
     private $logginCheck;
     private $checkNewUser;
@@ -32,6 +35,8 @@ class Controller
         $this->v = new LoginView();
         $this->dtv = new DateTimeView();
         $this->lv = new LayoutView();
+        $this->snippsView = new SnippsView();
+
         $this->registerView = new RegisterView();
         $this->logginCheck = new logginCheck();
         $this->checkNewUser = new checNewUserInfo();
@@ -42,11 +47,17 @@ class Controller
     public function render()
     {
         $this->checkWhatToDo();
+
         if ($this->lv->RegisterViewOrNot()) {
             $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->registerView, $this->dtv);
-        } else {
-            $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->v, $this->dtv);
+            exit();
         }
+        if ($this->lv->SnippsViewOrNot()) {
+            $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->snippsView, $this->dtv);
+            exit();
+        }
+
+        $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->v, $this->dtv);
     }
 
 
@@ -64,6 +75,7 @@ class Controller
             case "loggout":
                 if ($this->logginAndOutCheck->isUserLoggin()) {
                     $this->v->setMessage("Bye bye!");
+                    $this->v->removeCookies();
                     $this->logginAndOutCheck->removeSeasion();
                 }
                 break;

@@ -21,6 +21,7 @@ class LayoutView
               ' . $v->response() . '
               
               ' . $dtv->show() . '
+              <a href="index.php?ShowSnipps">see code snipps</a>
           </div>
          </body>
       </html>
@@ -30,6 +31,11 @@ class LayoutView
   public function RegisterViewOrNot()
   {
     return isset($_GET["register"]);
+  }
+
+  public function SnippsViewOrNot()
+  {
+    return isset($_GET["ShowSnipps"]);
   }
 
   private function renderIsLoggedIn($isLoggedIn)
@@ -46,7 +52,7 @@ class LayoutView
     if ($isLoggedIn) {
       return '';
     } else {
-      if (isset($_GET["register"])) {
+      if (isset($_GET["register"]) or isset($_GET["showSnipps"])) {
         return '<a href="index.php">Back to login</a>';
       } else {
         return '<a href="index.php?register">Register a new user</a>';
