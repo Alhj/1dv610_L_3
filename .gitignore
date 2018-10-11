@@ -1,6 +1,5 @@
 # Created by https://www.gitignore.io/api/lamp,windows,visualstudiocode
 
-
 user.text
 ### LAMP ###
 # LAMP Stack Base
@@ -54,6 +53,8 @@ user.text
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+
+snips.json
 
 # CMake
 cmake-build-*/

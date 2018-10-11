@@ -2,16 +2,35 @@
 
 class SnippsView
 {
+    private $jsonInfo;
 
-    public function response ()
+    public function response()
     {
         return '
-        '. $this->allSnips("hello world") . '
+        ' . $this->allSnips() . '
         ';
     }
 
-    private function allSnips ($jsonRead)
+    private function allSnips()
     {
-        return "$jsonRead";
+        $string = '';
+        foreach($this->jsonInfo as $snipp)
+        {
+            $string .= '
+            <fieldset>
+            <h2> title: ' . $snipp->{"descriton"} . '</h2>
+            <h4> author: '. $snipp->{"Createname"}.'</h4>
+            <p>
+            ' . 'snipp:' . $snipp->{"snipp"} . '
+            </p>
+            </fieldset>'
+            ;
+        }
+        return $string;
+    }
+
+    public function setJsonInfo($jsonInfomration)
+    {
+        $this->jsonInfo = $jsonInfomration;
     }
 }

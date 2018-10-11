@@ -1,16 +1,18 @@
 <?php
 
-//INCLUDE THE FILES NEEDED...
+//INCLUDE THE FILES NEEDED to View
 require_once('./view/LoginView.php');
 require_once('./view/DateTimeView.php');
 require_once('./view/LayoutView.php');
 require_once('./view/RegisterView.php');
 require_once('./view/snippesView.php');
+
+// INCLUDE THE FILES NEEDED to Model
 require_once('./model/CheckLoginInformation.php');
 require_once('./model/CheckNewUserRegModel.php');
 require_once('./model/allInfoSet.php');
 require_once('./model/logginAndLoggoutModel.php');
-
+require_once('./model/readJSonFile.php');
 
 class Controller
 {
@@ -23,12 +25,13 @@ class Controller
     private $lv;
     private $registerView;
     private $snippsView;
-    
+
     private $loggOut;
     private $logginCheck;
     private $checkNewUser;
     private $allInfoSet;
     private $loginAndOutCheck;
+    private $SnippsModel;
 
     public function __construct()
     {
@@ -42,6 +45,7 @@ class Controller
         $this->checkNewUser = new checNewUserInfo();
         $this->allInfoSet = new allInfoSet();
         $this->logginAndOutCheck = new loggInAndOutCheck();
+        $this->SnippsModel = new ReadJsonFile();
     }
 
     public function render()
@@ -53,6 +57,9 @@ class Controller
             exit();
         }
         if ($this->lv->SnippsViewOrNot()) {
+            $jsoninfo = $this->SnippsModel->getInfomrationFromJsonFile();
+
+            $this->snippsView->setJsonInfo($jsoninfo);
             $this->lv->render($this->logginAndOutCheck->isUserLoggin(), $this->snippsView, $this->dtv);
             exit();
         }
