@@ -11,7 +11,7 @@
     },
     {
         "Createname":"admin",
-        "snipp":"console.log(hello world)",
+        "snipp":"console.log()",
         "descriton":"test"
     }
 ]

@@ -4,27 +4,48 @@ class SnippsView
 {
     private $jsonInfo;
 
+    private $snipp = "snipp";
+    private $title = "title";
+    private $message = "message";
+
+    private $theMessage;
+
+
+    public function setJsonInfo($jsonInfomration)
+    {
+        $this->jsonInfo = $jsonInfomration;
+    }
+
+    public function setMessage($sendMessage)
+    {
+        $this->theMessage = $sendMessage;
+    }
+
     public function response()
     {
-        return '
+        if (true) {
+            return '
+            ' . $this->NewSnipps() . '
+            ';
+        } else {
+            return '
         ' . $this->allSnips() . '
         ';
+        }
     }
 
     private function allSnips()
     {
         $string = '';
-        foreach($this->jsonInfo as $snipp)
-        {
+        foreach ($this->jsonInfo as $snipp) {
             $string .= '
-            <fieldset>
-            <h2> title: ' . $snipp->{"descriton"} . '</h2>
-            <h4> author: '. $snipp->{"Createname"}.'</h4>
-            <p>
-            ' . 'snipp:' . $snipp->{"snipp"} . '
-            </p>
-            </fieldset>'
-            ;
+                <fieldset>
+                    <h2> title: ' . $snipp->{"descriton"} . '</h2>
+                    <h4> author: ' . $snipp->{"Createname"} . '</h4>
+                    <p>
+                    ' . 'snipp:' . $snipp->{"snipp"} . '
+                    </p>
+                </fieldset>';
         }
         return $string;
     }
@@ -32,12 +53,21 @@ class SnippsView
     private function NewSnipps()
     {
         return
-        '
+            '
+            <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
+            <form method = "post">
+                <fieldset>
+                    <label for = "' . $this->title . '">title</label>
+                    <input type = "text">
+                    <br>
+                    <label for = "' . $this->snipp . '"> snipp</label>
+                    <textarea id = "' . $this->snipp . '" rows="4" cols="40">
+                    </textarea>
+                    <br>
+                    <br>
+                    <button type ="submit">submit</button>
+                </fieldset>
+            </form>
         ';
-    }
-
-    public function setJsonInfo($jsonInfomration)
-    {
-        $this->jsonInfo = $jsonInfomration;
     }
 }
