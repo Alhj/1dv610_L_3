@@ -8,5 +8,10 @@
         "Createname": "admin",
         "snipp": "&ltp&gt 1 &lt/p&gt",
         "descriton": "en etta"
+    },
+    {
+        "Createname":"admin",
+        "snipp":"console.log(hello world)",
+        "descriton":"test"
     }
 ]

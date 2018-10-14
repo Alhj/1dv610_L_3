@@ -1,6 +1,6 @@
 <?php
 
-class loggInAndOutCheck
+class logginAndLoggoutModel
 {
 
     private $loggin = "loggin";

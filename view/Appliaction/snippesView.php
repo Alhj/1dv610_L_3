@@ -29,6 +29,13 @@ class SnippsView
         return $string;
     }
 
+    private function NewSnipps()
+    {
+        return
+        '
+        ';
+    }
+
     public function setJsonInfo($jsonInfomration)
     {
         $this->jsonInfo = $jsonInfomration;
