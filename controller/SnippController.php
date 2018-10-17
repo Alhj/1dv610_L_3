@@ -14,6 +14,8 @@ class SnippController
 
     public function checkWhatToDo()
     {
+        if("" == "1"){
        $this->jsonModel->addSnipps('admin', 'något');
+        }
     }
 }

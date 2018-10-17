@@ -12,13 +12,12 @@ class logginCheck
         if ($userName === "Admin") {
 
             if (password_verify($password, $hash)) {
-                $allCorrect = "welcome";
                 $_SESSION["loggin"] = "loggin";
             } else {
-                throw new Exception("wrong username or password");
+                throw new Exception("Wrong name or password");
             }
         } else {
-            throw new Exception("wrong username or password");
+            throw new Exception("Wrong name or password");
         }
     }
 }

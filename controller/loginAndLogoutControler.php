@@ -29,15 +29,14 @@ class logginAndLoggoutControler
         switch ($withPost) {
             case "loggin":
                 if ($this->logginAndOutCheck->isUserLoggin()) {
-                } else { 
+                } else {
                     $this->Loggin();
                 }
                 break;
 
             case "loggout":
                 if ($this->logginAndOutCheck->isUserLoggin()) {
-                    $this->v->setMessage("Bye bye!");
-                    $this->v->removeCookies();
+                    $this->loggout();
                 }
                 break;
         }
@@ -45,6 +44,7 @@ class logginAndLoggoutControler
 
     private function loggin()
     {
+        var_dump("test");
         $postUserName = $this->v->getUserName();
         $postPassword = $this->v->getPassword();
         try {
@@ -55,15 +55,18 @@ class logginAndLoggoutControler
                 $this->v->setMessage('Welcome and you will be remembered');
                 $this->v->setcookie();
             } else {
-                $this->v->setMessage('welcome');
+                $this->v->setMessage('Welcome');
             }
         } catch (Exception $e) {
+            $this->v->setUsername($this->v->getUserName());
             $this->v->setMessage($e->getMessage());
         }
     }
 
     private function loggout()
     {
+        $this->v->setMessage("Bye bye!");
+        $this->v->removeCookies();
         $this->logginAndOutCheck->removeSeasion();
     }
 

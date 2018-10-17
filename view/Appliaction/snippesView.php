@@ -24,7 +24,7 @@ class SnippsView
 
     public function response()
     {
-        if (true) {
+        if ("" == "1") {
             return '
             ' . $this->NewSnipps() . '
             ';
@@ -46,7 +46,7 @@ class SnippsView
         foreach ($this->jsonInfo as $snipp) {
             $string .= '
                 <fieldset>
-                    <h2> title: ' . $snipp->{"descriton"} . '</h2>
+                    <h2> title: ' . $snipp->{"title"} . '</h2>
                     <h4> author: ' . $snipp->{"Createname"} . '</h4>
                     <p>
                     ' . 'snipp:' . $snipp->{"snipp"} . '

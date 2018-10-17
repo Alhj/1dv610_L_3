@@ -11,10 +11,10 @@ class allInfoSet
             if (!$this->isItEmpty($Password)) {
                 return true;
             } else {
-                throw new Exception("password is missing");
+                throw new Exception("Password is missing");
             }
         } else {
-            throw new exception("username is missing");
+            throw new exception("Username is missing");
         }
     }
 
