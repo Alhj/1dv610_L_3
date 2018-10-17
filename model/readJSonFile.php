@@ -3,6 +3,8 @@
 class ReadJsonFile
 {
 
+    private $file = "snips.json";
+
     public function addSnipps($title, $jsonInfo)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
@@ -24,7 +26,7 @@ class ReadJsonFile
 
     public function getInfomrationFromJsonFile()
     {
-        $jsonFile = file_get_contents("./snips.json", 'w');
+        $jsonFile = file_get_contents('./' . $this->file . '', 'w');
 
         $jsonInfo = json_decode($jsonFile);
 
@@ -33,6 +35,11 @@ class ReadJsonFile
 
     private function saveJsonFile(array $jsonFile)
     {
-        var_dump($jsonFile);
+
+       $newJsonInfo = json_encode($jsonFile);
+
+       file_put_contents('./'. $this->file .'', $newJsonInfo);
+
+
     }
 }

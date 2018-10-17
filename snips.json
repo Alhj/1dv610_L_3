@@ -1,17 +1,1 @@
-[
-    {
-        "Createname": "admin",
-        "snipp": "&ltp&gthello world&lt/p&gt",
-        "descriton": "hello world output"
-    },
-    {
-        "Createname": "admin",
-        "snipp": "&ltp&gt 1 &lt/p&gt",
-        "descriton": "en etta"
-    },
-    {
-        "Createname":"admin",
-        "snipp":"console.log()",
-        "descriton":"test"
-    }
-]
+[{"Createname":"admin","snipp":"n\u00e5got","title":"admin"}]
