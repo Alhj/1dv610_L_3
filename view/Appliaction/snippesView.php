@@ -7,6 +7,7 @@ class SnippsView
     private $snipp = "snipp";
     private $title = "title";
     private $message = "message";
+    private $addSnipp = "addsnipp";
 
     private $theMessage;
 
@@ -32,6 +33,11 @@ class SnippsView
         ' . $this->allSnips() . '
         ';
         }
+    }
+
+    public function whantToAddSnipp()
+    {
+        return isset($_GET[$this->addSnipp]);
     }
 
     private function allSnips()

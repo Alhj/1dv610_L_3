@@ -15,6 +15,7 @@ require_once('./model/logginAndLoggoutModel.php');
 // INCLUDE THE FILES NEEDED to Controller
 
 require_once('./controller/loginAndLogoutControler.php');
+require_once('./controller/SnippController.php');
 
 class Controller
 {
@@ -33,6 +34,7 @@ class Controller
     private $logginAndOutCheck;
 
     private $LogginandLoggoutController;
+    private $SnippController;
 
     public function __construct()
     {
@@ -46,6 +48,7 @@ class Controller
         $this->SnippsModel = new ReadJsonFile();
 
         $this->LogginandLoggoutController = new logginAndLoggoutControler($this->v);
+        $this->SnippController = new SnippController();
     }
 
     public function render()
@@ -57,6 +60,7 @@ class Controller
             exit();
         }
         if ($this->lv->SnippsViewOrNot()) {
+            $this->SnippController->checkWhatToDo();
             $jsoninfo = $this->SnippsModel->getInfomrationFromJsonFile();
 
             $this->snippsView->setJsonInfo($jsoninfo);
