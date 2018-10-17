@@ -7,10 +7,27 @@ class SnippsView
     private $snipp = "snipp";
     private $title = "title";
     private $message = "message";
+    private $submitSnip = "submitSnip";
+
     private $addSnipp = "addsnipp";
+
+    private $viewSnipp = "ShowSnipps";
 
     private $theMessage;
 
+    public function whantToDoWithSnipp()
+    {
+        $whatToDo = false;
+
+        if (isset($_GET[$this->addSnipp])) {
+            $whatToDo = true;
+        }
+        if (isset($_GET[$this->viewSnipp])) {
+            $whatToDo = true;
+        }
+
+        return $whatToDo;
+    }
 
     public function setJsonInfo($jsonInfomration)
     {
@@ -21,10 +38,18 @@ class SnippsView
     {
         $this->theMessage = $sendMessage;
     }
+    public function whantToAddSnipp()
+    {
+        return isset($_POST[$this->addSnipp]);
+    }
+    public function seeSnipps()
+    {
+        return isset($_GET[$this->viewSnipp]);
+    }
 
     public function response()
     {
-        if ("" == "1") {
+        if (isset($_GET[$this->addSnipp])) {
             return '
             ' . $this->NewSnipps() . '
             ';
@@ -33,11 +58,6 @@ class SnippsView
         ' . $this->allSnips() . '
         ';
         }
-    }
-
-    public function whantToAddSnipp()
-    {
-        return isset($_GET[$this->addSnipp]);
     }
 
     private function allSnips()
@@ -71,7 +91,7 @@ class SnippsView
                     </textarea>
                     <br>
                     <br>
-                    <button type ="submit">submit</button>
+                    <button id="' . $this->submitSnip . '" type ="submit">submit</button>
                 </fieldset>
             </form>
         ';

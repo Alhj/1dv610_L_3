@@ -6,16 +6,22 @@ class SnippController
 {
 
     private $jsonModel;
+    private $view;
 
-    public function __construct()
+    public function __construct(SnippsView $view)
     {
         $this->jsonModel = new ReadJsonFile();
+        $this->view = $view;
     }
 
     public function checkWhatToDo()
     {
-        if("" == "1"){
-       $this->jsonModel->addSnipps('admin', 'något');
+        if ($this->view->whantToAddSnipp()) {
+            $this->jsonModel->addSnipps('admin', 'något');
+        }
+        if ($this->view->seeSnipps()) {
+            $jsonInfo = $this->jsonModel-> getInfomrationFromJsonFile();
+            $this->view->setJsonInfo($jsonInfo);
         }
     }
 }

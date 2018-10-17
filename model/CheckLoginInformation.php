@@ -12,7 +12,7 @@ class logginCheck
         if ($userName === "Admin") {
 
             if (password_verify($password, $hash)) {
-                $_SESSION["loggin"] = "loggin";
+                $_SESSION["loggin"] = $userName;
             } else {
                 throw new Exception("Wrong name or password");
             }

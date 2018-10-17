@@ -1,11 +1,10 @@
 # Created by https://www.gitignore.io/api/lamp,windows,visualstudiocode
 
-snips.json
-env.php
 user.text
 ### LAMP ###
 # LAMP Stack Base
-
+snips.json
+env.php
 ### LAMP.Linux Stack ###
 *~
 

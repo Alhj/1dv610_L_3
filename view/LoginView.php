@@ -39,11 +39,8 @@ class LoginView
 		$message = "$this->logginMessage";
 
 		if (isset($_SESSION["loggin"])) {
-			if ($_SESSION["loggin"] === "loggin") {
-				$response = $this->generateLogoutButtonHTML($message);
-			} else {
-				$response = $this->generateLoginFormHTML($message);
-			}
+
+			$response = $this->generateLogoutButtonHTML($message);
 
 		} else {
 			$response = $this->generateLoginFormHTML($message);
@@ -152,9 +149,10 @@ class LoginView
 		return "";
 	}
 
-	public function removeCookies(){
+	public function removeCookies()
+	{
 		setCookie(self::$cookieName, $this->getUserName(), time() - 3600);
-		setCookie(self::$cookiePassword, $this->randomString(), time() - 3600 );
+		setCookie(self::$cookiePassword, $this->randomString(), time() - 3600);
 	}
 
 	public function setCookie()

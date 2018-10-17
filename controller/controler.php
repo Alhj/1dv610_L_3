@@ -48,7 +48,7 @@ class Controller
         $this->SnippsModel = new ReadJsonFile();
 
         $this->LogginandLoggoutController = new logginAndLoggoutControler($this->v);
-        $this->SnippController = new SnippController();
+        $this->SnippController = new SnippController($this->snippsView);
     }
 
     public function render()
@@ -59,15 +59,12 @@ class Controller
             $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->registerView, $this->dtv);
             exit();
         }
-        if ($this->lv->SnippsViewOrNot()) {
+        if ($this->snippsView-> whantToDoWithSnipp()) {
             $this->SnippController->checkWhatToDo();
-            $jsoninfo = $this->SnippsModel->getInfomrationFromJsonFile();
-
-            $this->snippsView->setJsonInfo($jsoninfo);
-            $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->snippsView, $this->dtv);
+           
+           $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->snippsView, $this->dtv);
             exit();
         }
-
         $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->v, $this->dtv);
     }
 

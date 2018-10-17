@@ -33,11 +33,6 @@ class LayoutView
     return isset($_GET["register"]);
   }
 
-  public function SnippsViewOrNot()
-  {
-    return isset($_GET["ShowSnipps"]);
-  }
-
   private function renderIsLoggedIn($isLoggedIn)
   {
     if ($isLoggedIn) {
@@ -57,6 +52,15 @@ class LayoutView
       } else {
         return '<a href="index.php?register">Register a new user</a>';
       }
+    }
+  }
+
+  private function addOr()
+  {
+    if ($isloggid) {
+      return '<a href="index.php?addsnipp"';
+    } else {
+      return '<a href="index?">';
     }
   }
 }
