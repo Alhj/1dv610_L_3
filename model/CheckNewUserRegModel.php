@@ -33,7 +33,7 @@ class checNewUserInfo
 
     private function passwordShort()
     {
-        $this->wrongMessage .= 'Password has too few characters, at least 6 characters';
+        $this->wrongMessage .= 'Password has too few characters, at least 6 characters.';
     }
 
 }

@@ -28,7 +28,9 @@ class logginAndLoggoutControler
 
         switch ($withPost) {
             case "loggin":
+
                 if ($this->logginAndOutCheck->isUserLoggin()) {
+
                 } else {
                     $this->Loggin();
                 }
@@ -44,7 +46,6 @@ class logginAndLoggoutControler
 
     private function loggin()
     {
-        var_dump("test");
         $postUserName = $this->v->getUserName();
         $postPassword = $this->v->getPassword();
         try {
