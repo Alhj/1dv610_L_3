@@ -5,7 +5,7 @@ class JsonFileHandler
 
     private $file = "snips.json";
 
-    public function addSnipps($title, $jsonInfo, $userName)
+    public function addSnipps($title, $jsonInfo)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 

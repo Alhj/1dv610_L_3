@@ -12,24 +12,28 @@ class SnippController
 
     private $view;
 
-    public function __construct(SnippsView $view)
+    public function __construct(SnippsView $snippsView)
     {
         $this->jsonModel = new JsonFileHandler();
         $this->snippCheck = new checkSnippInformation();
 
-        $this->view = $view;
+        $this->view = $snippsView;
     }
 
     public function checkWhatToDo()
     {
         if ($this->view->whantToAddSnipp()) {
             try {
+                
                 $title = $this->view->getTitle();
                 $snipp = $this->view->getSnipp();
-                var_dump($snipp);
+
                 $this->snippCheck->isSnippInfoSet($snipp, $title);
 
                 $this->jsonModel->addSnipps($title, $snipp);
+
+                header("location: index.php?addsnipp");
+
             } catch (Exception $e) {
                 $this->view->setMessage($e->getMessage());
             }

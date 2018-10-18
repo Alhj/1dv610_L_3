@@ -12,8 +12,11 @@ class logginAndLoggoutControler
     private $logginAndOutCheck;
     private $v;
 
+    private $loggin = "loggin";
+    private $loggout = "loggout";
 
-    public function __construct($view)
+
+    public function __construct(LoginView $view)
     {
         $this->logginCheck = new logginCheck();
         $this->allInfoSet = new allInfoSet();
@@ -27,7 +30,7 @@ class logginAndLoggoutControler
         $withPost = $this->v->withPost();
 
         switch ($withPost) {
-            case "loggin":
+            case $this->loggin:
 
                 if ($this->logginAndOutCheck->isUserLoggin()) {
 
@@ -36,7 +39,8 @@ class logginAndLoggoutControler
                 }
                 break;
 
-            case "loggout":
+            case $this->loggout:
+            
                 if ($this->logginAndOutCheck->isUserLoggin()) {
                     $this->loggout();
                 }
