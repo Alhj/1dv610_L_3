@@ -9,7 +9,7 @@ require_once('./view/Appliaction/snippesView.php');
 
 // INCLUDE THE FILES NEEDED to Model
 require_once('./model/CheckNewUserRegModel.php');
-require_once('./model/readJSonFile.php');
+require_once('./model/application/readJSonFile.php');
 require_once('./model/logginAndLoggoutModel.php');
 
 // INCLUDE THE FILES NEEDED to Controller

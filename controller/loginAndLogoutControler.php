@@ -49,7 +49,7 @@ class logginAndLoggoutControler
         $postUserName = $this->v->getUserName();
         $postPassword = $this->v->getPassword();
         try {
-            $this->allInfoSet->isLogginInfoSet($postUserName, $postPassword);
+            $this->allInfoSet->isInputInfoSet($postUserName, $postPassword);
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
             if ($this->v->doWeSetCookie()) {

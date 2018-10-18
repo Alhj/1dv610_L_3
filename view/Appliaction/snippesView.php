@@ -38,13 +38,33 @@ class SnippsView
     {
         $this->theMessage = $sendMessage;
     }
+
     public function whantToAddSnipp()
     {
-        return isset($_POST[$this->addSnipp]);
+        return isset($_POST[$this->submitSnip]);
     }
+
     public function seeSnipps()
     {
         return isset($_GET[$this->viewSnipp]);
+    }
+
+    public function getTitle()
+    {
+        if (isset($_POST[$this->title])) {
+            return $_POST[$this->title];
+        } else {
+            return "";
+        }
+    }
+
+    public function getSnipp()
+    {
+        if (isset($_POST[$this->snipp])) {
+            return htmlspecialchars($_POST[$this->snipp]);
+        } else {
+            return "";
+        }
     }
 
     public function response()
@@ -84,14 +104,13 @@ class SnippsView
             <form method = "post">
                 <fieldset>
                     <label for = "' . $this->title . '">title</label>
-                    <input type = "text">
+                    <input id = "' . $this->title . '" type = "text">
                     <br>
                     <label for = "' . $this->snipp . '"> snipp</label>
-                    <textarea id = "' . $this->snipp . '" rows="4" cols="40">
-                    </textarea>
+                    <textarea name = "' . $this->snipp . '" rows="4" cols="40"></textarea>
                     <br>
                     <br>
-                    <button id="' . $this->submitSnip . '" type ="submit">submit</button>
+                    <input name="' . $this->submitSnip . '" type ="submit" value ="submit">
                 </fieldset>
             </form>
         ';

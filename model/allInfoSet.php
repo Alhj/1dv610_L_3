@@ -4,7 +4,7 @@ class allInfoSet
 {
 
 
-    public function isLogginInfoSet($UserName, $Password)
+    public function isInputInfoSet($UserName, $Password)
     {
 
         if (!$this->isItEmpty($UserName)) {

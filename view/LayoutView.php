@@ -21,7 +21,7 @@ class LayoutView
               ' . $v->response() . '
               
               ' . $dtv->show() . '
-              <a href="index.php?ShowSnipps">see code snipps</a>
+              '. $this->addOr($isLoggedIn) .'
           </div>
          </body>
       </html>
@@ -55,12 +55,12 @@ class LayoutView
     }
   }
 
-  private function addOr()
+  private function addOr($isLoggedIn)
   {
-    if ($isloggid) {
-      return '<a href="index.php?addsnipp"';
+    if ($isLoggedIn) {
+      return '<a href="index.php?addsnipp"> addSnipp </a>';
     } else {
-      return '<a href="index?">';
+      return '<a href="index?ShowSnipps"> see snipps</a>';
     }
   }
 }
