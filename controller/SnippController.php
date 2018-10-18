@@ -1,7 +1,6 @@
 <?php
 
 require_once('./model/application/JsonFileHandler.php');
-require_once('./model/allInfoSet.php');
 require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/GetSeasionInfoForSnipp.php');
 

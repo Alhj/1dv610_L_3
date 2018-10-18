@@ -1,8 +1,8 @@
 <?php
 
-require_once('./model/CheckLoginInformation.php');
-require_once('./model/allInfoSet.php');
-require_once('./model/logginAndLoggoutModel.php');
+require_once('./model/Loggin/CheckLoginInformation.php');
+require_once('./model/Loggin/allInfoSet.php');
+require_once('./model/Loggin/logginAndLoggoutModel.php');
 
 class logginAndLoggoutControler
 {

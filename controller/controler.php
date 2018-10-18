@@ -1,15 +1,15 @@
 <?php
 
 //INCLUDE THE FILES NEEDED to View
-require_once('./view/LoginView.php');
-require_once('./view/DateTimeView.php');
-require_once('./view/LayoutView.php');
-require_once('./view/RegisterView.php');
+require_once('./view/Loggin/LoginView.php');
+require_once('./view/Layout/DateTimeView.php');
+require_once('./view/Layout/LayoutView.php');
+require_once('./view/Loggin/RegisterView.php');
 require_once('./view/Appliaction/snippesView.php');
 
 // INCLUDE THE FILES NEEDED to Model
-require_once('./model/CheckNewUserRegModel.php');
-require_once('./model/logginAndLoggoutModel.php');
+require_once('./model/Loggin/CheckNewUserRegModel.php');
+require_once('./model/Loggin/logginAndLoggoutModel.php');
 
 // INCLUDE THE FILES NEEDED to Controller
 

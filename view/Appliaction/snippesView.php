@@ -126,6 +126,9 @@ class SnippsView
                     <textarea name = "' . $this->snipp . '" rows="4" cols="40"></textarea>
                     <br>
                     <br>
+                    <switch>
+                    </switch>
+                    <br>
                     <input name="' . $this->submitSnip . '" type ="submit" value ="submit">
                 </fieldset>
             </form>
