@@ -82,10 +82,11 @@ class SnippsView
 
     private function allSnips()
     {
-        $string = '';
+        $string = '
+        ' . $this->goBackLink() . '
+        ';
         foreach ($this->jsonInfo as $snipp) {
             $string .= '
-            ' . $this->goBackLink() . '
             <br>
             <br>
                 <fieldset>
