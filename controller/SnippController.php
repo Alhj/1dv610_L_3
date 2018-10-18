@@ -3,12 +3,14 @@
 require_once('./model/application/JsonFileHandler.php');
 require_once('./model/allInfoSet.php');
 require_once('./model/application/CheckSnippInformation.php');
+require_once('./model/application/GetSeasionInfoForSnipp.php');
 
 class SnippController
 {
 
     private $jsonModel;
     private $snippCheck;
+    private $SeasionInfoModel;
 
     private $view;
 
@@ -16,12 +18,14 @@ class SnippController
     {
         $this->jsonModel = new JsonFileHandler();
         $this->snippCheck = new checkSnippInformation();
+        $this->SeasionInfoModel = new getSeasionInfoForSnipp();
 
         $this->view = $snippsView;
     }
 
     public function checkWhatToDo()
     {
+        $this->view->setMessage($this->SeasionInfoModel->getMessage());
         if ($this->view->whantToAddSnipp()) {
             try {
                 
@@ -31,7 +35,8 @@ class SnippController
                 $this->snippCheck->isSnippInfoSet($snipp, $title);
 
                 $this->jsonModel->addSnipps($title, $snipp);
-
+                
+                $this->SeasionInfoModel->setMessage();
                 header("location: index.php?addsnipp");
 
             } catch (Exception $e) {

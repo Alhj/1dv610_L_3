@@ -9,6 +9,7 @@ class SnippsView
     private $message = "message";
     private $submitSnip = "submitSnip";
 
+
     private $addSnipp = "addsnipp";
 
     private $viewSnipp = "ShowSnipps";
@@ -63,6 +64,16 @@ class SnippsView
         if (isset($_POST[$this->snipp])) {
             return htmlspecialchars($_POST[$this->snipp]);
         } else {
+            return "";
+        }
+    }
+
+    public function getMessageFromURl()
+    {
+        if (isset($_GET[$this->message])) {
+            return $_GET[$this->message];
+        } else
+        {
             return "";
         }
     }
