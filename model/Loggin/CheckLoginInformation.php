@@ -14,10 +14,10 @@ class logginCheck
             if (password_verify($password, $hash)) {
                 $_SESSION["loggin"] = $userName;
             } else {
-                throw new Exception("Wrong name or password");
+                throw new LogginField();
             }
         } else {
-            throw new Exception("Wrong name or password");
+            throw new LogginField();
         }
     }
 }

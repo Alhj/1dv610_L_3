@@ -62,10 +62,23 @@ class logginAndLoggoutControler
             } else {
                 $this->v->setMessage('Welcome');
             }
-        } catch (Exception $e) {
-            $this->v->setUsername($this->v->getUserName());
-            $this->v->setMessage($e->getMessage());
+    } catch (\userNameMissing $e) {
+            $this->fieldSetUsername();
+            $this->v->errorMessange("userName");
+        } catch (\PasswordMissing $e)
+        {
+            $this->fieldSetUsername();
+            $this->v->errorMessange("password");
+        } catch (\LogginField $e)
+        {
+            $this->fieldSetUsername();
+            $this->v->errorMessange("fildLoggin");
         }
+    }
+
+    private function fieldSetUsername()
+    {
+        $this->v->setUsername($this->v->getUsername());
     }
 
     private function loggout()

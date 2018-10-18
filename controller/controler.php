@@ -10,6 +10,7 @@ require_once('./view/Appliaction/snippesView.php');
 // INCLUDE THE FILES NEEDED to Model
 require_once('./model/Loggin/CheckNewUserRegModel.php');
 require_once('./model/Loggin/logginAndLoggoutModel.php');
+require_once('./model/customException.php');
 
 // INCLUDE THE FILES NEEDED to Controller
 

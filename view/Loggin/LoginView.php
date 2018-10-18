@@ -161,6 +161,24 @@ class LoginView
 		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30);
 	}
 
+	public function errorMessange($error)
+	{
+		switch($error)
+		{
+			case "userName":
+				$this->setMessage("Username is missing");
+			break;
+
+			case "password":
+				$this->setMessage("Password is missing");
+			break;
+
+			case "fildLoggin":
+				$this->setMessage("Wrong name or password");
+			break;
+		}
+	}
+
 	private function randomString()
 	{
 		$getFromThisString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
