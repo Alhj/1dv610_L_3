@@ -21,7 +21,7 @@ class LayoutView
               ' . $v->response() . '
               
               ' . $dtv->show() . '
-              '. $this->addOr($isLoggedIn) .'
+              ' . $this->addOr($isLoggedIn) . '
           </div>
          </body>
       </html>

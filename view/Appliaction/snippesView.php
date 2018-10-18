@@ -85,11 +85,14 @@ class SnippsView
         $string = '';
         foreach ($this->jsonInfo as $snipp) {
             $string .= '
+            ' . $this->goBackLink() . '
+            <br>
+            <br>
                 <fieldset>
                     <h2> title: ' . $snipp->{"title"} . '</h2>
                     <h4> author: ' . $snipp->{"Createname"} . '</h4>
                     <p>
-                    ' . 'snipp:' . $snipp->{"snipp"} . '
+                    ' . 'snipp: ' . $snipp->{"snipp"} . '
                     </p>
                 </fieldset>';
         }
@@ -100,11 +103,12 @@ class SnippsView
     {
         return
             '
+            ' . $this->goBackLink() . '
             <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
             <form method = "post">
                 <fieldset>
                     <label for = "' . $this->title . '">title</label>
-                    <input id = "' . $this->title . '" type = "text">
+                    <input id = "' . $this->title . '" name = "' . $this->title . '" type = "text">
                     <br>
                     <label for = "' . $this->snipp . '"> snipp</label>
                     <textarea name = "' . $this->snipp . '" rows="4" cols="40"></textarea>
@@ -114,5 +118,10 @@ class SnippsView
                 </fieldset>
             </form>
         ';
+    }
+
+    private function goBackLink()
+    {
+        return '<a href = "index.php"> go back</a>';
     }
 }

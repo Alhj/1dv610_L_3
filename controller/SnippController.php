@@ -1,6 +1,6 @@
 <?php
 
-require_once('./model/application/readJSonFile.php');
+require_once('./model/application/JsonFileHandler.php');
 require_once('./model/allInfoSet.php');
 require_once('./model/application/CheckSnippInformation.php');
 
@@ -14,7 +14,7 @@ class SnippController
 
     public function __construct(SnippsView $view)
     {
-        $this->jsonModel = new ReadJsonFile();
+        $this->jsonModel = new JsonFileHandler();
         $this->snippCheck = new checkSnippInformation();
 
         $this->view = $view;
@@ -29,7 +29,7 @@ class SnippController
                 var_dump($snipp);
                 $this->snippCheck->isSnippInfoSet($snipp, $title);
 
-                $this->jsonModel->addSnipps($snipp, $title);
+                $this->jsonModel->addSnipps($title, $snipp);
             } catch (Exception $e) {
                 $this->view->setMessage($e->getMessage());
             }

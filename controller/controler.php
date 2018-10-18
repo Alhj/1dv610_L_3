@@ -9,7 +9,6 @@ require_once('./view/Appliaction/snippesView.php');
 
 // INCLUDE THE FILES NEEDED to Model
 require_once('./model/CheckNewUserRegModel.php');
-require_once('./model/application/readJSonFile.php');
 require_once('./model/logginAndLoggoutModel.php');
 
 // INCLUDE THE FILES NEEDED to Controller
@@ -30,7 +29,6 @@ class Controller
     private $snippsView;
 
     private $checkNewUser;
-    private $SnippsModel;
     private $logginAndOutCheck;
 
     private $LogginandLoggoutController;
@@ -45,7 +43,6 @@ class Controller
         $this->snippsView = new SnippsView();
 
         $this->checkNewUser = new checNewUserInfo();
-        $this->SnippsModel = new ReadJsonFile();
 
         $this->LogginandLoggoutController = new logginAndLoggoutControler($this->v);
         $this->SnippController = new SnippController($this->snippsView);

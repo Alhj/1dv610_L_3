@@ -1,11 +1,11 @@
 <?php 
 
-class ReadJsonFile
+class JsonFileHandler
 {
 
     private $file = "snips.json";
 
-    public function addSnipps($title, $jsonInfo)
+    public function addSnipps($title, $jsonInfo, $userName)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 
