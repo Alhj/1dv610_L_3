@@ -48,5 +48,17 @@ class SnippController
             $jsonInfo = $this->jsonModel->getInfomrationFromJsonFile();
             $this->view->setJsonInfo($jsonInfo);
         }
+
+        if($this->view->toRemove())
+        {
+            $jsonInfo = $this->jsonModel->getUserSnips();
+            $this->view->setJsonInfo($jsonInfo);
+        }
+        if($this->view->whantToDealte())
+        {
+          $spot = $this->view->getSpot();
+
+          $this->jsonModel->removeSnipps($spot);
+        }
     }
 }

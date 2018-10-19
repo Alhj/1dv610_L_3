@@ -6,6 +6,7 @@ require_once('./view/Layout/DateTimeView.php');
 require_once('./view/Layout/LayoutView.php');
 require_once('./view/Loggin/RegisterView.php');
 require_once('./view/Appliaction/snippesView.php');
+require_once('./view/Appliaction/RemoveSnippView.php');
 
 // INCLUDE THE FILES NEEDED to Model
 require_once('./model/Loggin/CheckNewUserRegModel.php');

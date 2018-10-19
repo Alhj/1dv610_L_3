@@ -10,6 +10,33 @@ class JsonFileHandler
         $this->getInfo = new env();
     }
 
+    public function removeSnipps($spot)
+    {
+      $removeSpot = intval($spot);
+
+      $allUsersSnips = $this->getUserSnips();
+
+      unset($allUsersSnips[$removeSpot]);
+
+      var_dump($allUsersSnips);
+    }
+
+    public function getUserSnips()
+    {
+        $userSnips = [];
+
+        $allSnipps = $this->getInfomrationFromJsonFile();
+
+        foreach($allSnipps as $snipp)
+        {
+            if($snipp->{"Createname"} == "admin")
+            {
+                array_push($userSnips, $snipp);
+            }
+        }
+        return $userSnips;
+    }
+
     public function getInfomrationFromJsonFile()
     {
         $jsonFile = file_get_contents('./' . $this->getInfo->getFileName() . '', 'w');
@@ -17,11 +44,6 @@ class JsonFileHandler
         $jsonInfo = json_decode($jsonFile);
 
         return $jsonInfo;
-    }
-
-    public function removeAsnipp()
-    {
-        
     }
 
     public function addSnipps($title, $jsonInfo)
@@ -45,9 +67,9 @@ class JsonFileHandler
     private function saveJsonFile(array $jsonFile)
     {
 
-       $newJsonInfo = json_encode($jsonFile);
+        $newJsonInfo = json_encode($jsonFile);
 
-       file_put_contents('./'. $this->file .'', $newJsonInfo);
+        file_put_contents('./' . $this->file . '', $newJsonInfo);
 
 
     }
