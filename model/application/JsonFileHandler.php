@@ -19,6 +19,11 @@ class JsonFileHandler
         return $jsonInfo;
     }
 
+    public function removeAsnipp()
+    {
+        
+    }
+
     public function addSnipps($title, $jsonInfo)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();

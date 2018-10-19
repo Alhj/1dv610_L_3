@@ -60,7 +60,7 @@ class LayoutView
     if ($isLoggedIn) {
       return '<a href="index.php?addsnipp"> addSnipp </a>';
     } else {
-      return '<a href="index?ShowSnipps"> see snipps</a>';
+      return '<a href="index.php?ShowSnipps"> see snipps</a>';
     }
   }
 }
