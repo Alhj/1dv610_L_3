@@ -5,7 +5,6 @@ namespace view;
 class removeSnippView
 {
 
-    private $whantToRemov = "removeSnip";
     private $removeSpot = "removeSpot";
     private $dealteSnip = "dealteSnipt";
 
@@ -16,7 +15,6 @@ class removeSnippView
 
     public function GetSpot()
     {
-        var_dump($_POST["number"]);
         if(isset($_POST[$this->removeSpot]))
         {
             return $_POST[$this->removeSpot];
@@ -46,7 +44,7 @@ class removeSnippView
                     <p>
                     ' . 'snipp: ' . $snipp->{"snipp"} . '
                     </p>
-                    <input id = "number" name="number" type="text" value = "'. $spot .'>
+                    <input name="'. $this->removeSpot . '" type="hidden" value="'. $spot .'">
 
                     <input name="'. $this->dealteSnip . '" type="submit" value="dealte">
                 </form>

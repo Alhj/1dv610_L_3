@@ -16,9 +16,9 @@ class JsonFileHandler
 
       $allUsersSnips = $this->getUserSnips();
 
-      unset($allUsersSnips[$removeSpot]);
+      unset($allUsersSnips[$removeSpot - 1]);
 
-      var_dump($allUsersSnips);
+      $this->saveJsonFile($allUsersSnips);
     }
 
     public function getUserSnips()
@@ -69,7 +69,7 @@ class JsonFileHandler
 
         $newJsonInfo = json_encode($jsonFile);
 
-        file_put_contents('./' . $this->file . '', $newJsonInfo);
+        file_put_contents('./' . $this->getInfo->getFileName() . '', $newJsonInfo);
 
 
     }
