@@ -9,9 +9,9 @@ class logginCheck
 
         $hash = '$2y$10$Z/DCVZpx9581g5bjn3JeuuaHBuud0Dn4fkPVdGdObOkGNqmNf6z1m';
 
-        if ($userName === "Admin") {
+        if ($userName === getenv("userName")) {
 
-            if (password_verify($password, $hash)) {
+            if (password_verify($password, getenv("passWord"))) {
                 $_SESSION["loggin"] = $userName;
             } else {
                 throw new LogginField();

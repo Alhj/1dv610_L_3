@@ -64,15 +64,15 @@ class logginAndLoggoutControler
             }
     } catch (\userNameMissing $e) {
             $this->fieldSetUsername();
-            $this->v->errorMessange("userName");
+            $this->v->errorMessange('userName');
         } catch (\PasswordMissing $e)
         {
             $this->fieldSetUsername();
-            $this->v->errorMessange("password");
+            $this->v->errorMessange('password');
         } catch (\LogginField $e)
         {
             $this->fieldSetUsername();
-            $this->v->errorMessange("fildLoggin");
+            $this->v->errorMessange('fildLoggin');
         }
     }
 
