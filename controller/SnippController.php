@@ -59,6 +59,7 @@ class SnippController
           $spot = $this->view->getSpot();
 
           $this->jsonModel->removeSnipps($spot);
+          header("location: index.php?removeSnipp");
         }
     }
 }
