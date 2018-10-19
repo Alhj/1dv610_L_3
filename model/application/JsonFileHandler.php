@@ -3,7 +3,21 @@
 class JsonFileHandler
 {
 
-    private $file = "snips.json";
+    private $getInfo;
+
+    public function __construct()
+    {
+        $this->getInfo = new env();
+    }
+
+    public function getInfomrationFromJsonFile()
+    {
+        $jsonFile = file_get_contents('./' . $this->getInfo->getFileName() . '', 'w');
+
+        $jsonInfo = json_decode($jsonFile);
+
+        return $jsonInfo;
+    }
 
     public function addSnipps($title, $jsonInfo)
     {
@@ -23,16 +37,6 @@ class JsonFileHandler
 
         $this->saveJsonFile($jsonFile);
     }
-
-    public function getInfomrationFromJsonFile()
-    {
-        $jsonFile = file_get_contents('./' . $this->file . '', 'w');
-
-        $jsonInfo = json_decode($jsonFile);
-
-        return $jsonInfo;
-    }
-
     private function saveJsonFile(array $jsonFile)
     {
 
@@ -42,4 +46,5 @@ class JsonFileHandler
 
 
     }
+
 }

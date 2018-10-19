@@ -11,6 +11,7 @@ require_once('./view/Appliaction/snippesView.php');
 require_once('./model/Loggin/CheckNewUserRegModel.php');
 require_once('./model/Loggin/logginAndLoggoutModel.php');
 require_once('./model/customException.php');
+require_once('env.php');
 
 // INCLUDE THE FILES NEEDED to Controller
 

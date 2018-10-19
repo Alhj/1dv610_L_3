@@ -27,6 +27,7 @@ class logginAndLoggoutControler
 
     public function WhatToDo()
     {
+
         $withPost = $this->v->withPost();
 
         switch ($withPost) {
@@ -40,7 +41,7 @@ class logginAndLoggoutControler
                 break;
 
             case $this->loggout:
-            
+
                 if ($this->logginAndOutCheck->isUserLoggin()) {
                     $this->loggout();
                 }
@@ -62,15 +63,13 @@ class logginAndLoggoutControler
             } else {
                 $this->v->setMessage('Welcome');
             }
-    } catch (\userNameMissing $e) {
+        } catch (\userNameMissing $e) {
             $this->fieldSetUsername();
             $this->v->errorMessange('userName');
-        } catch (\PasswordMissing $e)
-        {
+        } catch (\PasswordMissing $e) {
             $this->fieldSetUsername();
             $this->v->errorMessange('password');
-        } catch (\LogginField $e)
-        {
+        } catch (\LogginField $e) {
             $this->fieldSetUsername();
             $this->v->errorMessange('fildLoggin');
         }
