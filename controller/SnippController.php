@@ -42,7 +42,6 @@ class SnippController
             } catch (Exception $e) {
                 $this->view->setMessage($e->getMessage());
             }
-
         }
 
         if ($this->view->seeSnipps()) {
@@ -60,7 +59,8 @@ class SnippController
           $spot = $this->view->getSpot();
 
           $this->jsonModel->removeSnipps($spot);
-          
+
+          header("location: index.php?removeSnipp");
         }
     }
 }
