@@ -10,5 +10,5 @@
 
 # 1.1 view snipp
 
-    1. press see snipps
-    2. see all the snipps in the json file on the side
+    * 1. press see snipps
+    * 2. see all the snipps in the json file on the side
