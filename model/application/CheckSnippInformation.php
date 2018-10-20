@@ -10,10 +10,10 @@ class checkSnippInformation
             if (!empty($title)) {
                 return true;
             } else {
-                throw new Exception("no title set");
+                throw new \titleMissingInput();
             }
         } else {
-            throw new Exception("no snipp information set");
+            throw new \snipMissingInput();
         }
     }
 }

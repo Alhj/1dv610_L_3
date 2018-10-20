@@ -21,10 +21,10 @@ class logginCheck
             if (password_verify($password, $this->getInfo->getPassword())) {
                 $_SESSION["loggin"] = $userName;
             } else {
-                throw new LogginField();
+                throw new \LogginField();
             }
         } else {
-            throw new LogginField();
+            throw new \LogginField();
         }
     }
 }

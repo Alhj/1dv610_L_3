@@ -47,6 +47,20 @@ class SnippsView
         $this->jsonInfo = $jsonInfomration;
     }
 
+    public function errorMessage($errorType)
+    {
+        switch($errorType)
+        {
+            case "snipMissingInput":
+                $this->setMessage("snipp is missing input");
+            break;
+            case "titleMissingInput":
+                $this->setMessage("title is missing input");
+            break;
+
+        }
+    }
+
     public function setMessage($sendMessage)
     {
         $this->theMessage = $sendMessage;
