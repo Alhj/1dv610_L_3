@@ -1,11 +1,12 @@
 <?php
 
+namespace view;
 
 class LayoutView
 {
 
 
-  public function render($isLoggedIn, $v, DateTimeView $dtv)
+  public function render($isLoggedIn, $v, \view\DateTimeView $dtv)
   {
     echo '<!DOCTYPE html>
       <html>

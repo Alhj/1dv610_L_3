@@ -8,6 +8,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 
-$controller = new Controller();
+$controller = new \controler\Controller();
 
 $controller->render();

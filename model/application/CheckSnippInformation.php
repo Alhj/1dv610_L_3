@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 class checkSnippInformation
 {
     public function isSnippInfoSet($snipp, $title)

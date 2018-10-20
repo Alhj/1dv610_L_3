@@ -1,5 +1,6 @@
 <?php
 
+namespace controler;
 require_once('./model/application/JsonFileHandler.php');
 require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/GetSeasionInfoForSnipp.php');
@@ -13,11 +14,11 @@ class SnippController
 
     private $view;
 
-    public function __construct(SnippsView $snippsView)
+    public function __construct(\view\SnippsView $snippsView)
     {
-        $this->jsonModel = new JsonFileHandler();
-        $this->snippCheck = new checkSnippInformation();
-        $this->SeasionInfoModel = new getSeasionInfoForSnipp();
+        $this->jsonModel = new \model\JsonFileHandler();
+        $this->snippCheck = new \model\checkSnippInformation();
+        $this->SeasionInfoModel = new \model\getSeasionInfoForSnipp();
 
         $this->view = $snippsView;
     }
@@ -59,7 +60,7 @@ class SnippController
           $spot = $this->view->getSpot();
 
           $this->jsonModel->removeSnipps($spot);
-          header("location: index.php?removeSnipp");
+          
         }
     }
 }

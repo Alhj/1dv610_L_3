@@ -1,5 +1,7 @@
 <?php 
 
+namespace model;
+
 class JsonFileHandler
 {
 
@@ -17,8 +19,11 @@ class JsonFileHandler
 
         $allUsersSnips = $this->getUserSnips();
 
-        unset($allUsersSnips[$removeSpot]);
+        var_dump($allUsersSnips);
 
+        array_slice($allUsersSnips, $removeSpot);
+
+        var_dump($allUsersSnips);
         foreach ($allUsersSnips as $snips) {
             array_push($newArray, $snips);
         }

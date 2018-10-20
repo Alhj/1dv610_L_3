@@ -1,5 +1,7 @@
 <?php
 
+namespace model;
+
 class getSeasionInfoForSnipp
 {
     private $getUserName = "loggin";

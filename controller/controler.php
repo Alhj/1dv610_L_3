@@ -1,5 +1,6 @@
 <?php
 
+namespace controler;
 //INCLUDE THE FILES NEEDED to View
 require_once('./view/Loggin/LoginView.php');
 require_once('./view/Layout/DateTimeView.php');
@@ -39,16 +40,16 @@ class Controller
 
     public function __construct()
     {
-        $this->v = new LoginView();
-        $this->dtv = new DateTimeView();
-        $this->lv = new LayoutView();
-        $this->registerView = new RegisterView();
-        $this->snippsView = new SnippsView();
+        $this->v = new \view\LoginView();
+        $this->dtv = new \view\DateTimeView();
+        $this->lv = new \view\LayoutView();
+        $this->registerView = new \view\RegisterView();
+        $this->snippsView = new \view\SnippsView();
 
-        $this->checkNewUser = new checNewUserInfo();
+        $this->checkNewUser = new \model\checNewUserInfo();
 
-        $this->LogginandLoggoutController = new logginAndLoggoutControler($this->v);
-        $this->SnippController = new SnippController($this->snippsView);
+        $this->LogginandLoggoutController = new \controler\logginAndLoggoutControler($this->v);
+        $this->SnippController = new \controler\SnippController($this->snippsView);
     }
 
     public function render()

@@ -1,5 +1,6 @@
 <?php
 
+namespace controler;
 require_once('./model/Loggin/CheckLoginInformation.php');
 require_once('./model/Loggin/allInfoSet.php');
 require_once('./model/Loggin/logginAndLoggoutModel.php');
@@ -16,11 +17,11 @@ class logginAndLoggoutControler
     private $loggout = "loggout";
 
 
-    public function __construct(LoginView $view)
+    public function __construct(\view\LoginView $view)
     {
-        $this->logginCheck = new logginCheck();
-        $this->allInfoSet = new allInfoSet();
-        $this->logginAndOutCheck = new logginAndLoggoutModel();
+        $this->logginCheck = new \model\logginCheck();
+        $this->allInfoSet = new \model\allInfoSet();
+        $this->logginAndOutCheck = new \model\logginAndLoggoutModel();
         $this->v = $view;
     }
 
