@@ -39,9 +39,9 @@ class SnippController
                 $this->SeasionInfoModel->setMessage();
                 header("location: index.php?addsnipp");
 
-            } catch (snipMissingInput $e) {
+            } catch (\snipMissingInput $e) {
                 $this->view->errorMessage("snipMissingInput");
-            } catch (titleMissingInput $e)
+            } catch (\titleMissingInput $e)
             {
                 $this->view->errorMessage("titleMissingInput");
             }
