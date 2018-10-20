@@ -26,6 +26,7 @@ class removeSnippView
     public function renderDealte($jsonInfo)
     {
         return '
+        <a href="index.php"> go back</a>
             '. $this->userSnips($jsonInfo) .'
         ';
     }

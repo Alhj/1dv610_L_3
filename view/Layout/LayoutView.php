@@ -59,7 +59,12 @@ class LayoutView
   private function addOr($isLoggedIn)
   {
     if ($isLoggedIn) {
-      return '<a href="index.php?addsnipp"> addSnipp </a>';
+      return '
+      <a href="index.php?addsnipp"> addSnipp </a>
+      <br>
+      <a href="index.php?removeSnipp"> removesnipp</a>
+      '
+      ;
     } else {
       return '<a href="index.php?ShowSnipps"> see snipps</a>';
     }
