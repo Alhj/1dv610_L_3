@@ -8,9 +8,9 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 * . a env.php file get the code from env.php.default an add information that need to be given there
 * . a json file where you can add snipps to with [] in it
 
-#UserCase
+# UserCase
 
-##Us 1 ViewSnipps
+## Us 1 ViewSnipps
 
 # main cinario
 
@@ -31,7 +31,7 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 * 3. fills the input form to add snipps
 * 4. snipp save and user get a message that the snipp is created 
 
-#Alternate Scinario
+# Alternate Scinario
 
 * 3a . user Don't type in all input
         i. system pressent a error message
@@ -53,7 +53,7 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 * 4. user change the info they whant to edit
 * 5. user press the change button and get message snipp edited
 
-#Alternate Scinario
+# Alternate Scinario
 
 * 3.a User don't have any input in the form
     i. system present a error message
@@ -69,11 +69,11 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 
 # 1.1 view snipp
 
-#input 
+# input 
 
 * user press view snipp 
 
-#output
+# output
 
 * see View all Snips
 * see a go back link
@@ -84,42 +84,42 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
     
     user is loggin
 
-#1.2.1 all done correct
+# 1.2.1 all done correct
 
-#input
+# input
 
 * press the link add Snipp
 * write in the title input hello world
 * write in the title input Console.log('hello world')
 * press the submit button
 
-#output
+# output
 
 * get a message with the text code snipp create
 
 
-#1.2.2 alt no input in title
+# 1.2.2 alt no input in title
 
-#input
+# input
 
 * press add snipp link
 * in the snip textarea write console.log(hello world)
 * press to submit button;
 
-#output
+# output
 
 * get a message with the text title is missing input
 
 
-#1.2.3 alt no input in string
+# 1.2.3 alt no input in string
 
-#input 
+# input 
 
 * press add snipp link
 * write in title input hello world
 * press to submit button;
 
-#output 
+# output 
 
 * get a message with snipp is missing input;
 
@@ -135,6 +135,6 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 * click on remove removesnipp link
 * remove the snipp you created
 
-#output
+# output
 
 * the snipp is removed
