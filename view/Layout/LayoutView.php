@@ -12,17 +12,17 @@ class LayoutView
       <html>
         <head>
           <meta charset="utf-8">
-          <title>Login Example</title>
+          <title>L3</title>
         </head>
         <body>
-          <h1>Assignment 2</h1>
+          <h1>Assignment 3</h1>
           ' . $this->link($isLoggedIn) . '
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           <div class="container">
               ' . $v->response() . '
               
               ' . $dtv->show() . '
-              ' . $this->addOr($isLoggedIn) . '
+              ' . $this->WhatToDoWithSnipp($isLoggedIn) . '
           </div>
          </body>
       </html>
@@ -56,7 +56,7 @@ class LayoutView
     }
   }
 
-  private function addOr($isLoggedIn)
+  private function WhatToDoWithSnipp($isLoggedIn)
   {
     if ($isLoggedIn) {
       return '
