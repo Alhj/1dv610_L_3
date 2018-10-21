@@ -11,6 +11,8 @@ class logginAndLoggoutControler
     private $logginCheck;
     private $allInfoSet;
     private $logginAndOutCheck;
+    private $seasionMessage;
+
     private $v;
 
     private $loggin = "loggin";
@@ -22,13 +24,16 @@ class logginAndLoggoutControler
         $this->logginCheck = new \model\logginCheck();
         $this->allInfoSet = new \model\allInfoSet();
         $this->logginAndOutCheck = new \model\logginAndLoggoutModel();
+        $this->seasionMessage = new \model\getSeasionInfoForSnipp();
+
         $this->v = $view;
     }
 
 
     public function WhatToDo()
     {
-
+        $this->v->setMessage($this->seasionMessage->userNotLogginMessage());
+        
         $withPost = $this->v->withPost();
 
         switch ($withPost) {

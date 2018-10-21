@@ -44,14 +44,13 @@ class SnippsView
 
     public function errorMessage($errorType)
     {
-        switch($errorType)
-        {
+        switch ($errorType) {
             case "snipMissingInput":
                 $this->setMessage("snipp is missing input");
-            break;
+                break;
             case "titleMissingInput":
                 $this->setMessage("title is missing input");
-            break;
+                break;
 
         }
     }
@@ -176,15 +175,6 @@ class SnippsView
     {
         if (isset($_POST[$this->snipp])) {
             return htmlspecialchars($_POST[$this->snipp]);
-        } else {
-            return "";
-        }
-    }
-
-    public function getMessageFromURl()
-    {
-        if (isset($_GET[$this->message])) {
-            return $_GET[$this->message];
         } else {
             return "";
         }

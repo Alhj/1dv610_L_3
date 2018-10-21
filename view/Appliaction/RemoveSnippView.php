@@ -7,6 +7,9 @@ class removeSnippView
 
     private $removeSpot = "removeSpot";
     private $dealteSnip = "dealteSnipt";
+    private $message = "message";
+    
+    private $theMessage = ""; 
 
     public function renderDealte($jsonInfo)
     {
@@ -19,9 +22,10 @@ class removeSnippView
     private function userSnips($jsonInfo)
     {
         $spot = 0;
-        $string = "
+        $string = '
         <h2>Remove snipp</h2>
-        ";
+        <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
+        ';
         foreach($jsonInfo as $snipp)
         {
             $string .= '
@@ -54,5 +58,9 @@ class removeSnippView
         } else {
             return "";
         }
+    }
+    public function setRemoveMessage($message)
+    {
+        $this->message = $message;
     }
 }

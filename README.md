@@ -5,8 +5,22 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 ## what you need to run
 
 * . php 5.6
-* . a env.php file get the code from env.php.default an add information that need to be given there
+* . a env.php file, get the code from env.php.default an add information that need to be given there
 * . a json file where you can add snipps to with [] in it
+
+##  Features
+
+ * LogginSystem
+ * View Code Snipps (loggout and loggin)
+ * add Code Snipps (loggin)
+ * dealte Code Snipps of your (loggin) 
+ * edit Code Snipps of your (loggin )
+
+## not implomented
+
+* edit snipp US 4
+* list snipps by type US2
+
 
 # UserCase
 
@@ -58,12 +72,6 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 * 3.a User don't have any input in the form
     i. system present a error message
     ii. step in to cenario 4
-
-## not implomented
-
-* edit snipp US 4
-* list snipps by type US2
-
 
 ## Test cases
 

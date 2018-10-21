@@ -6,10 +6,11 @@ class getSeasionInfoForSnipp
 {
     private $getUserName = "loggin";
     private $message = "message";
+    private $userNotLoggin = "userNotLoggin";
 
-    public function setMessage()
+    public function setMessage($message)
     {
-        $_SESSION[$this->message] = "code snipp create";
+        $_SESSION[$this->message] = $message;
     }
 
     public function getUserName()
@@ -19,6 +20,23 @@ class getSeasionInfoForSnipp
         } else {
             return "";
         }
+    }
+    public function userNotLogginMessage()
+    {
+        if (isset($_SESSION[$this->userNotLoggin])) {
+            $notLogginMessage = $_SESSION[$this->userNotLoggin];
+
+            unset($_SESSION[$this->userNotLoggin]);
+
+            return $notLogginMessage;
+        } else {
+            return "";
+        }
+    }
+
+    public function setMessageUserNotLoggin()
+    {
+        $_SESSION[$this->userNotLoggin] = "user not loggin" ;
     }
     public function getMessage()
     {

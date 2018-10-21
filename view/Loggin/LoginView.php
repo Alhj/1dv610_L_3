@@ -115,7 +115,7 @@ class LoginView
 
 	public function setMessage($text)
 	{
-		$this->logginMessage = "$text";
+		$this->logginMessage = $text;
 	}
 	public function setUsername($theName)
 	{
