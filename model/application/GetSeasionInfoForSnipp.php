@@ -24,9 +24,9 @@ class getSeasionInfoForSnipp
     {
         if (isset($_SESSION[$this->message])) {
             $theMessage = $_SESSION[$this->message];
-            
+
             $this->removeMessage();
-            
+
             return $theMessage;
         } else {
             return "";

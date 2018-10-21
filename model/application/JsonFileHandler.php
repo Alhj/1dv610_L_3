@@ -12,25 +12,25 @@ class JsonFileHandler
         $this->getInfo = new env();
     }
 
-    public function removeSnipps($spot)
+    public function removeSnipps($spot, $Username)
     {
         $removeSpot = intval($spot);
 
-        $allUsersSnips = $this->getUserSnips();
+        $allUsersSnips = $this->getUserSnips($Username);
 
         unset($allUsersSnips[$spot]);
         
-        $this->newSnippsArray($allUsersSnips, "admin");
+        $this->newSnippsArray($allUsersSnips, $Username);
     }
 
-    public function getUserSnips()
+    public function getUserSnips($userName)
     {
         $userSnips = [];
 
         $allSnipps = $this->getInfomrationFromJsonFile();
 
         foreach ($allSnipps as $snipp) {
-            if ($snipp->{"Createname"} == "admin") {
+            if ($snipp->{"Createname"} == $userName) {
                 array_push($userSnips, $snipp);
             }
         }
@@ -43,7 +43,7 @@ class JsonFileHandler
 
         foreach($allSnips as $snips)
         {
-            if($snips->{"Createname"} !== "admin")
+            if($snips->{"Createname"} !== $Username)
             {
                 array_push($newArray, $snips);
             }
@@ -66,13 +66,13 @@ class JsonFileHandler
         return $jsonInfo;
     }
 
-    public function addSnipps($title, $jsonInfo)
+    public function addSnipps($title, $jsonInfo, $Username)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 
         $newSnipp = (object)[];
 
-        $newSnipp->Createname = "admin";
+        $newSnipp->Createname = $Username;
 
         $newSnipp->snipp = $jsonInfo;
 

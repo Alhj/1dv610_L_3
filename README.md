@@ -61,8 +61,14 @@
 
 # 1.1 view snipp
 
-*    1. press see snipps
-*    2. see all the snipps in the json file on the side
+#input 
+
+* user press view snipp 
+
+#output
+
+* see View all Snips
+* see a go back link
 
 # 1.2 add Snipp 
 
@@ -72,11 +78,12 @@
 
 #1.2.1 all done correct
 
-* 1. press add snipp link
-* 2. write in title input hello world
-* 3. in the snip textarea write console.log(hello world)
-* 4. press to submit button;
-* 5. get a message with code snipp create;
+#input
+
+* press the link add Snipp
+
+#output
+
 
 #1.2.2 alt no input in title
 

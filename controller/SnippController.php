@@ -31,10 +31,11 @@ class SnippController
                 
                 $title = $this->view->getTitle();
                 $snipp = $this->view->getSnipp();
+                $userName = $this->SeasionInfoModel->getUserName();
 
                 $this->snippCheck->isSnippInfoSet($snipp, $title);
 
-                $this->jsonModel->addSnipps($title, $snipp);
+                $this->jsonModel->addSnipps($title, $snipp,$userName);
                 
                 $this->SeasionInfoModel->setMessage();
                 header("location: index.php?addsnipp");
@@ -48,20 +49,27 @@ class SnippController
         }
 
         if ($this->view->seeSnipps()) {
-            $jsonInfo = $this->jsonModel->getInfomrationFromJsonFile();
+            $userName = $this->SeasionInfoModel->getUserName();
+
+            $jsonInfo = $this->jsonModel->getInfomrationFromJsonFile($userName);
+
             $this->view->setJsonInfo($jsonInfo);
         }
 
         if($this->view->toRemove())
         {
-            $jsonInfo = $this->jsonModel->getUserSnips();
+            $userName = $this->SeasionInfoModel->getUserName();
+
+            $jsonInfo = $this->jsonModel->getUserSnips($userName);
+            
             $this->view->setJsonInfo($jsonInfo);
         }
         if($this->view->whantToDealte())
         {
           $spot = $this->view->getSpot();
+          $userName = $this->SeasionInfoModel->getUserName();
 
-          $this->jsonModel->removeSnipps($spot);
+          $this->jsonModel->removeSnipps($spot, $userName);
 
           header("location: index.php?removeSnipp");
         }

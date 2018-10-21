@@ -34,7 +34,9 @@ class removeSnippView
     private function userSnips($jsonInfo)
     {
         $spot = 0;
-        $string = "";
+        $string = "
+        <h2>Remove snipp</h2>
+        ";
         foreach($jsonInfo as $snipp)
         {
             $string .= '

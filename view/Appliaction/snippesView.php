@@ -141,6 +141,7 @@ class SnippsView
     {
         return
             '
+            <h2>Add snipp</h2>
             ' . $this->goBackLink() . '
             <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
             <form method = "post">
@@ -164,6 +165,7 @@ class SnippsView
     private function allSnips()
     {
         $string = '
+        <h2>View all Snips</h2>
         ' . $this->goBackLink() . '
         ';
         foreach ($this->jsonInfo as $snipp) {
