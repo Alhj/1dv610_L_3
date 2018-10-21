@@ -182,4 +182,16 @@ class LoginView
 		setCookie(self::$cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30);
 		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30);
 	}
+	
+	private function randomString()
+	{
+		$getFromThisString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$stringLength = strlen($getFromThisString);
+		$length = 50;
+		$randomString = '';
+		for ($time = 0; $time < $length; $time++) {
+			$randomString .= $getFromThisString[rand(0, $stringLength - 1)];
+		}
+		return $randomString;
+	}
 }
