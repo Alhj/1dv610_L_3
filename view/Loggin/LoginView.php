@@ -13,20 +13,22 @@ class LoginView
 	private static $keep;
 	private static $messageId;
 
+	private static $className = "LoginView";
+
 	private $logginMessage = "";
 
 	private $userName = "";
 
 	public function __construct()
 	{
-		self::$login = get_class($this) . "::" . "Login";
-		self::$logout = get_class($this) . "::" . "Logout";
-		self::$name = get_class($this) . "::" . "UserName";
-		self::$password = get_class($this) . "::" . "Password";
+		self::$login = self::$className . "::" . "Login";
+		self::$logout = self::$className . "::" . "Logout";
+		self::$name = self::$className . "::" . "UserName";
+		self::$password = self::$className . "::" . "Password";
 		self::$cookieName = "cookieUserName";
 		self::$cookiePassword = "CookiePassword";
-		self::$keep = get_class($this) . "::" . "KeepMeLoggedIn";
-		self::$messageId = get_class($this) . "::" . "Message";
+		self::$keep = self::$className . "::" . "KeepMeLoggedIn";
+		self::$messageId = self::$className . "::" . "Message";
 	}
 
 	public function setMessage($text)

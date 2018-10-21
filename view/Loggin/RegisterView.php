@@ -4,6 +4,9 @@ namespace view;
 
 class RegisterView
 {
+
+    private $class = "RegisterView";
+
     private $name;
 
     private $password;
@@ -20,11 +23,11 @@ class RegisterView
 
     public function __construct()
     {
-        $this->name = get_class($this) . "::" . "UserName";
-        $this->password = get_class($this) . "::" . "Password";
-        $this->repaetPassword = get_class($this) . "::" . "PasswordRepeat";
-        $this->message = get_class($this) . "::" . "Message";
-        $this->Register = get_class($this) . "::" . "Register";
+        $this->name = $this->class . "::" . "UserName";
+        $this->password = $this->class . "::" . "Password";
+        $this->repaetPassword = $this->class . "::" . "PasswordRepeat";
+        $this->message = $this->class . "::" . "Message";
+        $this->Register = $this->class . "::" . "Register";
 
     }
 

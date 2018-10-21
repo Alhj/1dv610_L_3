@@ -6,7 +6,6 @@
 * . a env.php file get the code from env.php.default an add information that need to be given there
 * . a json file where you can add snipps to with [] in it
 
-
 #UserCase
 
 ##Us 1 ViewSnipps
