@@ -13,20 +13,37 @@
 
 # main cinario
 
-* 1. start with user whants to see snipps 
+* 1. start with user whants to view snipps 
 * 2. user press the see snipps link
 * 3. Users see all the snipps
 
-## US 2 AddSnip
+## US 2 listSnipps by type 
+
+* 1. User Whant to Whants to view snipps
+* 2. User press the see snipps link
+* 3. User Chose with Code type with a switch type of diffrent code and press find Snipps
+* 4. User get all snipps from the switch 
+## US 3 AddSnip
 
 * 1. start with user loggin
 * 2. user press add snipps link
 * 3. fills the input form with input
 * 4. snipp save and user get a message that the snipp is created 
 
-## US 3 User what to dealte a snipp of theres
+## US 4 User what to dealte a snipp of theres
 
-* 1.
+* 1. start with user loggin
+* 2. user press removeSnipp
+* 3. chose one of the users snipps 
+* 4. the side reaload and you see that the snipp is remove
+
+## US 5 User whant to edit one of theres snipp
+
+* 1. start white user loggin
+* 2. user press the link edit snipp 
+* 3. user chose a snipp to edit
+* 4. user change the info they whant to edit
+* 5. user press the change button and get message snipp edited
 
 ## Test cases
 
