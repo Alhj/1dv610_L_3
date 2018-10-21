@@ -123,11 +123,11 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 
 * get a message with snipp is missing input;
 
-#1.3 RemoveSnipp 
+# 1.3 RemoveSnipp 
 
 ## pre condition 
     
-    user is log
+    user is loggin
 
 # input 
 * . test case 1.2.1 
