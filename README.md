@@ -1,5 +1,7 @@
 # L3 
 
+demo : [my side](http://ah224cy.000webhostapp.com/)
+
 ## what you need to run
 
 * . php 5.6
@@ -57,6 +59,12 @@
     i. system present a error message
     ii. step in to cenario 4
 
+## not implomented
+
+* edit snipp US 4
+* list snipps by type US2
+
+
 ## Test cases
 
 # 1.1 view snipp
@@ -81,20 +89,52 @@
 #input
 
 * press the link add Snipp
+* write in the title input hello world
+* write in the title input Console.log('hello world')
+* press the submit button
 
 #output
+
+* get a message with the text code snipp create
 
 
 #1.2.2 alt no input in title
 
-* 1. press add snipp link
-* 2. in the snip textarea write console.log(hello world)
-* 3. press to submit button;
-* 4. get a message with title is missing input;
+#input
+
+* press add snipp link
+* in the snip textarea write console.log(hello world)
+* press to submit button;
+
+#output
+
+* get a message with the text title is missing input
+
 
 #1.2.3 alt no input in string
 
-* 1. press add snipp link
-* 2. write in title input hello world
-* 3. press to submit button;
-* 4. get a message with snipp is missing input;
+#input 
+
+* press add snipp link
+* write in title input hello world
+* press to submit button;
+
+#output 
+
+* get a message with snipp is missing input;
+
+#1.3 RemoveSnipp 
+
+## pre condition 
+    
+    user is log
+
+# input 
+* . test case 1.2.1 
+* press to go back link 
+* click on remove removesnipp link
+* remove the snipp you created
+
+#output
+
+* the snipp is removed
