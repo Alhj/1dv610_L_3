@@ -26,8 +26,15 @@
 
 * 1. start with user loggin
 * 2. user press add snipps link
-* 3. fills the input form with input
+* 3. fills the input form to add snipps
 * 4. snipp save and user get a message that the snipp is created 
+
+#Alternate Scinario
+
+* 3a . user Don't type in all input
+        i. system pressent a error message
+        ii. step in to cenarion 3
+    
 
 ## US 4 User what to dealte a snipp of theres
 
@@ -43,6 +50,12 @@
 * 3. user chose a snipp to edit
 * 4. user change the info they whant to edit
 * 5. user press the change button and get message snipp edited
+
+#Alternate Scinario
+
+* 3.a User don't have any input in the form
+    i. system present a error message
+    ii. step in to cenario 4
 
 ## Test cases
 
