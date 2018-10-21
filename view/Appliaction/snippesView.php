@@ -42,11 +42,6 @@ class SnippsView
         return $whatToDo;
     }
 
-    public function setJsonInfo($jsonInfomration)
-    {
-        $this->jsonInfo = $jsonInfomration;
-    }
-
     public function errorMessage($errorType)
     {
         switch($errorType)
@@ -58,53 +53,6 @@ class SnippsView
                 $this->setMessage("title is missing input");
             break;
 
-        }
-    }
-
-    public function setMessage($sendMessage)
-    {
-        $this->theMessage = $sendMessage;
-    }
-
-    public function whantToAddSnipp()
-    {
-        return isset($_POST[$this->submitSnip]);
-    }
-
-    public function seeSnipps()
-    {
-        return isset($_GET[$this->viewSnipp]);
-    }
-
-    public function toRemove()
-    {
-        return isset($_GET[$this->removeSnipp]);
-    }
-
-    public function getTitle()
-    {
-        if (isset($_POST[$this->title])) {
-            return $_POST[$this->title];
-        } else {
-            return "";
-        }
-    }
-
-    public function getSnipp()
-    {
-        if (isset($_POST[$this->snipp])) {
-            return htmlspecialchars($_POST[$this->snipp]);
-        } else {
-            return "";
-        }
-    }
-
-    public function getMessageFromURl()
-    {
-        if (isset($_GET[$this->message])) {
-            return $_GET[$this->message];
-        } else {
-            return "";
         }
     }
 
@@ -190,5 +138,55 @@ class SnippsView
     private function removeSnippRender()
     {
         $this->removeSnipp->renderDelate($this->jsonInfo);
+    }
+    public function setJsonInfo($jsonInfomration)
+    {
+        $this->jsonInfo = $jsonInfomration;
+    }
+    public function setMessage($sendMessage)
+    {
+        $this->theMessage = $sendMessage;
+    }
+
+    public function whantToAddSnipp()
+    {
+        return isset($_POST[$this->submitSnip]);
+    }
+
+    public function seeSnipps()
+    {
+        return isset($_GET[$this->viewSnipp]);
+    }
+
+    public function toRemove()
+    {
+        return isset($_GET[$this->removeSnipp]);
+    }
+
+    public function getTitle()
+    {
+        if (isset($_POST[$this->title])) {
+            return $_POST[$this->title];
+        } else {
+            return "";
+        }
+    }
+
+    public function getSnipp()
+    {
+        if (isset($_POST[$this->snipp])) {
+            return htmlspecialchars($_POST[$this->snipp]);
+        } else {
+            return "";
+        }
+    }
+
+    public function getMessageFromURl()
+    {
+        if (isset($_GET[$this->message])) {
+            return $_GET[$this->message];
+        } else {
+            return "";
+        }
     }
 }

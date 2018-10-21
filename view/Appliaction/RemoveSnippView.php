@@ -8,21 +8,6 @@ class removeSnippView
     private $removeSpot = "removeSpot";
     private $dealteSnip = "dealteSnipt";
 
-    public function doYouWhantToDelate()
-    {
-        return isset($_POST[$this->dealteSnip]);
-    }
-
-    public function GetSpot()
-    {
-        if(isset($_POST[$this->removeSpot]))
-        {
-            return $_POST[$this->removeSpot];
-        } else {
-            return "";
-        }
-    }
-
     public function renderDealte($jsonInfo)
     {
         return '
@@ -55,5 +40,19 @@ class removeSnippView
             $spot += 1;
         }
         return $string;
+    }
+    public function doYouWhantToDelate()
+    {
+        return isset($_POST[$this->dealteSnip]);
+    }
+
+    public function GetSpot()
+    {
+        if(isset($_POST[$this->removeSpot]))
+        {
+            return $_POST[$this->removeSpot];
+        } else {
+            return "";
+        }
     }
 }
