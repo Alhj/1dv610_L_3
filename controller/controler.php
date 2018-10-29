@@ -55,8 +55,7 @@ class Controller
 
         if ($this->lv->RegisterViewOrNot()) {
             $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->registerView, $this->dtv);
-        }
-        if ($this->snippsView-> whantToDoWithSnipp()) {
+        } elseif ($this->snippsView-> whantToDoWithSnipp()) {
             $this->SnippController->checkWhatToDo();
            
            $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->snippsView, $this->dtv);
@@ -78,7 +77,7 @@ class Controller
 
             $registerProblem = $this->checkNewUser->userInfoSet($userName, $password);
 
-            if (strlen($registerProblem) > 0) {
+            if (isset($registerProblem)) {
                 $this->registerView->setMessage($registerProblem);
                 $this->registerView->setUsername($userName);
             }
