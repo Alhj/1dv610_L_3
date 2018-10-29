@@ -4,46 +4,50 @@ namespace view;
 
 class LoginView
 {
-	private static $login;
-	private static $logout;
-	private static $name;
-	private static $password;
-	private static $cookieName;
-	private static $cookiePassword;
-	private static $keep;
-	private static $messageId;
-
-	private static $className = "LoginView";
+	private $className = "LoginView";
+	private $login;
+	private $logout;
+	private $name;
+	private $password;
+	private $cookieName;
+	private $keep;
+	private $messageId;
 
 	private $logginMessage = "";
+
+	private $loggin = "loggin";
 
 	private $userName = "";
 
 	public function __construct()
 	{
-		self::$login = self::$className . "::" . "Login";
-		self::$logout = self::$className . "::" . "Logout";
-		self::$name = self::$className . "::" . "UserName";
-		self::$password = self::$className . "::" . "Password";
-		self::$cookieName = "cookieUserName";
-		self::$cookiePassword = "CookiePassword";
-		self::$keep = self::$className . "::" . "KeepMeLoggedIn";
-		self::$messageId = self::$className . "::" . "Message";
+		$this->className = "LoginView";
+		$this->login = $this->className . "::" . "Login";
+		$this->logout = $this->className . "::" . "Logout";
+		$this->name = $this->className . "::" . "UserName";
+		$this->password = $this->className . "::" . "Password";
+		$this->cookieName = "cookieUserName";
+		$this->keep = $this->className . "::" . "KeepMeLoggedIn";
+		$this->messageId = $this->className . "::" . "Message";
 	}
+
+	private $userNameMissing = "userName";
+	private $passwordMissing = "password";
+	private $fildLoggin = "fildLoggin";
 
 	public function errorMessange($error)
 	{
 		switch($error)
 		{
-			case "userName":
+			case $this->userNameMissing:
 				$this->setMessage("Username is missing");
 			break;
 
-			case "password":
+			case $this->passwordMissing:
 				$this->setMessage("Password is missing");
 			break;
 
-			case "fildLoggin":
+			case $this->fildLoggin:
 				$this->setMessage("Wrong name or password");
 			break;
 		}
@@ -60,7 +64,7 @@ class LoginView
 	{
 		$message = "$this->logginMessage";
 
-		if (isset($_SESSION["loggin"])) {
+		if (isset($_SESSION[$this->loggin])) {
 
 			$response = $this->generateLogoutButtonHTML($message);
 
@@ -79,8 +83,8 @@ class LoginView
 	{
 		return '
 			<form  method="post" >
-				<p id="' . self::$messageId . '">' . $message . '</p>
-				<input type="submit" name="' . self::$logout . '" value="logout"/>
+				<p id="' . $this->messageId . '">' . $message . '</p>
+				<input type="submit" name="' . $this->logout . '" value="logout"/>
 			</form>
 		';
 	}
@@ -96,18 +100,18 @@ class LoginView
 			<form method="post"> 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
-					<p id="' . self::$messageId . '">' . $message . '</p>
+					<p id="' . $this->messageId . '">' . $message . '</p>
 					
-					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '"value="' . $this->userName . '" />
+					<label for="' . $this->name . '">Username :</label>
+					<input type="text" id="' . $this->name . '" name="' . $this->name . '"value="' . $this->userName . '" />
 
-					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
+					<label for="' . $this->password . '">Password :</label>
+					<input type="password" id="' . $this->password . '" name="' . $this->password . '" />
 
-					<label for="' . self::$keep . '">Keep me logged in  :</label>
-					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
+					<label for="' . $this->keep . '">Keep me logged in  :</label>
+					<input type="checkbox" id="' . $this->keep . '" name="' . $this->keep . '" />
 					
-					<input type="submit" name="' . self::$login . '" value="login" />
+					<input type="submit" name="' . $this->login . '" value="login" />
 				</fieldset>
 			</form>
 		';
@@ -124,8 +128,8 @@ class LoginView
 
 	public function getUserName()
 	{
-		if (isset($_POST[self::$name])) {
-			return $_POST[self::$name];
+		if (isset($_POST[$this->name])) {
+			return $_POST[$this->name];
 		} else {
 			return "";
 		}
@@ -133,8 +137,8 @@ class LoginView
 
 	public function getPassword()
 	{
-		if (isset($_POST[self::$password])) {
-			return $_POST[self::$password];
+		if (isset($_POST[$this->password])) {
+			return $_POST[$this->password];
 		} else {
 			return "";
 		}
@@ -142,10 +146,10 @@ class LoginView
 
 	public function withPost()
 	{
-		if (isset($_POST[self::$login])) {
+		if (isset($_POST[$this->login])) {
 			return "loggin";
 		}
-		if (isset($_POST[self::$logout])) {
+		if (isset($_POST[$this->logout])) {
 			return "loggout";
 		}
 		return "";
@@ -153,45 +157,35 @@ class LoginView
 
 	public function doWeSetCookie()
 	{
-		return isset($_POST[self::$keep]);
+		return isset($_POST[$this->keep]);
 	}
 
 	public function getCookieUserName()
 	{
-		if (isset($_COOKIE[self::$cookieName])) {
-			return $_COOKIE[self::$cookieName];
+		if (isset($_COOKIE[$this->cookieName])) {
+			return $_COOKIE[$this->cookieName];
 		}
 		return "";
 	}
-	public function getCookiePassword()
+
+	public function logginMessage($withMessage)
 	{
-		if (isset($_COOKIE[self::$cookiePassword])) {
-			return $_COOKIE[self::$cookiePassword];
+		if($withMessage)
+		{
+			$this->setMessage("Welcome and you will be remembered");
+		} else 
+		{
+			$this->setMessage("Welcome");
 		}
-		return "";
 	}
 
 	public function removeCookies()
 	{
-		setCookie(self::$cookieName, $this->getUserName(), time() - 3600);
-		setCookie(self::$cookiePassword, $this->randomString(), time() - 3600);
+		setCookie($this->cookieName, $this->getUserName(), time() - 3600);
 	}
 
 	public function setCookie()
 	{
-		setCookie(self::$cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30);
-		setCookie(self::$cookiePassword, $this->randomString(), time() + 60 * 60 * 24 * 30);
-	}
-	
-	private function randomString()
-	{
-		$getFromThisString = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-		$stringLength = strlen($getFromThisString);
-		$length = 50;
-		$randomString = '';
-		for ($time = 0; $time < $length; $time++) {
-			$randomString .= $getFromThisString[rand(0, $stringLength - 1)];
-		}
-		return $randomString;
+		setCookie($this->cookieName, $this->getUserName(), time() + 60 * 60 * 24 * 30);
 	}
 }

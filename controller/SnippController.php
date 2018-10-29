@@ -12,7 +12,7 @@ class SnippController
     private $jsonModel;
     private $snippCheck;
     private $SeasionInfoModel;
-    private $checkIfLoggin;
+    private $logginHandler;
 
     private $view;
 
@@ -21,14 +21,14 @@ class SnippController
         $this->jsonModel = new \model\JsonFileHandler();
         $this->snippCheck = new \model\checkSnippInformation();
         $this->SeasionInfoModel = new \model\getSeasionInfoForSnipp();
-        $this->checkIfLoggin = new \model\logginAndLoggoutModel();
+        $this->logginHandler = new \model\logginHandler();
 
         $this->view = $snippsView;
     }
 
     public function checkWhatToDo()
     {
-        if ($this->checkIfLoggin->isUserLoggin()) {
+        if ($this->logginHandler->isUserLoggin()) {
 
 
             $this->view->setMessage($this->SeasionInfoModel->getMessage());

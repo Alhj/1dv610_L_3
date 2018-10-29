@@ -3,14 +3,13 @@
 namespace controler;
 require_once('./model/Loggin/CheckLoginInformation.php');
 require_once('./model/Loggin/allInfoSet.php');
-require_once('./model/Loggin/logginAndLoggoutModel.php');
 
 class logginAndLoggoutControler
 {
 
     private $logginCheck;
     private $allInfoSet;
-    private $logginAndOutCheck;
+    private $logginHandler;
     private $seasionMessage;
 
     private $v;
@@ -23,7 +22,7 @@ class logginAndLoggoutControler
     {
         $this->logginCheck = new \model\logginCheck();
         $this->allInfoSet = new \model\allInfoSet();
-        $this->logginAndOutCheck = new \model\logginAndLoggoutModel();
+        $this->logginHandler = new \model\logginHandler();
         $this->seasionMessage = new \model\getSeasionInfoForSnipp();
 
         $this->v = $view;
@@ -39,16 +38,14 @@ class logginAndLoggoutControler
         switch ($withPost) {
             case $this->loggin:
 
-                if ($this->logginAndOutCheck->isUserLoggin()) {
-
-                } else {
-                    $this->Loggin();
+                if (!$this->logginHandler->isUserLoggin()) {
+                    $this->Loggin(); 
                 }
                 break;
 
             case $this->loggout:
 
-                if ($this->logginAndOutCheck->isUserLoggin()) {
+                if ($this->logginHandler->isUserLoggin()) {
                     $this->loggout();
                 }
                 break;
@@ -64,10 +61,10 @@ class logginAndLoggoutControler
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
             if ($this->v->doWeSetCookie()) {
-                $this->v->setMessage('Welcome and you will be remembered');
+                $this->v->logginMessage(true);
                 $this->v->setcookie();
             } else {
-                $this->v->setMessage('Welcome');
+                $this->v->logginMessage(false);
             }
         } catch (\userNameMissing $e) {
             $this->fieldSetUsername();
@@ -90,11 +87,11 @@ class logginAndLoggoutControler
     {
         $this->v->setMessage("Bye bye!");
         $this->v->removeCookies();
-        $this->logginAndOutCheck->removeSeasion();
+        $this->logginHandler->removeSeasion();
     }
 
     public function isUserLogin()
     {
-        return $this->logginAndOutCheck->isUserLoggin();
+        return $this->logginHandler->isUserLoggin();
     }
 }

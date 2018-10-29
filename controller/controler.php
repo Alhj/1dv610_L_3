@@ -11,7 +11,7 @@ require_once('./view/Appliaction/RemoveSnippView.php');
 
 // INCLUDE THE FILES NEEDED to Model
 require_once('./model/Loggin/CheckNewUserRegModel.php');
-require_once('./model/Loggin/logginAndLoggoutModel.php');
+require_once('./model/Loggin/LogginHandler.php');
 require_once('./model/customException.php');
 require_once('env.php');
 
@@ -23,10 +23,7 @@ require_once('./controller/SnippController.php');
 class Controller
 {
 
-    private $cookieUserName = "cookieUserName";
-    private $cookiePassword = "cookiePassword";
-
-    private $v;
+    private $logginView;
     private $dtv;
     private $lv;
     private $registerView;
@@ -40,7 +37,7 @@ class Controller
 
     public function __construct()
     {
-        $this->v = new \view\LoginView();
+        $this->logginView = new \view\LoginView();
         $this->dtv = new \view\DateTimeView();
         $this->lv = new \view\LayoutView();
         $this->registerView = new \view\RegisterView();
@@ -48,7 +45,7 @@ class Controller
 
         $this->checkNewUser = new \model\checNewUserInfo();
 
-        $this->LogginandLoggoutController = new \controler\logginAndLoggoutControler($this->v);
+        $this->LogginandLoggoutController = new \controler\logginAndLoggoutControler($this->logginView);
         $this->SnippController = new \controler\SnippController($this->snippsView);
     }
 
@@ -58,15 +55,15 @@ class Controller
 
         if ($this->lv->RegisterViewOrNot()) {
             $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->registerView, $this->dtv);
-            exit();
         }
         if ($this->snippsView-> whantToDoWithSnipp()) {
             $this->SnippController->checkWhatToDo();
            
            $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->snippsView, $this->dtv);
-            exit();
+        } else 
+        {
+            $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->logginView, $this->dtv);
         }
-        $this->lv->render($this->LogginandLoggoutController->isUserLogin(), $this->v, $this->dtv);
     }
 
 

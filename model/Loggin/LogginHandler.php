@@ -2,7 +2,7 @@
 
 namespace model;
 
-class logginAndLoggoutModel
+class logginHandler
 {
 
     private $loggin = "loggin";

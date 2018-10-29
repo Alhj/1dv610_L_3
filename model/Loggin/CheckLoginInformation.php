@@ -6,6 +6,7 @@ class logginCheck
 {
 
    private $getInfo;
+   private $loggin = "loggin";
 
     public function __construct()
     {
@@ -19,7 +20,7 @@ class logginCheck
         if ($userName === $this->getInfo->getUsername()) {
 
             if (password_verify($password, $this->getInfo->getPassword())) {
-                $_SESSION["loggin"] = $userName;
+                $_SESSION[$this->loggin] = $userName;
             } else {
                 throw new \LogginField();
             }
