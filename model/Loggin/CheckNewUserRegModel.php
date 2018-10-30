@@ -17,12 +17,12 @@ class checNewUserInfo
     {
 
 
-        if (strlen($_POST["RegisterView::UserName"]) >= 3) {
+        if (strlen($userName) >= 3) {
         } else {
             $this->userNameShort();
         }
 
-        if (strlen($_POST["RegisterView::Password"]) >= 6) {
+        if (strlen($password) >= 6) {
         } else {
             $this->passwordShort();
         }

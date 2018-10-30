@@ -4,15 +4,15 @@ namespace controler;
 require_once('./model/Loggin/CheckLoginInformation.php');
 require_once('./model/Loggin/allInfoSet.php');
 
-class logginAndLoggoutControler
+class logginControler
 {
 
     private $logginCheck;
-    private $allInfoSet;
+    private $CheckLogginInfo;
     private $logginHandler;
     private $seasionMessage;
 
-    private $v;
+    private $view;
 
     private $loggin = "loggin";
     private $loggout = "loggout";
@@ -21,19 +21,19 @@ class logginAndLoggoutControler
     public function __construct(\view\LoginView $view)
     {
         $this->logginCheck = new \model\logginCheck();
-        $this->allInfoSet = new \model\allInfoSet();
+        $this->CheckLogginInfo = new \model\checkLogginInfo();
         $this->logginHandler = new \model\logginHandler();
         $this->seasionMessage = new \model\getSeasionInfoForSnipp();
 
-        $this->v = $view;
+        $this->view = $view;
     }
 
 
     public function WhatToDo()
     {
-        $this->v->setMessage($this->seasionMessage->userNotLogginMessage());
+        $this->view->setMessage($this->seasionMessage->userNotLogginMessage());
         
-        $withPost = $this->v->withPost();
+        $withPost = $this->view->withPost();
 
         switch ($withPost) {
             case $this->loggin:
@@ -54,27 +54,30 @@ class logginAndLoggoutControler
 
     private function loggin()
     {
-        $postUserName = $this->v->getUserName();
-        $postPassword = $this->v->getPassword();
+        $postUserName = $this->view->getUserName();
+        $postPassword = $this->view->getPassword();
         try {
-            $this->allInfoSet->isInputInfoSet($postUserName, $postPassword);
+            $this->CheckLogginInfo->isInputInfoSet($postUserName, $postPassword);
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
-            if ($this->v->doWeSetCookie()) {
-                $this->v->logginMessage(true);
-                $this->v->setcookie();
+            if ($this->view->doWeSetCookie()) {
+                $this->view->logginMessage(true);
+                $this->view->setcookie();
             } else {
-                $this->v->logginMessage(false);
+                $this->view->logginMessage(false);
             }
         } catch (\userNameMissing $e) {
             $this->fieldSetUsername();
-            $this->v->errorMessange('userName');
+
+            $this->view->errorMessange('userName');
         } catch (\PasswordMissing $e) {
             $this->fieldSetUsername();
-            $this->v->errorMessange('password');
+
+            $this->view->errorMessange('password');
         } catch (\LogginField $e) {
             $this->fieldSetUsername();
-            $this->v->errorMessange('fildLoggin');
+            
+            $this->view->errorMessange('fildLoggin');
         }
     }
 
@@ -85,8 +88,8 @@ class logginAndLoggoutControler
 
     private function loggout()
     {
-        $this->v->setMessage("Bye bye!");
-        $this->v->removeCookies();
+        $this->view->setMessage("Bye bye!");
+        $this->view->removeCookies();
         $this->logginHandler->removeSeasion();
     }
 

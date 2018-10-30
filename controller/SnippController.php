@@ -6,7 +6,7 @@ require_once('./model/application/JsonFileHandler.php');
 require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/GetSeasionInfoForSnipp.php');
 
-class SnippController
+class SnippHandlerController
 {
 
     private $jsonModel;
@@ -48,9 +48,18 @@ class SnippController
                     header("location: index.php?addsnipp");
 
                 } catch (\snipMissingInput $e) {
+                    
                     $this->view->errorMessage("snipMissingInput");
+
+                    $title = $this->view->getTitle();
+
+                    $this->view->setTitle($title);
                 } catch (\titleMissingInput $e) {
                     $this->view->errorMessage("titleMissingInput");
+
+                    $codeSnipp = $this->view->getSnipp();
+
+                    $this->view->setCodeSnipp($codeSnipp);
                 }
             }
 

@@ -12,9 +12,12 @@ class LogginField extends Exception
 class snipMissingInput extends Exception
 {
 }
-Class titleMissingInput extends Exception
+class titleMissingInput extends Exception
 {
 }
-Class UserNotLogin extends Exception
+class UserNotLogin extends Exception
+{
+}
+class UserISLogin extends Exception
 {
 }

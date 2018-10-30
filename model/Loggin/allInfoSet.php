@@ -2,7 +2,7 @@
 
 namespace model;
 
-class allInfoSet
+class checkLogginInfo
 {
 
 

@@ -31,7 +31,16 @@ class RegisterView
 
     }
 
-    public function response()
+    public function response($isUserLoggin)
+    {
+        if ($isUserLoggin) {
+            header("location: index.php?");
+        } else {
+           return $this->render();
+        }
+    }
+
+    private function render()
     {
         return '
 		<form method="post">

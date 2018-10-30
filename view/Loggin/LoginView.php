@@ -53,18 +53,11 @@ class LoginView
 		}
 	}
 
-	/**
-	 * Create HTTP response
-	 *
-	 * Should be called after a login attempt has been determined
-	 *
-	 * @return  void BUT writes to standard output and cookies!
-	 */
-	public function response()
+	public function response($isUserLoggin)
 	{
 		$message = "$this->logginMessage";
 
-		if (isset($_SESSION[$this->loggin])) {
+		if ($isUserLoggin) {
 
 			$response = $this->generateLogoutButtonHTML($message);
 
@@ -74,11 +67,7 @@ class LoginView
 		return $response;
 	}
 
-	/**
-	 * Generate HTML code on the output buffer for the logout button
-	 * @param $message, String output message
-	 * @return  void, BUT writes to standard output!
-	 */
+	
 	private function generateLogoutButtonHTML($message)
 	{
 		return '
@@ -89,11 +78,7 @@ class LoginView
 		';
 	}
 
-	/**
-	 * Generate HTML code on the output buffer for the logout button
-	 * @param $message, String output message
-	 * @return  void, BUT writes to standard output!
-	 */
+	
 	private function generateLoginFormHTML($message)
 	{
 		return '

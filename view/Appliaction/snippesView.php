@@ -19,6 +19,8 @@ class SnippsView
     private $removeSnipp = "removeSnipp";
 
     private $theMessage;
+    private $UserTitle = "";
+    private $UserCodeSnipp = "";
 
     public function __construct()
     {
@@ -65,7 +67,7 @@ class SnippsView
         return $this->removeSnippView->GetSpot();
     }
 
-    public function response()
+    public function response($userLoggin)
     {
         if (isset($_GET[$this->addSnipp])) {
             return '
@@ -178,5 +180,13 @@ class SnippsView
         } else {
             return "";
         }
+    }
+    public function setTitle($title)
+    {
+        $this->UserTitle = $title;
+    }
+    public function setCodeSnipp($codeSnipp)
+    {
+        $this->UserCodeSnipp = $codeSnipp;
     }
 }
