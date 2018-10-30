@@ -22,8 +22,8 @@ class logginControler
     {
         $this->logginCheck = new \model\logginCheck();
         $this->CheckLogginInfo = new \model\checkLogginInfo();
-        $this->logginHandler = new \model\logginHandler();
-        $this->seasionMessage = new \model\getSeasionInfoForSnipp();
+        $this->logginHandler = new \model\logginModel();
+        $this->seasionMessage = new \model\SesionInfoModel();
 
         $this->view = $view;
     }
@@ -60,9 +60,14 @@ class logginControler
             $this->CheckLogginInfo->isInputInfoSet($postUserName, $postPassword);
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
+
+            $this->logginHandler->setSeasion();
             if ($this->view->doWeSetCookie()) {
+               
                 $this->view->logginMessage(true);
+               
                 $this->view->setcookie();
+                
             } else {
                 $this->view->logginMessage(false);
             }
@@ -88,7 +93,7 @@ class logginControler
 
     private function loggout()
     {
-        $this->view->setMessage("Bye bye!");
+        $this->view->byeMessage();
         $this->view->removeCookies();
         $this->logginHandler->removeSeasion();
     }

@@ -4,7 +4,7 @@ namespace controler;
 
 require_once('./model/application/JsonFileHandler.php');
 require_once('./model/application/CheckSnippInformation.php');
-require_once('./model/application/GetSeasionInfoForSnipp.php');
+require_once('./model/application/SeasionInfoModel.php');
 
 class SnippHandlerController
 {
@@ -20,8 +20,8 @@ class SnippHandlerController
     {
         $this->jsonModel = new \model\JsonFileHandler();
         $this->snippCheck = new \model\checkSnippInformation();
-        $this->SeasionInfoModel = new \model\getSeasionInfoForSnipp();
-        $this->logginHandler = new \model\logginHandler();
+        $this->SeasionInfoModel = new \model\SesionInfoModel();
+        $this->logginHandler = new \model\logginModel();
 
         $this->view = $snippsView;
     }

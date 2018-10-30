@@ -2,24 +2,24 @@
 
 namespace model;
 
-class logginHandler
+class logginModel
 {
 
-    private $loggin = "loggin";
+    private static $loggin = "LogginHandler::loggin";
 
     public function setSeasion()
     {
 
-        $_SESSION[$this->loggin] = $this->loggin;
+        $_SESSION[self::$loggin] = self::$loggin;
     }
 
     public function removeSeasion()
     {
-        unset($_SESSION[$this->loggin]);
+        unset($_SESSION[self::$loggin]);
     }
 
     public function isUserLoggin()
     {
-        return isset($_SESSION[$this->loggin]);
+        return isset($_SESSION[self::$loggin]);
     }
 }

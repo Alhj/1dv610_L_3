@@ -96,10 +96,10 @@ class SnippsView
             <form method = "post">
                 <fieldset>
                     <label for = "' . $this->title . '">title</label>
-                    <input id = "' . $this->title . '" name = "' . $this->title . '" type = "text">
+                    <input id = "' . $this->title . '" name = "' . $this->title . '" type = "text" value = "' . $this->UserTitle . '">
                     <br>
                     <label for = "' . $this->snipp . '"> snipp</label>
-                    <textarea name = "' . $this->snipp . '" rows="4" cols="40"></textarea>
+                    <textarea name = "' . $this->snipp . '" rows="4" cols="40">'. $this->UserCodeSnipp .'</textarea>
                     <br>
                     <br>
                     <switch>

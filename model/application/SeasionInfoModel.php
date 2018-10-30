@@ -2,7 +2,7 @@
 
 namespace model;
 
-class getSeasionInfoForSnipp
+class SesionInfoModel
 {
     private $getUserName = "loggin";
     private $message = "message";
@@ -26,7 +26,7 @@ class getSeasionInfoForSnipp
         if (isset($_SESSION[$this->userNotLoggin])) {
             $notLogginMessage = $_SESSION[$this->userNotLoggin];
 
-            unset($_SESSION[$this->userNotLoggin]);
+            $this->removeMessage($this->userNotLoggin);
 
             return $notLogginMessage;
         } else {
@@ -51,8 +51,8 @@ class getSeasionInfoForSnipp
         }
     }
 
-    private function removeMessage()
+    private function removeMessage($withMessageToUnset)
     {
-        unset($_SESSION[$this->message]);
+        unset($_SESSION[$withMessageToUnset]);
     }
 }

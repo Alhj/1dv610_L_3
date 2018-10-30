@@ -17,7 +17,7 @@ require_once('env.php');
 
 
 
-require_once('./controller/loginAndLogoutControler.php');
+require_once('./controller/loginControler.php');
 require_once('./controller/SnippController.php');
 
 class Controller
@@ -32,7 +32,7 @@ class Controller
     private $checkNewUser;
     private $logginAndOutCheck;
 
-    private $LogginHandlerController;
+    private $LogginController;
     private $SnippHandlerController;
 
     public function __construct()
@@ -45,7 +45,7 @@ class Controller
 
         $this->checkNewUser = new \model\checNewUserInfo();
 
-        $this->LogginHandlerController = new \controler\logginControler($this->logginView);
+        $this->LogginController = new \controler\logginControler($this->logginView);
         $this->SnippHandlerController = new \controler\SnippHandlerController($this->snippsView);
     }
 
@@ -54,21 +54,21 @@ class Controller
         $this->checkWhatToDo();
 
         if ($this->lv->RegisterViewOrNot()) {
-            $this->lv->render($this->LogginHandlerController->isUserLogin(), $this->registerView, $this->dtv);
+            $this->lv->render($this->LogginController->isUserLogin(), $this->registerView, $this->dtv);
         } elseif ($this->snippsView->whantToDoWithSnipp()) {
             
             $this->SnippHandlerController->checkWhatToDo();
 
-            $this->lv->render($this->LogginHandlerController->isUserLogin(), $this->snippsView, $this->dtv);
+            $this->lv->render($this->LogginController->isUserLogin(), $this->snippsView, $this->dtv);
         } else {
-            $this->lv->render($this->LogginHandlerController->isUserLogin(), $this->logginView, $this->dtv);
+            $this->lv->render($this->LogginController->isUserLogin(), $this->logginView, $this->dtv);
         }
     }
 
 
     private function checkWhatToDo()
     {
-        $this->LogginHandlerController->WhatToDo();
+        $this->LogginController->WhatToDo();
 
         if ($this->registerView->haveYouPost()) {
             $userName = $this->registerView->getUserName();
