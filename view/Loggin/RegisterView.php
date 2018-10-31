@@ -35,6 +35,7 @@ class RegisterView
     {
         if ($isUserLoggin) {
             header("location: index.php?");
+            throw new \UserIsLogin();
         } else {
            return $this->render();
         }

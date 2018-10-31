@@ -19,7 +19,7 @@ class SnippHandlerController
     public function __construct(\view\SnippsView $snippsView)
     {
         $this->jsonModel = new \model\JsonFileHandler();
-        $this->snippCheck = new \model\checkSnippInformation();
+        $this->snippCheck = new \model\SnippValidator();
         $this->SeasionInfoModel = new \model\SesionInfoModel();
         $this->logginHandler = new \model\logginModel();
 
@@ -40,7 +40,7 @@ class SnippHandlerController
                     $snipp = $this->view->getSnipp();
                     $userName = $this->SeasionInfoModel->getUserName();
 
-                    $this->snippCheck->isSnippInfoSet($snipp, $title);
+                    $this->snippCheck->isSnippInformationSet($snipp, $title);
 
                     $this->jsonModel->addSnipps($title, $snipp, $userName);
 

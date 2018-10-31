@@ -70,13 +70,7 @@ class JsonFileHandler
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 
-        $newSnipp = (object)[];
-
-        $newSnipp->Createname = $Username;
-
-        $newSnipp->snipp = $jsonInfo;
-
-        $newSnipp->title = $title;
+        $newSnipp = new CodeSnipp($title, $jsonInfo, "Admin");
 
         $jsonOfNewSnipp = json_encode($newSnipp);
 

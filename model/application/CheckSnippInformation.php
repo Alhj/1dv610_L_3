@@ -2,9 +2,9 @@
 
 namespace model;
 
-class checkSnippInformation
+class SnippValidator
 {
-    public function isSnippInfoSet($snipp, $title)
+    public function isSnippInformationSet($snipp, $title)
     {
         if (!empty($snipp)) {
             if (!empty($title)) {

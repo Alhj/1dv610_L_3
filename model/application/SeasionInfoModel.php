@@ -43,7 +43,7 @@ class SesionInfoModel
         if (isset($_SESSION[$this->message])) {
             $theMessage = $_SESSION[$this->message];
 
-            $this->removeMessage();
+            $this->removeMessage($this->message);
 
             return $theMessage;
         } else {

@@ -2,7 +2,7 @@
 
 namespace model;
 
-class checNewUserInfo
+class newUserModel
 {
 
     private $wrongMessage = "";

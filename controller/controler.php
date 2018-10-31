@@ -13,6 +13,7 @@ require_once('./view/Appliaction/RemoveSnippView.php');
 require_once('./model/Loggin/CheckNewUserRegModel.php');
 require_once('./model/Loggin/LogginHandler.php');
 require_once('./model/customException.php');
+require_once('./model/application/CodeSnipp.php');
 require_once('env.php');
 
 
@@ -43,7 +44,7 @@ class Controller
         $this->registerView = new \view\RegisterView();
         $this->snippsView = new \view\SnippsView();
 
-        $this->checkNewUser = new \model\checNewUserInfo();
+        $this->checkNewUser = new \model\newUserModel();
 
         $this->LogginController = new \controler\logginControler($this->logginView);
         $this->SnippHandlerController = new \controler\SnippHandlerController($this->snippsView);
