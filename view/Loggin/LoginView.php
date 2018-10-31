@@ -37,20 +37,24 @@ class LoginView
 
 	public function errorMessange($error)
 	{
-		switch($error)
-		{
+		switch ($error) {
 			case $this->userNameMissing:
 				$this->setMessage("Username is missing");
-			break;
+				break;
 
 			case $this->passwordMissing:
 				$this->setMessage("Password is missing");
-			break;
+				break;
 
 			case $this->fildLoggin:
 				$this->setMessage("Wrong name or password");
-			break;
+				break;
 		}
+	}
+
+	public function byeMessage()
+	{
+		$this->logginMessage = "Bye bye!";
 	}
 
 	public function response($isUserLoggin)
@@ -67,7 +71,7 @@ class LoginView
 		return $response;
 	}
 
-	
+
 	private function generateLogoutButtonHTML($message)
 	{
 		return '
@@ -78,7 +82,7 @@ class LoginView
 		';
 	}
 
-	
+
 	private function generateLoginFormHTML($message)
 	{
 		return '
@@ -155,11 +159,9 @@ class LoginView
 
 	public function logginMessage($withMessage)
 	{
-		if($withMessage)
-		{
+		if ($withMessage) {
 			$this->setMessage("Welcome and you will be remembered");
-		} else 
-		{
+		} else {
 			$this->setMessage("Welcome");
 		}
 	}

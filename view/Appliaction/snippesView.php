@@ -123,9 +123,9 @@ class SnippsView
             <br>
                 <fieldset>
                     <h2> title: ' . $snipp->{"title"} . '</h2>
-                    <h4> author: ' . $snipp->{"Createname"} . '</h4>
+                    <h4> author: ' . $snipp->{"CreateName"} . '</h4>
                     <p>
-                    ' . 'snipp: ' . $snipp->{"snipp"} . '
+                    ' . 'snipp: ' . $snipp->{"CodeSnipp"} . '
                     </p>
                 </fieldset>';
         }

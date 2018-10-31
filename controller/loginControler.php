@@ -88,7 +88,7 @@ class logginControler
 
     private function fieldSetUsername()
     {
-        $this->v->setUsername($this->v->getUsername());
+        $this->view->setUsername($this->view->getUsername());
     }
 
     private function loggout()

@@ -32,9 +32,9 @@ class removeSnippView
                 <br>
                 <form method = "post">
                     <h2> title: ' . $snipp->{"title"} . '</h2>
-                    <h4> author: ' . $snipp->{"Createname"} . '</h4>
+                    <h4> author: ' . $snipp->{"CreateName"} . '</h4>
                     <p>
-                    ' . 'snipp: ' . $snipp->{"snipp"} . '
+                    ' . 'snipp: ' . $snipp->{"CodeSnipp"} . '
                     </p>
                     <input name="'. $this->removeSpot . '" type="hidden" value="'. $spot .'">
 
