@@ -8,10 +8,10 @@ class SnippsView
 
     private $removeSnippView;
 
-    private $snipp = "snipp";
-    private $title = "title";
-    private $message = "message";
-    private $submitSnip = "submitSnip";
+    private $snipp = "SnippsView::snipp";
+    private $title = "SnippsView::title";
+    private $message = "SnippsView::message";
+    private $submitSnip = "SnippsView::submitSnip";
 
 
     private $addSnipp = "addsnipp";
@@ -81,7 +81,7 @@ class SnippsView
         }
         if (isset($_GET[$this->viewSnipp])) {
             return '
-            ' . $this->allSnips() . '
+            ' . $this->ShowAllCodeSnips() . '
             ';
         }
     }
@@ -99,7 +99,7 @@ class SnippsView
                     <input id = "' . $this->title . '" name = "' . $this->title . '" type = "text" value = "' . $this->UserTitle . '">
                     <br>
                     <label for = "' . $this->snipp . '"> snipp</label>
-                    <textarea name = "' . $this->snipp . '" rows="4" cols="40">'. $this->UserCodeSnipp .'</textarea>
+                    <textarea name = "' . $this->snipp . '" rows="4" cols="40">' . $this->UserCodeSnipp . '</textarea>
                     <br>
                     <br>
                     <switch>
@@ -111,23 +111,27 @@ class SnippsView
         ';
     }
 
-    private function allSnips()
+    private function ShowAllCodeSnips()
     {
         $string = '
         <h2>View all Snips</h2>
         ' . $this->goBackLink() . '
         ';
-        foreach ($this->jsonInfo as $snipp) {
-            $string .= '
+        if (!empty($this->jsonInfo)) {
+            foreach ($this->jsonInfo as $snipp) {
+                $string .= '
             <br>
             <br>
                 <fieldset>
-                    <h2> title: ' . $snipp->{"title"} . '</h2>
-                    <h4> author: ' . $snipp->{"CreateName"} . '</h4>
+                    <h2> title: ' . $snipp->title . '</h2>
+                    <h4> author: ' . $snipp->CreateName . '</h4>
                     <p>
-                    ' . 'snipp: ' . $snipp->{"CodeSnipp"} . '
+                    ' . 'snipp: ' . $snipp->CodeSnipp . '
                     </p>
                 </fieldset>';
+            }
+        } else {
+            $string .= '<p>no code snipps has been add yet</p>';
         }
         return $string;
     }

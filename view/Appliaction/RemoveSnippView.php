@@ -5,9 +5,9 @@ namespace view;
 class removeSnippView
 {
 
-    private $removeSpot = "removeSpot";
-    private $dealteSnip = "dealteSnipt";
-    private $message = "message";
+    private $removeSpot = "removeSnippView::removeSpot";
+    private $dealteSnip = "removeSnippView::dealteSnipt";
+    private $message = "removeSnippView::message";
     
     private $theMessage = ""; 
 
@@ -31,10 +31,10 @@ class removeSnippView
             $string .= '
                 <br>
                 <form method = "post">
-                    <h2> title: ' . $snipp->{"title"} . '</h2>
-                    <h4> author: ' . $snipp->{"CreateName"} . '</h4>
+                    <h2> title: ' . $snipp->title . '</h2>
+                    <h4> author: ' . $snipp->CreateName . '</h4>
                     <p>
-                    ' . 'snipp: ' . $snipp->{"CodeSnipp"} . '
+                    ' . 'snipp: ' . $snipp->CodeSnipp . '
                     </p>
                     <input name="'. $this->removeSpot . '" type="hidden" value="'. $spot .'">
 

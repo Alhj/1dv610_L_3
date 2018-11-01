@@ -2,6 +2,9 @@
 
 namespace controler;
 
+use model\CodeSnipp;
+
+
 require_once('./model/application/JsonFileHandler.php');
 require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/SeasionInfoModel.php');
@@ -37,17 +40,19 @@ class SnippHandlerController
                 $this->userWhantToAddCodeSnipp();
             }
 
-            if ($this->view->seeSnipps()) {
-                $this->userWhantToSeeCodeSnipps();
-            }
-
             if ($this->view->toRemove()) {
                 $this->userWhantToRemoveCodeSnipp();
             }
             if ($this->view->whantToDealte()) {
                 $this->UserWhantToDealteCodeSnipp();
             }
-        } else {
+        } elseif ($this->view->seeSnipps())
+        {
+            if ($this->view->seeSnipps()) {
+                $this->userWhantToSeeCodeSnipps();
+            }
+        } 
+        else {
             $this->SeasionInfoModel->setMessageUserNotLoggin();
             header("location: index.php");
         }
@@ -62,9 +67,8 @@ class SnippHandlerController
 
             $this->snippCheck->isSnippInformationSet($snipp, $title);
 
-            $codeSnipp = new \model\CodeSnipp($snipp, $title);
-
-            $this->jsonModel->addSnipps($title, $snipp, $userName);
+            $codeSnipp = new \model\CodeSnipp($snipp, $title, $userName);
+            $this->jsonModel->addSnipps($CodeSnipp);
 
             $this->SeasionInfoModel->setMessage("code snipp create");
             header("location: index.php?addsnipp");
@@ -88,9 +92,10 @@ class SnippHandlerController
     private function userWhantToSeeCodeSnipps()
     {
         $jsonInfo = $this->jsonModel->getInfomrationFromJsonFile();
-        var_dump("hello world");
+        
         $this->view->setJsonInfo($jsonInfo);
     }
+
     private function userWhantToRemoveCodeSnipp()
     {
         $userName = $this->SeasionInfoModel->getUserName();
@@ -99,6 +104,7 @@ class SnippHandlerController
 
         $this->view->setJsonInfo($jsonInfo);
     }
+    
     private function UserWhantToDealteCodeSnipp()
     {
         $spot = $this->view->getSpot();
