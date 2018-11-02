@@ -7,12 +7,8 @@ class SnippsView
     private $jsonInfo;
 
     private $removeSnippView;
-
-    private $snipp = "SnippsView::snipp";
-    private $title = "SnippsView::title";
-    private $message = "SnippsView::message";
-    private $submitSnip = "SnippsView::submitSnip";
-
+    private $addSnippView;
+    private $showAllCodeSnipps;
 
     private $addSnipp = "addsnipp";
     private $viewSnipp = "ShowSnipps";
@@ -25,6 +21,8 @@ class SnippsView
     public function __construct()
     {
         $this->removeSnippView = new \view\removeSnippView();
+        $this->addSnippView = new \view\addSnippView();
+        $this->showAllCodeSnipps = new \view\ShowAllCodeSnipps();
     }
 
     public function whantToDoWithSnipp()
@@ -44,29 +42,6 @@ class SnippsView
         return $whatToDo;
     }
 
-    public function errorMessage($errorType)
-    {
-        switch ($errorType) {
-            case "snipMissingInput":
-                $this->setMessage("snipp is missing input");
-                break;
-            case "titleMissingInput":
-                $this->setMessage("title is missing input");
-                break;
-
-        }
-    }
-
-    public function whantToDealte()
-    {
-        return $this->removeSnippView->doYouWhantToDelate();
-    }
-
-    public function getSpot()
-    {
-        return $this->removeSnippView->GetSpot();
-    }
-
     public function response($userLoggin)
     {
         if (isset($_GET[$this->addSnipp])) {
@@ -81,73 +56,41 @@ class SnippsView
         }
         if (isset($_GET[$this->viewSnipp])) {
             return '
-            ' . $this->ShowAllCodeSnips() . '
+            ' . $this->showAllCodeSnipps->render() . '
             ';
         }
     }
 
+    public function setErrorMessageAddSnippView($errorType)
+    {
+        $this->addSnippView->errorMessage($errorType);
+    }
+
+    public function whantToDealte()
+    {
+        return $this->removeSnippView->doYouWhantToDelate();
+    }
+
+    public function getSpot()
+    {
+        return $this->removeSnippView->GetSpot();
+    }
+
     private function NewSnipps()
     {
-        return
-            '
-            <h2>Add snipp</h2>
-            ' . $this->goBackLink() . '
-            <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
-            <form method = "post">
-                <fieldset>
-                    <label for = "' . $this->title . '">title</label>
-                    <input id = "' . $this->title . '" name = "' . $this->title . '" type = "text" value = "' . $this->UserTitle . '">
-                    <br>
-                    <label for = "' . $this->snipp . '"> snipp</label>
-                    <textarea name = "' . $this->snipp . '" rows="4" cols="40">' . $this->UserCodeSnipp . '</textarea>
-                    <br>
-                    <br>
-                    <switch>
-                    </switch>
-                    <br>
-                    <input name="' . $this->submitSnip . '" type ="submit" value ="submit">
-                </fieldset>
-            </form>
-        ';
+       return $this->addSnippView->render();
     }
 
-    private function ShowAllCodeSnips()
-    {
-        $string = '
-        <h2>View all Snips</h2>
-        ' . $this->goBackLink() . '
-        ';
-        if (!empty($this->jsonInfo)) {
-            foreach ($this->jsonInfo as $snipp) {
-                $string .= '
-            <br>
-            <br>
-                <fieldset>
-                    <h2> title: ' . $snipp->title . '</h2>
-                    <h4> author: ' . $snipp->CreateName . '</h4>
-                    <p>
-                    ' . 'snipp: ' . $snipp->CodeSnipp . '
-                    </p>
-                </fieldset>';
-            }
-        } else {
-            $string .= '<p>no code snipps has been add yet</p>';
-        }
-        return $string;
-    }
-
-    private function goBackLink()
-    {
-        return '<a href = "index.php"> go back</a>';
-    }
     private function removeSnippRender()
     {
         $this->removeSnipp->renderDelate($this->jsonInfo);
     }
-    public function setJsonInfo($jsonInfomration)
+
+    public function setJsonInfoForViewAllCodeSnipps($jsonInfomration)
     {
-        $this->jsonInfo = $jsonInfomration;
+        $this->showAllCodeSnipps->setJsonInfo($jsonInfomration);
     }
+
     public function setMessage($sendMessage)
     {
         $this->theMessage = $sendMessage;
@@ -155,7 +98,15 @@ class SnippsView
 
     public function whantToAddSnipp()
     {
-        return isset($_POST[$this->submitSnip]);
+        return $this->addSnippView->doUserWhantToAddSnipp();
+    }
+    public function getTitle()
+    {
+        return $this->addSnippView->getTitleOfCodeSnipp();
+    }
+    public function getCodeSnipp()
+    {
+         return $this->addSnippView->getCodeSnipp();
     }
 
     public function seeSnipps()
@@ -168,29 +119,17 @@ class SnippsView
         return isset($_GET[$this->removeSnipp]);
     }
 
-    public function getTitle()
+    public function getAddSnippCodeSnippTitle()
     {
-        if (isset($_POST[$this->title])) {
-            return $_POST[$this->title];
-        } else {
-            return "";
-        }
+        return $this->addSnippView->doUserWhantToAddSnipp();
     }
 
-    public function getSnipp()
-    {
-        if (isset($_POST[$this->snipp])) {
-            return htmlspecialchars($_POST[$this->snipp]);
-        } else {
-            return "";
-        }
-    }
     public function setTitle($title)
     {
-        $this->UserTitle = $title;
+        $this->addSnippView->setTitle($title);
     }
     public function setCodeSnipp($codeSnipp)
     {
-        $this->UserCodeSnipp = $codeSnipp;
+        $this->addSnippView->setCodeSnipp($codeSnipp);
     }
 }

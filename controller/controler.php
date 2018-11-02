@@ -8,6 +8,8 @@ require_once('./view/Layout/LayoutView.php');
 require_once('./view/Loggin/RegisterView.php');
 require_once('./view/Appliaction/snippesView.php');
 require_once('./view/Appliaction/RemoveSnippView.php');
+require_once('./view/Appliaction/addSnippView.php');
+require_once('./view/Appliaction/ShowAllCodeSnipps.php');
 
 
 require_once('./model/Loggin/CheckNewUserRegModel.php');
