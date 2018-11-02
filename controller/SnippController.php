@@ -109,7 +109,6 @@ class SnippHandlerController
 
     private function userWhantToRemoveCodeSnipp()
     {
-        var_dump("hello world");
         $userName = $this->SeasionInfoModel->getUserName();
 
         $jsonInfo = $this->jsonModel->getUserSnips($userName);

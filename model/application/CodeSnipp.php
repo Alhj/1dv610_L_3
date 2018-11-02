@@ -16,4 +16,12 @@ class CodeSnipp
         $this->CodeSnipp = $CodeSnipp;
         $this->CreateName = $CreateName;
     }
+    public function toArray()
+    {
+        return array(
+            'title' => $this->title,
+            'CodeSnipp' => $this->CodeSnipp,
+            'CreateName' => $this->CreateName
+        );
+    }
 }

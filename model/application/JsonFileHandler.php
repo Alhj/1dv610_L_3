@@ -69,15 +69,7 @@ class JsonFileHandler
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 
-        var_dump($jsonFile);
-        $test = array('title' => "hej", 'CodeSnipp' => "då", 'CreateName' => "batman");
-        
-
-        $jsonOfNewSnipp = json_encode($test);
-
-        var_dump($jsonOfNewSnipp);
-
-        array_push($jsonFile, $jsonOfNewSnipp);
+        array_push($jsonFile, $Codesnipp->toArray());
 
         $this->saveJsonFile($jsonFile);
     }
