@@ -7,6 +7,7 @@ class SesionInfoModel
     private $getUserName = "loggin";
     private $message = "message";
     private $userNotLoggin = "userNotLoggin";
+    private $removeCodeSnipp = "removeCodeSnipp";
 
     public function setMessage($message)
     {
@@ -34,9 +35,26 @@ class SesionInfoModel
         }
     }
 
+    public function setMessageRemoveCodeSnipp($message)
+    {
+        $_SESSION[$this->removeCodeSnipp] = "snipp remove";
+    }
+    public function getMessageRemoveCodeSnipp()
+    {
+        $message = "";
+        if (isset($_SESSION[$this->removeCodeSnipp])) {
+            
+            $message = $_SESSION[$this->removeCodeSnipp];
+
+            $this->removeMessage($this->removeCodeSnipp);
+            
+        }
+        return $message;
+    }
+
     public function setMessageUserNotLoggin()
     {
-        $_SESSION[$this->userNotLoggin] = "user not loggin" ;
+        $_SESSION[$this->userNotLoggin] = "user not loggin";
     }
     public function getMessage()
     {

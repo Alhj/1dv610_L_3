@@ -35,7 +35,9 @@ class SnippHandlerController
         if ($this->logginHandler->isUserLoggin()) {
 
 
-            $this->view->setMessage($this->SeasionInfoModel->getMessage());
+            $this->view->setMessageForAddCodeSnipp($this->SeasionInfoModel->getMessage());
+
+            $this->view->setMessageViewRemoveSnipp($this->SeasionInfoModel->getMessageRemoveCodeSnipp());
 
             if ($this->view->whantToAddSnipp()) {
                 $this->userWhantToAddCodeSnipp();
@@ -47,11 +49,12 @@ class SnippHandlerController
             if ($this->view->whantToDealte()) {
                 $this->UserWhantToDealteCodeSnipp();
             }
-        } elseif ($this->view->seeSnipps())
-        {
             if ($this->view->seeSnipps()) {
                 $this->userWhantToSeeCodeSnipps();
             }
+        } elseif ($this->view->seeSnipps())
+        {
+                $this->userWhantToSeeCodeSnipps();
         } 
         else {
             $this->SeasionInfoModel->setMessageUserNotLoggin();
@@ -103,7 +106,7 @@ class SnippHandlerController
 
         $this->jsonModel->removeSnipps($spot, $userName);
 
-        $this->SeasionInfoModel->setMessage("snipp remove");
+        $this->SeasionInfoModel->setMessageRemoveCodeSnipp("");
         header("location: index.php?removeSnipp");
     }
 
@@ -113,6 +116,6 @@ class SnippHandlerController
 
         $jsonInfo = $this->jsonModel->getUserSnips($userName);
 
-        $this->view->setJsonInfo($jsonInfo);
+        $this->view->setJsonInfoForViewRemoveSnipp($jsonInfo);
     }
 }

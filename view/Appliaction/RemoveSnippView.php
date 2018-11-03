@@ -10,23 +10,25 @@ class removeSnippView
     private $message = "removeSnippView::message";
     
     private $theMessage = ""; 
+    
+    private $jsonInfo;
 
     public function renderDealte($jsonInfo)
     {
         return '
         <a href="index.php"> go back</a>
-            '. $this->userSnips($jsonInfo) .'
+            '. $this->userSnips() .'
         ';
     }
 
-    private function userSnips($jsonInfo)
+    private function userSnips()
     {
         $spot = 0;
         $string = '
         <h2>Remove snipp</h2>
         <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
         ';
-        foreach($jsonInfo as $snipp)
+        foreach($this->jsonInfo as $snipp)
         {
             $string .= '
                 <br>
@@ -61,6 +63,10 @@ class removeSnippView
     }
     public function setRemoveMessage($message)
     {
-        $this->message = $message;
+        $this->theMessage = $message;
+    }
+    public function setJsonInfo($jsonInfo)
+    {
+        $this->jsonInfo = $jsonInfo;
     }
 }

@@ -19,8 +19,8 @@ class CodeSnipp
     public function toArray()
     {
         return array(
-            'title' => $this->title,
-            'CodeSnipp' => $this->CodeSnipp,
+            'title' => $this->CodeSnipp,
+            'CodeSnipp' => $this->title,
             'CreateName' => $this->CreateName
         );
     }

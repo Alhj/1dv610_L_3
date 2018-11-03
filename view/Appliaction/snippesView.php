@@ -7,21 +7,17 @@ class SnippsView
     private $jsonInfo;
 
     private $removeSnippView;
-    private $addSnippView;
+    private $addCodeSnippView;
     private $showAllCodeSnipps;
 
     private $addSnipp = "addsnipp";
     private $viewSnipp = "ShowSnipps";
     private $removeSnipp = "removeSnipp";
 
-    private $theMessage;
-    private $UserTitle = "";
-    private $UserCodeSnipp = "";
-
     public function __construct()
     {
         $this->removeSnippView = new \view\removeSnippView();
-        $this->addSnippView = new \view\addSnippView();
+        $this->addCodeSnippView = new \view\addSnippView();
         $this->showAllCodeSnipps = new \view\ShowAllCodeSnipps();
     }
 
@@ -63,7 +59,7 @@ class SnippsView
 
     public function setErrorMessageAddSnippView($errorType)
     {
-        $this->addSnippView->errorMessage($errorType);
+        $this->addCodeSnippView->errorMessage($errorType);
     }
 
     public function whantToDealte()
@@ -78,7 +74,7 @@ class SnippsView
 
     private function NewSnipps()
     {
-       return $this->addSnippView->render();
+       return $this->addCodeSnippView->render();
     }
 
     private function removeSnippRender()
@@ -90,23 +86,31 @@ class SnippsView
     {
         $this->showAllCodeSnipps->setJsonInfo($jsonInfomration);
     }
-
-    public function setMessage($sendMessage)
+    public function setJsonInfoForViewRemoveSnipp($jsonInfomration)
     {
-        $this->theMessage = $sendMessage;
+        $this->removeSnippView->setJsonInfo($jsonInfomration);
+    }
+
+    public function setMessageForAddCodeSnipp($sendMessage)
+    {
+        $this->addCodeSnippView->setMessage($sendMessage);
+    }
+    public function setMessageViewRemoveSnipp($message)
+    {
+        $this->removeSnippView->setRemoveMessage($message);
     }
 
     public function whantToAddSnipp()
     {
-        return $this->addSnippView->doUserWhantToAddSnipp();
+        return $this->addCodeSnippView->doUserWhantToAddSnipp();
     }
     public function getTitle()
     {
-        return $this->addSnippView->getTitleOfCodeSnipp();
+        return $this->addCodeSnippView->getTitleOfCodeSnipp();
     }
     public function getCodeSnipp()
     {
-         return $this->addSnippView->getCodeSnipp();
+         return $this->addCodeSnippView->getCodeSnipp();
     }
 
     public function seeSnipps()
@@ -119,17 +123,12 @@ class SnippsView
         return isset($_GET[$this->removeSnipp]);
     }
 
-    public function getAddSnippCodeSnippTitle()
-    {
-        return $this->addSnippView->doUserWhantToAddSnipp();
-    }
-
     public function setTitle($title)
     {
-        $this->addSnippView->setTitle($title);
+        $this->addCodeSnippView->setTitle($title);
     }
     public function setCodeSnipp($codeSnipp)
     {
-        $this->addSnippView->setCodeSnipp($codeSnipp);
+        $this->addCodeSnippView->setCodeSnipp($codeSnipp);
     }
 }
