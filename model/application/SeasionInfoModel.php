@@ -37,7 +37,7 @@ class SesionInfoModel
 
     public function setMessageRemoveCodeSnipp($message)
     {
-        $_SESSION[$this->removeCodeSnipp] = "snipp remove";
+        $_SESSION[$this->removeCodeSnipp] = $message;
     }
     public function getMessageRemoveCodeSnipp()
     {

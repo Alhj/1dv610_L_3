@@ -25,7 +25,6 @@ class addSnippView
             '
             <a href="index.php"> go back</a>
             <h2>Add snipp</h2>
-            <a href="index.php"> go back</a>
             <h4 id ="' . self::$message . '">' . $this->theMessage . '</h4>
             <form method = "post">
                 <fieldset>

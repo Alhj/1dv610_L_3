@@ -75,7 +75,7 @@ class SnippHandlerController
             
             $this->jsonModel->addSnipps($codeSnipp);
 
-            $this->SeasionInfoModel->setMessage("code snipp create");
+            $this->SeasionInfoModel->setMessage($this->view->addCodeSnippMessage());
 
         } catch (\snipMissingInput $e) {
 
@@ -106,7 +106,7 @@ class SnippHandlerController
 
         $this->jsonModel->removeSnipps($spot, $userName);
 
-        $this->SeasionInfoModel->setMessageRemoveCodeSnipp("");
+        $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippMessage());
         header("location: index.php?removeSnipp");
     }
 

@@ -131,4 +131,12 @@ class SnippsView
     {
         $this->addCodeSnippView->setCodeSnipp($codeSnipp);
     }
+    public function addCodeSnippMessage()
+    {
+        return "code snipp have been add";
+    }
+    public function removeCodeSnippMessage ()
+    {
+        return "code snipp have been remove";
+    }
 }
