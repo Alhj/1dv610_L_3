@@ -12,8 +12,8 @@ require_once('./view/Appliaction/addSnippView.php');
 require_once('./view/Appliaction/ShowAllCodeSnipps.php');
 
 
-require_once('./model/Loggin/CheckNewUserRegModel.php');
-require_once('./model/Loggin/LogginHandler.php');
+require_once('./model/Loggin/newUser.php');
+require_once('./model/Loggin/Loggin.php');
 require_once('./model/customException.php');
 require_once('./model/application/CodeSnipp.php');
 require_once('./model/application/codeSnipp/User.php');
@@ -28,8 +28,8 @@ class Controller
 {
 
     private $logginView;
-    private $dtv;
-    private $lv;
+    private $dateTimeView;
+    private $layoutView;
     private $registerView;
     private $snippsView;
 
@@ -42,12 +42,12 @@ class Controller
     public function __construct()
     {
         $this->logginView = new \view\LoginView();
-        $this->dtv = new \view\DateTimeView();
-        $this->lv = new \view\LayoutView();
+        $this->dateTimeView = new \view\DateTimeView();
+        $this->layoutView = new \view\LayoutView();
         $this->registerView = new \view\RegisterView();
         $this->snippsView = new \view\SnippsView();
 
-        $this->checkNewUser = new \model\newUserModel();
+        $this->checkNewUser = new \model\newUser();
 
         $this->LogginController = new \controler\logginControler($this->logginView);
         $this->SnippHandlerController = new \controler\SnippHandlerController($this->snippsView);
@@ -57,15 +57,15 @@ class Controller
     {
         $this->checkWhatToDo();
 
-        if ($this->lv->RegisterViewOrNot()) {
-            $this->lv->render($this->registerView, $this->dtv);
+        if ($this->layoutView->RegisterViewOrNot()) {
+            $this->layoutView->render($this->registerView, $this->dateTimeView);
         } elseif ($this->snippsView->whantToDoWithSnipp()) {
             
             $this->SnippHandlerController->checkWhatToDo();
 
-            $this->lv->render($this->snippsView, $this->dtv);
+            $this->layoutView->render($this->snippsView, $this->dateTimeView);
         } else {
-            $this->lv->render($this->logginView, $this->dtv);
+            $this->layoutView->render($this->logginView, $this->dateTimeView);
         }
     }
 

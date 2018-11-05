@@ -12,14 +12,14 @@ class JsonFileHandler
         $this->getInfo = new env();
     }
 
-    public function removeSnipps($spot, $Username)
+    public function removeUserSnipps($spot, $Username)
     {
         $allUsers = $this->getInfomrationFromJsonFile();
 
         foreach ($allUsers as $user) {
             if ($user->User === $Username) {
                 unset($user->CodeSnipps[$spot]);
-                $newArray = $this->newArray($user);
+                $newArray = $this->newUserArray($user);
                 $user->CodeSnipps = $newArray;
             }
         }
@@ -27,7 +27,7 @@ class JsonFileHandler
         $this->saveJsonFile($allUsers);
     }
 
-    private function newArray($user)
+    private function newUserArray($user)
     {
         $newArray = [];
 
@@ -52,7 +52,7 @@ class JsonFileHandler
         return $userExist;
     }
 
-    public function getUserSnips($userName)
+    public function getUser($userName)
     {
         $userSnips;
 
@@ -75,7 +75,7 @@ class JsonFileHandler
         return $jsonInfo;
     }
 
-    public function addSnipps($user)
+    public function addCodeSnipps($user)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 

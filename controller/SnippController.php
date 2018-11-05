@@ -19,9 +19,9 @@ class SnippHandlerController
     public function __construct(\view\SnippsView $snippsView)
     {
         $this->jsonModel = new \model\JsonFileHandler();
-        $this->snippCheck = new \model\SnippValidator();
+        $this->snippCheck = new \model\CodeSnippValidator();
         $this->SeasionInfoModel = new \model\SesionInfoModel();
-        $this->logginHandler = new \model\logginModel();
+        $this->logginHandler = new \model\loggin();
 
         $this->view = $snippsView;
     }
@@ -63,19 +63,19 @@ class SnippHandlerController
             $snipp = $this->view->getCodeSnipp();
 
 
-            $this->snippCheck->isSnippInformationSet($snipp, $title);
+           // $this->snippCheck->isSnippInformationSet($snipp, $title);
 
             $codeSnipp = new \model\CodeSnipp($title, $snipp);
 
             if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
-                $user = $this->jsonModel->getUserSnips($this->SeasionInfoModel->getUserName());
+                $user = $this->jsonModel->getUser($this->SeasionInfoModel->getUserName());
             } else {
                 $user = new \model\User($this->SeasionInfoModel->getUserName());   
             }
 
             array_push($user->CodeSnipps,$codeSnipp); 
 
-            $this->jsonModel->addSnipps($user);
+            $this->jsonModel->addCodeSnipps($user);
 
             $this->SeasionInfoModel->setMessage($this->view->addCodeSnippMessage());
 
@@ -106,7 +106,7 @@ class SnippHandlerController
     private function UserWhantToDealteCodeSnipp()
     {
 
-        $this->jsonModel->removeSnipps($this->view->getSpot(), $this->SeasionInfoModel->getUserName());
+        $this->jsonModel->removeUserSnipps($this->view->getSpot(), $this->SeasionInfoModel->getUserName());
 
         $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippMessage());
         header("location: index.php?removeSnipp");
@@ -116,7 +116,7 @@ class SnippHandlerController
     {
         $userName = $this->SeasionInfoModel->getUserName();
 
-        $user = $this->jsonModel->getUserSnips($userName);
+        $user = $this->jsonModel->getUser($userName);
 
         $this->view->setJsonInfoForViewRemoveSnipp($user->CodeSnipps);
     }

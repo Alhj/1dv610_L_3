@@ -9,7 +9,7 @@ class LayoutView
 
   public function __construct()
   {
-   $this->isLoggedIn = new \model\logginModel();
+   $this->isLoggedIn = new \model\loggin();
   }
 
   public function render($v, \view\DateTimeView $dtv)

@@ -1,8 +1,8 @@
 <?php
 
 namespace controler;
-require_once('./model/Loggin/CheckLoginInformation.php');
-require_once('./model/Loggin/allInfoSet.php');
+require_once('./model/Loggin/logginCheck.php');
+require_once('./model/Loggin/LogginInfo.php');
 
 class logginControler
 {
@@ -21,8 +21,8 @@ class logginControler
     public function __construct(\view\LoginView $view)
     {
         $this->logginCheck = new \model\logginCheck();
-        $this->CheckLogginInfo = new \model\checkLogginInfo();
-        $this->logginHandler = new \model\logginModel();
+        $this->CheckLogginInfo = new \model\LogginInfo();
+        $this->logginHandler = new \model\loggin();
         $this->seasionMessage = new \model\SesionInfoModel();
 
         $this->view = $view;
@@ -57,7 +57,7 @@ class logginControler
         $postUserName = $this->view->getUserName();
         $postPassword = $this->view->getPassword();
         try {
-            $this->CheckLogginInfo->isInputInfoSet($postUserName, $postPassword);
+            $this->CheckLogginInfo->isLogginInfoSet($postUserName, $postPassword);
 
             $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
 

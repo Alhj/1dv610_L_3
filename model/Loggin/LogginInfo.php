@@ -2,11 +2,11 @@
 
 namespace model;
 
-class checkLogginInfo
+class LogginInfo
 {
 
 
-    public function isInputInfoSet($UserName, $Password)
+    public function isLogginInfoSet($UserName, $Password)
     {
         if (!$this->isItEmpty($UserName)) {
             if (!$this->isItEmpty($Password)) {

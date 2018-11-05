@@ -2,7 +2,7 @@
 
 namespace model;
 
-class logginModel
+class loggin
 {
 
     private static $loggin = "LogginHandler::loggin";
