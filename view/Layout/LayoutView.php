@@ -5,8 +5,14 @@ namespace view;
 class LayoutView
 {
 
+  private $isLoggedIn;
 
-  public function render($isLoggedIn, $v, \view\DateTimeView $dtv)
+  public function __construct()
+  {
+   $this->isLoggedIn = new \model\logginModel();
+  }
+
+  public function render($v, \view\DateTimeView $dtv)
   {
     echo '<!DOCTYPE html>
       <html>
@@ -16,13 +22,13 @@ class LayoutView
         </head>
         <body>
           <h1>Assignment 3</h1>
-          ' . $this->link($isLoggedIn) . '
-          ' . $this->renderIsLoggedIn($isLoggedIn) . '
+          ' . $this->link($this->isLoggedIn->isUserLoggin()) . '
+          ' . $this->renderIsLoggedIn($this->isLoggedIn->isUserLoggin()) . '
           <div class="container">
-              ' . $v->response($isLoggedIn) . '
+              ' . $v->response($this->isLoggedIn->isUserLoggin()) . '
               
               ' . $dtv->show() . '
-              ' . $this->WhatToDoWithSnipp($isLoggedIn) . '
+              ' . $this->WhatToDoWithSnipp($this->isLoggedIn->isUserLoggin()) . '
           </div>
          </body>
       </html>

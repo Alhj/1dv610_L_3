@@ -2,10 +2,6 @@
 
 namespace controler;
 
-use model\CodeSnipp;
-use model\UserCodeSnipp;
-
-
 require_once('./model/application/JsonFileHandler.php');
 require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/SeasionInfoModel.php');
@@ -65,17 +61,16 @@ class SnippHandlerController
         try {
             $title = $this->view->getTitle();
             $snipp = $this->view->getCodeSnipp();
-            $userName = $this->SeasionInfoModel->getUserName();
 
 
             $this->snippCheck->isSnippInformationSet($snipp, $title);
 
-            $codeSnipp = new \model\CodeSnipp($title, $snipp, $userName);
+            $codeSnipp = new \model\CodeSnipp($title, $snipp);
 
-            if ($this->jsonModel->doUserExist($userName)) {
-                $user = $this->jsonModel->getUserSnips($userName);
+            if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
+                $user = $this->jsonModel->getUserSnips($this->SeasionInfoModel->getUserName());
             } else {
-                $user = new UserCodeSnipp($userName);   
+                $user = new UserCodeSnipp($this->SeasionInfoModel->getUserName());   
             }
 
             array_push($user->CodeSnipps,$codeSnipp); 
@@ -110,10 +105,8 @@ class SnippHandlerController
 
     private function UserWhantToDealteCodeSnipp()
     {
-        $spot = $this->view->getSpot();
-        $userName = $this->SeasionInfoModel->getUserName();
 
-        $this->jsonModel->removeSnipps($spot, $userName);
+        $this->jsonModel->removeSnipps($this->view->getSpot(), $this->SeasionInfoModel->getUserName());
 
         $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippMessage());
         header("location: index.php?removeSnipp");
@@ -123,8 +116,8 @@ class SnippHandlerController
     {
         $userName = $this->SeasionInfoModel->getUserName();
 
-        $jsonInfo = $this->jsonModel->getUserSnips($userName);
+        $UserCodeSnipp = $this->jsonModel->getUserSnips($userName);
 
-        $this->view->setJsonInfoForViewRemoveSnipp($jsonInfo);
+        $this->view->setJsonInfoForViewRemoveSnipp($UserCodeSnipp->CodeSnipps);
     }
 }

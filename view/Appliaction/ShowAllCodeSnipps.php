@@ -16,16 +16,16 @@ class ShowAllCodeSnipps
         $string = '
         <a href="index.php">go back</a>
         <h2>View all Snips</h2>
-        
         ';
         if (!empty($this->jsonInfo)) {
-            foreach ($this->jsonInfo as $snipp) {
+            foreach ($this->jsonInfo as $user) {
+                foreach($user->CodeSnipps as $snipp)
                 $string .= '
             <br>
             <br>
                 <fieldset>
                     <h2> title: ' . $snipp->title . '</h2>
-                    <h4> author: ' . $snipp->CreateName . '</h4>
+                    <h4> author: ' . $user->User . '</h4>
                     <p>
                     ' . 'snipp: ' . $snipp->CodeSnipp . '
                     </p>

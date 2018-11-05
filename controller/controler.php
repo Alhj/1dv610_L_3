@@ -58,14 +58,14 @@ class Controller
         $this->checkWhatToDo();
 
         if ($this->lv->RegisterViewOrNot()) {
-            $this->lv->render($this->LogginController->isUserLogin(), $this->registerView, $this->dtv);
+            $this->lv->render($this->registerView, $this->dtv);
         } elseif ($this->snippsView->whantToDoWithSnipp()) {
             
             $this->SnippHandlerController->checkWhatToDo();
 
-            $this->lv->render($this->LogginController->isUserLogin(), $this->snippsView, $this->dtv);
+            $this->lv->render($this->snippsView, $this->dtv);
         } else {
-            $this->lv->render($this->LogginController->isUserLogin(), $this->logginView, $this->dtv);
+            $this->lv->render($this->logginView, $this->dtv);
         }
     }
 

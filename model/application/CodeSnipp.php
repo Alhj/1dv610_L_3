@@ -8,12 +8,9 @@ class CodeSnipp
 
     public $CodeSnipp;
 
-    public $CreateName;
-
-    public function __construct($title, $CodeSnipp, $CreateName)
+    public function __construct($title, $CodeSnipp)
     {
         $this->title = $title;
         $this->CodeSnipp = $CodeSnipp;
-        $this->CreateName = $CreateName;
     }
 }
