@@ -16,7 +16,7 @@ require_once('./model/Loggin/CheckNewUserRegModel.php');
 require_once('./model/Loggin/LogginHandler.php');
 require_once('./model/customException.php');
 require_once('./model/application/CodeSnipp.php');
-require_once('./model/application/codeSnipp/CodeSnippUser.php');
+require_once('./model/application/codeSnipp/User.php');
 require_once('env.php');
 
 

@@ -4,13 +4,13 @@ namespace view;
 
 class addSnippView
 {
-    private Static $snipp = "addSnippView::snipp";
+    private Static $Codesnipp = "addSnippView::snipp";
     private Static $title = "addSnippView::title";
     private Static $message = "addSnippView::message";
     private Static $submitSnip = "addSnippView::submitSnip";
 
     private $UserTitle = "";
-    private $UserCodeSnipp = "";
+    private $CodeSnipp = "";
 
     private $theMessage = "";
 
@@ -31,8 +31,8 @@ class addSnippView
                     <label for = "' . self::$title . '">title</label>
                     <input id = "' . self::$title . '" name = "' . self::$title . '" type = "text" value = "' . $this->UserTitle . '">
                     <br>
-                    <label for = "' . self::$snipp . '">Code snipp</label>
-                    <textarea name = "' . self::$snipp . '" rows="4" cols="40">' . $this->UserCodeSnipp . '</textarea>
+                    <label for = "' . self::$Codesnipp . '">Code snipp</label>
+                    <textarea name = "' . self::$Codesnipp . '" rows="4" cols="40">' . $this->CodeSnipp . '</textarea>
                     <br>
                     <br>
                     <switch>
@@ -70,8 +70,8 @@ class addSnippView
 
     public function getCodeSnipp()
     {
-        if (isset($_POST[self::$snipp])) {
-            return htmlspecialchars($_POST[self::$snipp]);
+        if (isset($_POST[self::$Codesnipp])) {
+            return htmlspecialchars($_POST[self::$Codesnipp]);
         } else {
             return "";
         }
@@ -88,6 +88,6 @@ class addSnippView
     }
     public function setCodeSnipp($codeSnipp)
     {
-        $this->UserCodeSnipp = $codeSnipp;
+        $this->CodeSnipp = $codeSnipp;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace model;
 
-class UserCodeSnipp
+class User
 {
     public $User;
     public $CodeSnipps = [];

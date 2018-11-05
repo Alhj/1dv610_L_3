@@ -70,7 +70,7 @@ class SnippHandlerController
             if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
                 $user = $this->jsonModel->getUserSnips($this->SeasionInfoModel->getUserName());
             } else {
-                $user = new UserCodeSnipp($this->SeasionInfoModel->getUserName());   
+                $user = new \model\User($this->SeasionInfoModel->getUserName());   
             }
 
             array_push($user->CodeSnipps,$codeSnipp); 
@@ -116,8 +116,8 @@ class SnippHandlerController
     {
         $userName = $this->SeasionInfoModel->getUserName();
 
-        $UserCodeSnipp = $this->jsonModel->getUserSnips($userName);
+        $user = $this->jsonModel->getUserSnips($userName);
 
-        $this->view->setJsonInfoForViewRemoveSnipp($UserCodeSnipp->CodeSnipps);
+        $this->view->setJsonInfoForViewRemoveSnipp($user->CodeSnipps);
     }
 }
