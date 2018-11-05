@@ -14,24 +14,37 @@ class JsonFileHandler
 
     public function removeSnipps($spot, $Username)
     {
+        $allUsers = $this->getInfomrationFromJsonFile();
 
-        $allUsersSnips = $this->getUserSnips($Username);
+        foreach ($allUsers as $user) {
+            if ($user->User === $Username) {
+                unset($user->CodeSnipps[$spot]);
+                $newArray = $this->newArray($user);
+                $user->CodeSnipps = $newArray;
+            }
+        }
 
-        unset($allUsersSnips[$spot]);
-        
-        $this->newSnippsArray($allUsersSnips, $Username);
+        $this->saveJsonFile($allUsers);
+    }
+
+    private function newArray($user)
+    {
+        $newArray = [];
+
+        for ($number = 1; $number <= count($user->CodeSnipps); $number++) {
+                array_push($newArray,$user->CodeSnipps[$number]);
+        }
+        return $newArray;
     }
 
     public function doUserExist($userName)
     {
-       $users = $this->getInfomrationFromJsonFile();
-       
-       $userExist = false;
+        $users = $this->getInfomrationFromJsonFile();
 
-        foreach($users as $user)
-        {
-            if($user->User == $userName)
-            {
+        $userExist = false;
+
+        foreach ($users as $user) {
+            if ($user->User == $userName) {
                 $userExist = true;
             }
         }
@@ -52,26 +65,6 @@ class JsonFileHandler
         }
         return $userSnips;
     }
-    private function newSnippsArray(array $allUsersSnips, $Username)
-    {
-        $newArray = [];
-        $allSnips = $this->getInfomrationFromJsonFile();
-
-        foreach($allSnips as $snips)
-        {
-            if($snips->{"CreateName"} !== $Username)
-            {
-                array_push($newArray, $snips);
-            }
-        }
-
-        foreach($allUsersSnips as $userSnips)
-        {
-            array_push($newArray, $userSnips);
-        }
-        $this->saveJsonFile($newArray);
-
-    }
 
     public function getInfomrationFromJsonFile()
     {
@@ -88,10 +81,8 @@ class JsonFileHandler
 
         $allUser = [];
 
-        foreach($jsonFile as $theUser)
-        {
-            if($theUser->User !== $user->User)
-            {
+        foreach ($jsonFile as $theUser) {
+            if ($theUser->User !== $user->User) {
                 array_push($allUser, $theUser);
             }
         }
