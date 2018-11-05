@@ -22,15 +22,32 @@ class JsonFileHandler
         $this->newSnippsArray($allUsersSnips, $Username);
     }
 
+    public function doUserExist($userName)
+    {
+       $users = $this->getInfomrationFromJsonFile();
+       
+       $userExist = false;
+
+        foreach($users as $user)
+        {
+            if($user->User == $userName)
+            {
+                $userExist = true;
+            }
+        }
+
+        return $userExist;
+    }
+
     public function getUserSnips($userName)
     {
-        $userSnips = [];
+        $userSnips;
 
         $allSnipps = $this->getInfomrationFromJsonFile();
 
         foreach ($allSnipps as $snipp) {
-            if ($snipp->{"CreateName"} == $userName) {
-                array_push($userSnips, $snipp);
+            if ($snipp->User == $userName) {
+                $userSnips = $snipp;
             }
         }
         return $userSnips;
@@ -65,13 +82,23 @@ class JsonFileHandler
         return $jsonInfo;
     }
 
-    public function addSnipps(CodeSnipp $Codesnipp)
+    public function addSnipps($user)
     {
         $jsonFile = $this->getInfomrationFromJsonFile();
 
-        array_push($jsonFile, $Codesnipp->toArray());
+        $allUser = [];
 
-        $this->saveJsonFile($jsonFile);
+        foreach($jsonFile as $theUser)
+        {
+            if($theUser->User !== $user->User)
+            {
+                array_push($allUser, $theUser);
+            }
+        }
+
+        array_push($allUser, $user);
+
+        $this->saveJsonFile($allUser);
     }
     private function saveJsonFile(array $jsonFile)
     {

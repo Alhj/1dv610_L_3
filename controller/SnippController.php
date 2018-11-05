@@ -3,6 +3,7 @@
 namespace controler;
 
 use model\CodeSnipp;
+use model\UserCodeSnipp;
 
 
 require_once('./model/application/JsonFileHandler.php');
@@ -52,11 +53,9 @@ class SnippHandlerController
             if ($this->view->seeSnipps()) {
                 $this->userWhantToSeeCodeSnipps();
             }
-        } elseif ($this->view->seeSnipps())
-        {
-                $this->userWhantToSeeCodeSnipps();
-        } 
-        else {
+        } elseif ($this->view->seeSnipps()) {
+            $this->userWhantToSeeCodeSnipps();
+        } else {
             $this->SeasionInfoModel->setMessageUserNotLoggin();
             header("location: index.php");
         }
@@ -64,18 +63,28 @@ class SnippHandlerController
     private function userWhantToAddCodeSnipp()
     {
         try {
-
             $title = $this->view->getTitle();
             $snipp = $this->view->getCodeSnipp();
             $userName = $this->SeasionInfoModel->getUserName();
 
+
             $this->snippCheck->isSnippInformationSet($snipp, $title);
 
-            $codeSnipp = new \model\CodeSnipp($snipp, $title, $userName);
-            
-            $this->jsonModel->addSnipps($codeSnipp);
+            $codeSnipp = new \model\CodeSnipp($title, $snipp, $userName);
+
+            if ($this->jsonModel->doUserExist($userName)) {
+                $user = $this->jsonModel->getUserSnips($userName);
+            } else {
+                $user = new UserCodeSnipp($userName);   
+            }
+
+            array_push($user->CodeSnipps,$codeSnipp); 
+
+            $this->jsonModel->addSnipps($user);
 
             $this->SeasionInfoModel->setMessage($this->view->addCodeSnippMessage());
+
+            header("location: index.php?addsnipp");
 
         } catch (\snipMissingInput $e) {
 
@@ -98,7 +107,7 @@ class SnippHandlerController
         $jsonInfo = $this->jsonModel->getInfomrationFromJsonFile();
         $this->view->setJsonInfoForViewAllCodeSnipps($jsonInfo);
     }
-    
+
     private function UserWhantToDealteCodeSnipp()
     {
         $spot = $this->view->getSpot();

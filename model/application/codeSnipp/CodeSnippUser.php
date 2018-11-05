@@ -5,10 +5,10 @@ namespace model;
 class UserCodeSnipp
 {
     public $User;
-    public $CodeSnipp = [];
+    public $CodeSnipps = [];
 
-    public function __construct()
+    public function __construct($name)
     {
-        
+        $this->User = $name;
     }
 }

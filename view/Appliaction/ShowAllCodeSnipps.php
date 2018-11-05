@@ -14,6 +14,7 @@ class ShowAllCodeSnipps
     private function ShowAllCodeSnips()
     {
         $string = '
+        <a href="index.php">go back</a>
         <h2>View all Snips</h2>
         
         ';
