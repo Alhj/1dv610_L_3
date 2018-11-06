@@ -112,6 +112,10 @@ class SnippsView
     {
          return $this->addCodeSnippView->getCodeSnipp();
     }
+    public function getCodeType()
+    {
+        return $this->addCodeSnippView->getCodeType();
+    }
 
     public function seeSnipps()
     {

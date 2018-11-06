@@ -8,10 +8,13 @@ class CodeSnipp
 
     public $CodeSnipp;
 
-    public function __construct($title, $CodeSnipp)
+    public $codeType;
+
+    public function __construct($title, $CodeSnipp, $codeType)
     {
         $this->title = $this->doTitleHaveInput($title);
         $this->CodeSnipp = $this->doCodeSnippHaveInput($CodeSnipp);
+        $this->codeType = $this->doCodeTypeHaveInput($codeType);
     }
 
     private function doTitleHaveInput($title)
@@ -29,5 +32,16 @@ class CodeSnipp
         } else  {
             throw new \snipMissingInput();
         }
+    }
+    private function doCodeTypeHaveInput($codeType)
+    {
+        if(!empty($codeType))
+        {
+            return $codeType;
+        } else 
+        {
+            throw new \codeTypeMissing();
+        }
+
     }
 }

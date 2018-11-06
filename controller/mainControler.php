@@ -24,7 +24,7 @@ require_once('env.php');
 require_once('./controller/loginControler.php');
 require_once('./controller/SnippController.php');
 
-class Controller
+class mainController
 {
 
     private $logginView;

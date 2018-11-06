@@ -3,7 +3,6 @@
 namespace controler;
 
 require_once('./model/application/JsonFileHandler.php');
-require_once('./model/application/CheckSnippInformation.php');
 require_once('./model/application/SeasionInfoModel.php');
 
 class SnippHandlerController
@@ -19,7 +18,6 @@ class SnippHandlerController
     public function __construct(\view\SnippsView $snippsView)
     {
         $this->jsonModel = new \model\JsonFileHandler();
-        $this->snippCheck = new \model\CodeSnippValidator();
         $this->SeasionInfoModel = new \model\SesionInfoModel();
         $this->logginHandler = new \model\loggin();
 
@@ -61,11 +59,9 @@ class SnippHandlerController
         try {
             $title = $this->view->getTitle();
             $snipp = $this->view->getCodeSnipp();
+            $codeType = $this->view->getCodeType();
 
-
-           // $this->snippCheck->isSnippInformationSet($snipp, $title);
-
-            $codeSnipp = new \model\CodeSnipp($title, $snipp);
+            $codeSnipp = new \model\CodeSnipp($title, $snipp, $codeType);
 
             if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
                 $user = $this->jsonModel->getUser($this->SeasionInfoModel->getUserName());

@@ -97,9 +97,4 @@ class logginControler
         $this->view->removeCookies();
         $this->logginHandler->removeSeasion();
     }
-
-    public function isUserLogin()
-    {
-        return $this->logginHandler->isUserLoggin();
-    }
 }

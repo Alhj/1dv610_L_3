@@ -15,6 +15,9 @@ class snipMissingInput extends Exception
 class titleMissingInput extends Exception
 {
 }
+class codeTypeMissing extends Exception
+{
+}
 class UserNotLogin extends Exception
 {
 }

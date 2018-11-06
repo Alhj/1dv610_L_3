@@ -8,9 +8,12 @@ class addSnippView
     private Static $title = "addSnippView::title";
     private Static $message = "addSnippView::message";
     private Static $submitSnip = "addSnippView::submitSnip";
+    private Static $deskriton = "addSnippView::descriton";
+    private static $CodeType = "addSnippView::CodeType";
 
     private $UserTitle = "";
     private $CodeSnipp = "";
+    private $codeSnippDeskriton = "";
 
     private $theMessage = "";
 
@@ -35,8 +38,12 @@ class addSnippView
                     <textarea name = "' . self::$Codesnipp . '" rows="4" cols="40">' . $this->CodeSnipp . '</textarea>
                     <br>
                     <br>
-                    <switch>
-                    </switch>
+                    <select name ="'.self::$CodeType.'">
+                        <option value= "javaScript">javaScript</option>
+                        <option value = "C#">C#</option>
+                        <option value = "PHP">PHP</option>
+                        <option value ="Java">Java</option>
+                    </select>
                     <br>
                     <input name="' . self::$submitSnip . '" type ="submit" value ="submit">
                 </fieldset>
@@ -75,6 +82,16 @@ class addSnippView
         } else {
             return "";
         }
+    }
+
+    public function getCodeType()
+    {
+        $codeType = "";
+        if(isset($_POST[self::$CodeType]))
+        {
+            $codeType = $_POST[self::$CodeType];
+        }
+        return $codeType;
     }
 
     public function setMessage($message)

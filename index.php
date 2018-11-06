@@ -1,11 +1,11 @@
 <?php
 
-require_once('controller/controler.php');
+require_once('controller/mainControler.php');
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
-$controller = new \controler\Controller();
+$controller = new \controler\mainController();
 
 $controller->render();
