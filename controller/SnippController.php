@@ -2,7 +2,7 @@
 
 namespace controler;
 
-require_once('./model/application/JsonFileHandler.php');
+require_once('./model/application/JsonFile.php');
 require_once('./model/application/SeasionInfoModel.php');
 
 class SnippHandlerController
@@ -17,14 +17,14 @@ class SnippHandlerController
 
     public function __construct(\view\SnippsView $snippsView)
     {
-        $this->jsonModel = new \model\JsonFileHandler();
+        $this->jsonModel = new \model\JsonFile();
         $this->SeasionInfoModel = new \model\SesionInfoModel();
         $this->logginHandler = new \model\loggin();
 
         $this->view = $snippsView;
     }
 
-    public function checkWhatToDo()
+    public function whatUserWhantsToDo()
     {
 
         if ($this->logginHandler->isUserLoggin()) {

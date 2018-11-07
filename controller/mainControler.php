@@ -55,13 +55,13 @@ class mainController
 
     public function render()
     {
-        $this->checkWhatToDo();
+        $this->whatUserWhantsToDo();
 
         if ($this->layoutView->RegisterViewOrNot()) {
             $this->layoutView->render($this->registerView, $this->dateTimeView);
         } elseif ($this->snippsView->whantToDoWithSnipp()) {
             
-            $this->SnippHandlerController->checkWhatToDo();
+            $this->SnippHandlerController->whatUserWhantsToDo();
 
             $this->layoutView->render($this->snippsView, $this->dateTimeView);
         } else {
@@ -70,9 +70,9 @@ class mainController
     }
 
 
-    private function checkWhatToDo()
+    private function whatUserWhantsToDo()
     {
-        $this->LogginController->WhatToDo();
+        $this->LogginController->whatUserWhantsToDo();
 
         if ($this->registerView->haveYouPost()) {
             $userName = $this->registerView->getUserName();

@@ -29,7 +29,7 @@ class logginControler
     }
 
 
-    public function WhatToDo()
+    public function whatUserWhantsToDo()
     {
         $this->view->setMessage($this->seasionMessage->userNotLogginMessage());
         

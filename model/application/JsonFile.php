@@ -2,7 +2,7 @@
 
 namespace model;
 
-class JsonFileHandler
+class JsonFile
 {
 
     private $getInfo;

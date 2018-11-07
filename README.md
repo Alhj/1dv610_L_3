@@ -10,6 +10,12 @@ demo : [my side](http://ah224cy.000webhostapp.com/)
 
 ##  Features
 
+the extra Feature in the application are code snipp chering where program can shere short bits of code with 
+each other, when you are loggin you can add code snipp for others to see. You can also edit and remove code snipps of your own.
+
+User that are loggin or not loggin can see all code snipps the that users have created, you can also list CodeSnipps by the type of
+code it is. 
+
  * LogginSystem
  * View Code Snipps (loggout and loggin)
  * add Code Snipps (loggin)
