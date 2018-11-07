@@ -31,7 +31,8 @@ class JsonFileHandler
     {
         $newArray = [];
 
-        for ($number = 1; $number <= count($user->CodeSnipps); $number++) {
+        $userCodeSnipps = count($user->CodeSnipps) - 1;
+        for ($number = 0; $number <= $userCodeSnipps; $number++) {
                 array_push($newArray,$user->CodeSnipps[$number]);
         }
         return $newArray;

@@ -74,7 +74,7 @@ class SnippsView
 
     private function NewSnipps()
     {
-       return $this->addCodeSnippView->render();
+        return $this->addCodeSnippView->render();
     }
 
     private function removeSnippRender()
@@ -110,7 +110,7 @@ class SnippsView
     }
     public function getCodeSnipp()
     {
-         return $this->addCodeSnippView->getCodeSnipp();
+        return $this->addCodeSnippView->getCodeSnipp();
     }
     public function getCodeType()
     {
@@ -139,8 +139,17 @@ class SnippsView
     {
         return "code snipp have been add";
     }
-    public function removeCodeSnippMessage ()
+    public function removeCodeSnippMessage()
     {
         return "code snipp have been remove";
+    }
+
+    public function changeHeaderAfterAddCodeSnipp()
+    {
+        header("location: index.php?addsnipp");
+    }
+    public function changeHeaderAfterRemoveCodeSnipp()
+    {
+        header("location: index.php?removeSnipp");
     }
 }
