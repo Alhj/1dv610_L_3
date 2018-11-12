@@ -79,13 +79,13 @@ class SnippHandlerController
 
         } catch (\snipMissingInput $e) {
 
-            $this->view->setErrorMessageAddSnippView("snipMissingInput");
+            $this->view->setErrorMessageAddSnippView($e);
 
             $title = $this->view->getTitle();
 
             $this->view->setTitle($title);
         } catch (\titleMissingInput $e) {
-            $this->view->setErrorMessageAddSnippView("titleMissingInput");
+            $this->view->setErrorMessageAddSnippView($e);
 
             $codeSnipp = $this->view->getCodeSnipp();
 

@@ -53,10 +53,10 @@ class addSnippView
     public function errorMessage($errorType)
     {
         switch ($errorType) {
-            case "snipMissingInput":
+            case $errorType instanceof \snipMissingInput:
                 $this->setMessage("code snipp is missing input");
                 break;
-            case "titleMissingInput":
+            case $errorType instanceof \titleMissingInput:
                 $this->setMessage("title is missing input");
                 break;
 
