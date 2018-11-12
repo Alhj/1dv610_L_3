@@ -15,27 +15,18 @@ class newUser
 
     private function checkData($userName, $password)
     {
-
-
-        if (strlen($userName) >= 3) {
-        } else {
-            $this->userNameShort();
+        if (strlen($userName) < 3 and strlen($password) < 6)
+        {
+            throw new \noInputInRegister();
         }
 
-        if (strlen($password) >= 6) {
-        } else {
-            $this->passwordShort();
+        if (strlen($userName) < 3) {
+            throw new \userNameMissing();
+        } 
+
+        if (strlen($password) < 6) {
+            throw new \PasswordMissing();
         }
-    }
-
-    private function userNameShort()
-    {
-        $this->wrongMessage .= 'Username has too few characters, at least 3 characters. <br>';
-    }
-
-    private function passwordShort()
-    {
-        $this->wrongMessage .= 'Password has too few characters, at least 6 characters.';
     }
 
 }

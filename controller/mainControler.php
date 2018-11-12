@@ -23,6 +23,7 @@ require_once('env.php');
 
 require_once('./controller/loginControler.php');
 require_once('./controller/SnippController.php');
+require_once('./controller/RegisterNewUserControler.php');
 
 class mainController
 {
@@ -33,24 +34,23 @@ class mainController
     private $registerView;
     private $snippsView;
 
-    private $checkNewUser;
     private $logginAndOutCheck;
 
     private $LogginController;
     private $SnippHandlerController;
+    private $RegisterNewUserControler;
 
     public function __construct()
     {
         $this->logginView = new \view\LoginView();
         $this->dateTimeView = new \view\DateTimeView();
         $this->layoutView = new \view\LayoutView();
-        $this->registerView = new \view\RegisterView();
         $this->snippsView = new \view\SnippsView();
-
-        $this->checkNewUser = new \model\newUser();
+        $this->registerView = new \view\RegisterView();
 
         $this->LogginController = new \controler\logginControler($this->logginView);
         $this->SnippHandlerController = new \controler\SnippHandlerController($this->snippsView);
+        $this->RegisterNewUserControler = new \controler\RegisterNewUserControler($this->registerView);
     }
 
     public function render()
@@ -74,17 +74,6 @@ class mainController
     {
         $this->LogginController->whatUserWhantsToDo();
 
-        if ($this->registerView->haveYouPost()) {
-            $userName = $this->registerView->getUserName();
-
-            $password = $this->registerView->getPassword();
-
-            $registerProblem = $this->checkNewUser->userInfoSet($userName, $password);
-
-            if (isset($registerProblem)) {
-                $this->registerView->setMessage($registerProblem);
-                $this->registerView->setUsername($userName);
-            }
-        }
+        $this->RegisterNewUserControler->doUserWhantsToMakeNewUser();
     }
 }

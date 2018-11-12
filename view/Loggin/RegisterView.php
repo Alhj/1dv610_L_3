@@ -37,7 +37,7 @@ class RegisterView
             header("location: index.php?");
             throw new \UserIsLogin();
         } else {
-           return $this->render();
+            return $this->render();
         }
     }
 
@@ -62,6 +62,28 @@ class RegisterView
 		  <input id= "submit" name="' . $this->Register . '" type="submit" value="Register">
 		</fieldset>
 	 </form>';
+    }
+
+    public function errorMessage($error)
+    {
+        switch($error)
+        {
+            case $error instanceof \noInputInRegister:
+            $message = "Username has too few characters, at least 3 characters.<br> 
+            Password has too few characters, at least 6 characters.";
+            $this->setMessage($message);
+            break;
+            
+            case $error instanceof \userNameMissing:
+            $message = "Username has too few characters, at least 3 characters.";
+            $this->setMessage($message);
+            break;
+
+            case $error instanceof \PasswordMissing:
+            $message = "Password has too few characters, at least 6 characters.";
+            $this->setMessage($message);
+            break;
+        }
     }
 
     public function getUserName()

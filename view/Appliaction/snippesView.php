@@ -23,19 +23,19 @@ class SnippsView
 
     public function whantToDoWithSnipp()
     {
-        $whatToDo = false;
+        $whatUserWhantsToDo = false;
 
         if (isset($_GET[$this->addSnipp])) {
-            $whatToDo = true;
+            $whatUserWhantsToDo  = true;
         }
         if (isset($_GET[$this->viewSnipp])) {
-            $whatToDo = true;
+            $whatUserWhantsToDo  = true;
         }
         if (isset($_GET[$this->removeSnipp])) {
-            $whatToDo = true;
+            $whatUserWhantsToDo  = true;
         }
 
-        return $whatToDo;
+        return $whatUserWhantsToDo ;
     }
 
     public function response($userLoggin)

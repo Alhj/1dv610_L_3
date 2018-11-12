@@ -9,6 +9,9 @@ class PasswordMissing extends Exception
 class LogginField extends Exception
 {
 }
+class noInputInRegister extends Exception
+{
+}
 class snipMissingInput extends Exception
 {
 }
