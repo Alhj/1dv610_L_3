@@ -16,8 +16,8 @@ class SnippsView
 
     public function __construct()
     {
-        $this->removeSnippView = new \view\removeSnippView();
-        $this->addCodeSnippView = new \view\addSnippView();
+        $this->removeSnippView = new \view\removeCodeSnippView();
+        $this->addCodeSnippView = new \view\addCodeSnippView();
         $this->showAllCodeSnipps = new \view\ShowAllCodeSnipps();
     }
 

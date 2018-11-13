@@ -31,22 +31,18 @@ class LoginView
 		$this->messageId = $this->className . "::" . "Message";
 	}
 
-	private $userNameMissing = "userName";
-	private $passwordMissing = "password";
-	private $fildLoggin = "fildLoggin";
-
 	public function errorMessange($error)
 	{
 		switch ($error) {
-			case $this->userNameMissing:
+			case $error instanceof \userNameMissing:
 				$this->setMessage("Username is missing");
 				break;
 
-			case $this->passwordMissing:
+			case $error instanceof \PasswordMissing:
 				$this->setMessage("Password is missing");
 				break;
 
-			case $this->fildLoggin:
+			case $error instanceof \LogginField:
 				$this->setMessage("Wrong name or password");
 				break;
 		}

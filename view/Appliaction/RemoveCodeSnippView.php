@@ -2,7 +2,7 @@
 
 namespace view;
 
-class removeSnippView
+class removeCodeSnippView
 {
 
     private $removeSpot = "removeSnippView::removeSpot";
@@ -31,7 +31,6 @@ class removeSnippView
         foreach($this->jsonInfo as $snipp)
         {
             $string .= '
-                <br>
                 <form method = "post">
                     <h2> title: ' . $snipp->title . '</h2>
                     <p>
@@ -41,6 +40,7 @@ class removeSnippView
 
                     <input name="'. $this->dealteSnip . '" type="submit" value="dealte">
                 </form>
+                <br>
             ';
             $spot += 1;
         }

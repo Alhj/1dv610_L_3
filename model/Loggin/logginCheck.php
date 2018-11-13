@@ -2,7 +2,7 @@
 
 namespace model;
 
-class logginCheck
+class userInformation
 {
 
    private $getInfo;

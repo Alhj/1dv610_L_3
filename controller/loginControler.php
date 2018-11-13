@@ -7,7 +7,7 @@ require_once('./model/Loggin/LogginInfo.php');
 class logginControler
 {
 
-    private $logginCheck;
+    private $userInformation;
     private $CheckLogginInfo;
     private $logginHandler;
     private $seasionMessage;
@@ -20,7 +20,7 @@ class logginControler
 
     public function __construct(\view\LoginView $view)
     {
-        $this->logginCheck = new \model\logginCheck();
+        $this->userInformation = new \model\userInformation();
         $this->CheckLogginInfo = new \model\LogginInfo();
         $this->logginHandler = new \model\loggin();
         $this->seasionMessage = new \model\SesionInfoModel();
@@ -59,7 +59,7 @@ class logginControler
         try {
             $this->CheckLogginInfo->isLogginInfoSet($postUserName, $postPassword);
 
-            $this->logginCheck->checkLogginInformation($postUserName, $postPassword);
+            $this->userInformation->checkLogginInformation($postUserName, $postPassword);
 
             $this->logginHandler->setSeasion();
             if ($this->view->doWeSetCookie()) {
@@ -74,15 +74,15 @@ class logginControler
         } catch (\userNameMissing $e) {
             $this->fieldSetUsername();
 
-            $this->view->errorMessange('userName');
+            $this->view->errorMessange($e);
         } catch (\PasswordMissing $e) {
             $this->fieldSetUsername();
 
-            $this->view->errorMessange('password');
+            $this->view->errorMessange($e);
         } catch (\LogginField $e) {
             $this->fieldSetUsername();
             
-            $this->view->errorMessange('fildLoggin');
+            $this->view->errorMessange($e);
         }
     }
 

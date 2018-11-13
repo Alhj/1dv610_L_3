@@ -2,7 +2,7 @@
 
 namespace view;
 
-class addSnippView
+class addCodeSnippView
 {
     private Static $Codesnipp = "addSnippView::snipp";
     private Static $title = "addSnippView::title";
@@ -22,27 +22,32 @@ class addSnippView
         return $this->addSnippView();
     }
 
-    private function addSnippView()
+    private function addCodeSnippView()
     {
         return
             '
             <a href="index.php"> go back</a>
             <h2>Add snipp</h2>
+            <p>write a title for you codeSnipp and the code for the code snipp here then you can also chose type <br>
+            you can also cose the code type  where to code comming from
+            </p>
             <h4 id ="' . self::$message . '">' . $this->theMessage . '</h4>
             <form method = "post">
                 <fieldset>
                     <label for = "' . self::$title . '">title</label>
                     <input id = "' . self::$title . '" name = "' . self::$title . '" type = "text" value = "' . $this->UserTitle . '">
                     <br>
-                    <label for = "' . self::$Codesnipp . '">Code snipp</label>
+                    <label for = "' . self::$Codesnipp . '">Code</label>
                     <textarea name = "' . self::$Codesnipp . '" rows="4" cols="40">' . $this->CodeSnipp . '</textarea>
                     <br>
                     <br>
                     <select name ="'.self::$CodeType.'">
-                        <option value= "javaScript">javaScript</option>
+                        <option value = "Other">Other</option>
+                        <option value= "JavaScript">javaScript</option>
                         <option value = "C#">C#</option>
                         <option value = "PHP">PHP</option>
-                        <option value ="Java">Java</option>
+                        <option value = "Java">Java</option>
+                        <option value = "Python">Python</option>
                     </select>
                     <br>
                     <input name="' . self::$submitSnip . '" type ="submit" value ="submit">
