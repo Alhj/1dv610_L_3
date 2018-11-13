@@ -45,7 +45,7 @@ class mainController
         $this->logginView = new \view\LoginView();
         $this->dateTimeView = new \view\DateTimeView();
         $this->layoutView = new \view\LayoutView();
-        $this->snippsView = new \view\codeSnippsView();
+        $this->snippsView = new \view\mainCodeSnippsView();
         $this->registerView = new \view\RegisterView();
 
         $this->LogginController = new \controler\logginControler($this->logginView);

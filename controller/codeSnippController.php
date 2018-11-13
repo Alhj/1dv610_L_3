@@ -15,7 +15,7 @@ class SnippHandlerController
 
     private $view;
 
-    public function __construct(\view\codeSnippsView $snippsView)
+    public function __construct(\view\mainCodeSnippsView $snippsView)
     {
         $this->jsonModel = new \model\JsonFile();
         $this->SeasionInfoModel = new \model\SesionInfoModel();

@@ -82,6 +82,10 @@ class LoginView
 	private function generateLoginFormHTML($message)
 	{
 		return '
+			<h3>what you can do on the side:</h3>
+
+			<p> when you loggin you can make code snipp and remove code snipp you have make.
+			<br> But you can always watch others persons code snipp </p>
 			<form method="post"> 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
