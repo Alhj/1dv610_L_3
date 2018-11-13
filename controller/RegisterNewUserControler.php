@@ -29,8 +29,10 @@ class RegisterNewUserControler
                 $this->view->errorMessage($e);
             } catch (\userNameMissing $e) {
                 $this->view->errorMessage($e);
+                $this->view->setUserName($this->view->getUserName());
             } catch (\PasswordMissing $e) {
                 $this->view->errorMessage($e);
+                $this->view->setUserName($this->view->getUserName());
             }
         }
     }
