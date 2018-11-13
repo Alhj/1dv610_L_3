@@ -6,7 +6,7 @@ require_once('./view/Loggin/LoginView.php');
 require_once('./view/Layout/DateTimeView.php');
 require_once('./view/Layout/LayoutView.php');
 require_once('./view/Loggin/RegisterView.php');
-require_once('./view/Appliaction/snippesView.php');
+require_once('./view/Appliaction/codeSnippesView.php');
 require_once('./view/Appliaction/RemoveCodeSnippView.php');
 require_once('./view/Appliaction/addCodeSnippView.php');
 require_once('./view/Appliaction/ShowAllCodeSnipps.php');
@@ -45,7 +45,7 @@ class mainController
         $this->logginView = new \view\LoginView();
         $this->dateTimeView = new \view\DateTimeView();
         $this->layoutView = new \view\LayoutView();
-        $this->snippsView = new \view\SnippsView();
+        $this->snippsView = new \view\codeSnippsView();
         $this->registerView = new \view\RegisterView();
 
         $this->LogginController = new \controler\logginControler($this->logginView);

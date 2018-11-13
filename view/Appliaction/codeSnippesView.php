@@ -2,7 +2,7 @@
 
 namespace view;
 
-class SnippsView
+class codeSnippsView
 {
     private $jsonInfo;
 
