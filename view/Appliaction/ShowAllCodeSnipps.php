@@ -8,10 +8,10 @@ class ShowAllCodeSnipps
 
     public function render()
     {
-        return $this->ShowAllCodeSnips();
+        return $this->genereteShowAllCodeSnipsHTML();
     }
 
-    private function ShowAllCodeSnips()
+    private function genereteShowAllCodeSnipsHTML()
     {
         $string = '
         <a href="index.php">go back</a>

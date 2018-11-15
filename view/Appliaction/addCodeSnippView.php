@@ -19,10 +19,10 @@ class addCodeSnippView
 
     public function render()
     {
-        return $this->addSnippView();
+        return $this->generateAddCodeSnippHTML();
     }
 
-    private function addCodeSnippView()
+    private function generateAddCodeSnippHTML()
     {
         return
             '

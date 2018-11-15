@@ -1,7 +1,7 @@
 <?php
 
 namespace controler;
-require_once('./model/Loggin/logginCheck.php');
+require_once('./model/Loggin/userInformation.php');
 require_once('./model/Loggin/LogginInfo.php');
 
 class logginControler

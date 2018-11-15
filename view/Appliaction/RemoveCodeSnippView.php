@@ -17,11 +17,11 @@ class removeCodeSnippView
     {
         return '
         <a href="index.php"> go back</a>
-            '. $this->userSnips() .'
+            '. $this->genereateUserCodeSnipsHTML() .'
         ';
     }
 
-    private function userSnips()
+    private function genereateUserCodeSnipsHTML()
     {
         $spot = 0;
         $string = '
