@@ -4,7 +4,6 @@ namespace model;
 
 class SesionInfoModel
 {
-    private $getUserName = "loggin";
     private $message = "message";
     private $userNotLoggin = "userNotLoggin";
     private $removeCodeSnipp = "removeCodeSnipp";
@@ -14,14 +13,6 @@ class SesionInfoModel
         $_SESSION[$this->message] = $message;
     }
 
-    public function getUserName()
-    {
-        if (isset($_SESSION[$this->getUserName])) {
-            return $_SESSION[$this->getUserName];
-        } else {
-            return "";
-        }
-    }
     public function userNotLogginMessage()
     {
         if (isset($_SESSION[$this->userNotLoggin])) {
