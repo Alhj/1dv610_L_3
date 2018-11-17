@@ -64,10 +64,10 @@ class codeSnippetController
 
             $codeSnipp = new \model\CodeSnipp($title, $snippet, $codeType);
 
-            if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
-                $user = $this->jsonModel->getUser($this->SeasionInfoModel->getUserName());
+            if ($this->jsonModel->doUserExist($this->logginHandler->getLogginName())) {
+                $user = $this->jsonModel->getUser($this->logginHandler->getLogginName());
             } else {
-                $user = new \model\User($this->SeasionInfoModel->getUserName());   
+                $user = new \model\User($this->logginHandler->getLogginName());   
             }
 
             array_push($user->CodeSnipps,$codeSnipp); 
@@ -103,7 +103,7 @@ class codeSnippetController
     private function UserWhantToDealteCodeSnipp()
     {
 
-        $this->jsonModel->removeUserSnipps($this->view->getSpot(), $this->SeasionInfoModel->getUserName());
+        $this->jsonModel->removeUserSnipps($this->view->getSpot(), $this->logginHandler->getLogginName());
 
         $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippetMessage());
         $this->view->changeHeaderAfterRemoveCodeSnipp();
@@ -111,7 +111,7 @@ class codeSnippetController
 
     private function userWhantToRemoveCodeSnipp()
     {
-        $userName = $this->SeasionInfoModel->getUserName();
+        $userName = $this->logginHandler->getLogginName();
 
         $user = $this->jsonModel->getUser($userName);
 

@@ -58,7 +58,6 @@ class logginControler
 
             $this->logginHandler->checkLogginInformation($postUserName, $postPassword);
 
-            $this->logginHandler->setSeasion();
             if ($this->view->doWeSetCookie()) {
                
                 $this->view->logginMessage(true);
