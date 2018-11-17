@@ -6,7 +6,7 @@ require_once('./view/Loggin/LoginView.php');
 require_once('./view/Layout/DateTimeView.php');
 require_once('./view/Layout/LayoutView.php');
 require_once('./view/Loggin/RegisterView.php');
-require_once('./view/Appliaction/codeSnippesView.php');
+require_once('./view/Appliaction/mainCodeSnippesView.php');
 require_once('./view/Appliaction/RemoveCodeSnippView.php');
 require_once('./view/Appliaction/addCodeSnippView.php');
 require_once('./view/Appliaction/ShowAllCodeSnipps.php');
@@ -15,8 +15,8 @@ require_once('./view/Appliaction/ShowAllCodeSnipps.php');
 require_once('./model/Loggin/newUser.php');
 require_once('./model/Loggin/Loggin.php');
 require_once('./model/customException.php');
-require_once('./model/application/CodeSnipp.php');
-require_once('./model/application/codeSnipp/User.php');
+require_once('./model/application/codeSnippet/CodeSnippet.php');
+require_once('./model/application/codeSnippet/User.php');
 require_once('env.php');
 
 

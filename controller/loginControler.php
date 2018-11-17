@@ -1,13 +1,11 @@
 <?php
 
 namespace controler;
-require_once('./model/Loggin/userInformation.php');
 require_once('./model/Loggin/LogginInfo.php');
 
 class logginControler
 {
 
-    private $userInformation;
     private $CheckLogginInfo;
     private $logginHandler;
     private $seasionMessage;
@@ -20,9 +18,8 @@ class logginControler
 
     public function __construct(\view\LoginView $view)
     {
-        $this->userInformation = new \model\userInformation();
         $this->CheckLogginInfo = new \model\LogginInfo();
-        $this->logginHandler = new \model\loggin();
+        $this->logginHandler = new \model\Loggin();
         $this->seasionMessage = new \model\SesionInfoModel();
 
         $this->view = $view;
@@ -59,7 +56,7 @@ class logginControler
         try {
             $this->CheckLogginInfo->isLogginInfoSet($postUserName, $postPassword);
 
-            $this->userInformation->checkLogginInformation($postUserName, $postPassword);
+            $this->logginHandler->checkLogginInformation($postUserName, $postPassword);
 
             $this->logginHandler->setSeasion();
             if ($this->view->doWeSetCookie()) {
