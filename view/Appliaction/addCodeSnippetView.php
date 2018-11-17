@@ -58,7 +58,7 @@ class addCodeSnippetView
     public function errorMessage($errorType)
     {
         switch ($errorType) {
-            case $errorType instanceof \snipMissingInput:
+            case $errorType instanceof \codeSnipetMissingInput:
                 $this->setMessage("code snipp is missing input");
                 break;
             case $errorType instanceof \titleMissingInput:
@@ -67,7 +67,7 @@ class addCodeSnippetView
 
         }
     }
-    public function doUserWhantToAddSnipp()
+    public function doUserWhantToAddCodeSnippet()
     {
         return isset($_POST[self::$submitSnip]);
     }

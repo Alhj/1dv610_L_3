@@ -28,13 +28,13 @@ class removeCodeSnippetView
         <h2>Remove snipp</h2>
         <h4 id ="' . $this->message . '">' . $this->theMessage . '</h4>
         ';
-        foreach($this->jsonInfo as $snipp)
+        foreach($this->jsonInfo as $snippet)
         {
             $string .= '
                 <form method = "post">
-                    <h2> title: ' . $snipp->title . '</h2>
+                    <h2> title: ' . $snippet->title . '</h2>
                     <p>
-                    ' . 'snipp: ' . $snipp->CodeSnippet . '
+                    ' . 'snipp: ' . $snippet->CodeSnippet . '
                     </p>
                     <input name="'. $this->removeSpot . '" type="hidden" value="'. $spot .'">
 

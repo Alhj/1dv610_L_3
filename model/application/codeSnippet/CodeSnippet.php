@@ -6,14 +6,14 @@ class CodeSnipp
 {
     public $title;
 
-    public $CodeSnipp;
+    public $CodeSnippet;
 
     public $codeType;
 
-    public function __construct($title, $CodeSnipp, $codeType)
+    public function __construct($title, $CodeSnippet, $codeType)
     {
         $this->title = $this->doTitleHaveInput($title);
-        $this->CodeSnipp = $this->doCodeSnippHaveInput($CodeSnipp);
+        $this->CodeSnippet = $this->doCodeSnippHaveInput($CodeSnippet);
         $this->codeType = $this->doCodeTypeHaveInput($codeType);
     }
 
@@ -25,12 +25,12 @@ class CodeSnipp
             throw new \titleMissingInput();
         }
     }
-    private function doCodeSnippHaveInput($CodeSnipp)
+    private function doCodeSnippHaveInput($CodeSnippet)
     {
-        if (!empty($CodeSnipp)) {
-            return $CodeSnipp;
+        if (!empty($CodeSnippet)) {
+            return $CodeSnippet;
         } else  {
-            throw new \snipMissingInput();
+            throw new \codeSnipetMissingInput();
         }
     }
     private function doCodeTypeHaveInput($codeType)

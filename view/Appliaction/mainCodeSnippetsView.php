@@ -6,18 +6,18 @@ class mainCodeSnippetsView
 {
     private $jsonInfo;
 
-    private $removeSnippView;
-    private $addCodeSnippView;
-    private $showAllCodeSnipps;
+    private $removeCodeSnippetView;
+    private $addCodeSnippetView;
+    private $showAllCodeSnippets;
 
-    private $addSnipp = "addsnipp";
-    private $viewSnipp = "ShowSnipps";
-    private $removeSnipp = "removeSnipp";
+    private $addCodeSnippet = "addCodeSnippet";
+    private $viewCodeSnippet = "ShowCodeSnippets";
+    private $removeCodeSnippet = "removeCodeSnippet";
 
     public function __construct()
     {
-        $this->removeSnippView = new \view\removeCodeSnippetView();
-        $this->addCodeSnippView = new \view\addCodeSnippetView();
+        $this->removeCodeSnippetView = new \view\removeCodeSnippetView();
+        $this->addCodeSnippetView = new \view\addCodeSnippetView();
         $this->showAllCodeSnipps = new \view\ShowAllCodeSnippets();
     }
 
@@ -25,13 +25,13 @@ class mainCodeSnippetsView
     {
         $whatUserWhantsToDo = false;
 
-        if (isset($_GET[$this->addSnipp])) {
+        if (isset($_GET[$this->addCodeSnippet])) {
             $whatUserWhantsToDo  = true;
         }
-        if (isset($_GET[$this->viewSnipp])) {
+        if (isset($_GET[$this->viewCodeSnippet])) {
             $whatUserWhantsToDo  = true;
         }
-        if (isset($_GET[$this->removeSnipp])) {
+        if (isset($_GET[$this->removeCodeSnippet])) {
             $whatUserWhantsToDo  = true;
         }
 
@@ -40,44 +40,44 @@ class mainCodeSnippetsView
 
     public function response($userLoggin)
     {
-        if (isset($_GET[$this->addSnipp])) {
+        if (isset($_GET[$this->addCodeSnippet])) {
             return '
             ' . $this->NewSnipps() . '
             ';
         }
-        if (isset($_GET[$this->removeSnipp])) {
+        if (isset($_GET[$this->removeCodeSnippet])) {
             return '
-            ' . $this->removeSnippView->renderDealte($this->jsonInfo) . '
+            ' . $this->removeCodeSnippetView->renderDealte($this->jsonInfo) . '
             ';
         }
-        if (isset($_GET[$this->viewSnipp])) {
+        if (isset($_GET[$this->viewCodeSnippet])) {
             return '
             ' . $this->showAllCodeSnipps->render() . '
             ';
         }
     }
 
-    public function setErrorMessageAddSnippView($errorType)
+    public function setErrorMessageAddCodeSnippetView($errorType)
     {
-        $this->addCodeSnippView->errorMessage($errorType);
+        $this->addCodeSnippetView->errorMessage($errorType);
     }
 
     public function whantToDealte()
     {
-        return $this->removeSnippView->doYouWhantToDelate();
+        return $this->removeCodeSnippetView->doYouWhantToDelate();
     }
 
     public function getSpot()
     {
-        return $this->removeSnippView->GetSpot();
+        return $this->removeCodeSnippetView->GetSpot();
     }
 
     private function NewSnipps()
     {
-        return $this->addCodeSnippView->render();
+        return $this->addCodeSnippetView->render();
     }
 
-    private function removeSnippRender()
+    private function removeCodeSnippetRender()
     {
         $this->removeSnipp->renderDelate($this->jsonInfo);
     }
@@ -88,58 +88,58 @@ class mainCodeSnippetsView
     }
     public function setJsonInfoForViewRemoveSnipp($jsonInfomration)
     {
-        $this->removeSnippView->setJsonInfo($jsonInfomration);
+        $this->removeCodeSnippetView->setJsonInfo($jsonInfomration);
     }
 
-    public function setMessageForAddCodeSnipp($sendMessage)
+    public function setMessageForAddCodeSnippet($sendMessage)
     {
-        $this->addCodeSnippView->setMessage($sendMessage);
+        $this->addCodeSnippetView->setMessage($sendMessage);
     }
-    public function setMessageViewRemoveSnipp($message)
+    public function setMessageViewRemoveCodeSnippet($message)
     {
-        $this->removeSnippView->setRemoveMessage($message);
+        $this->removeCodeSnippetView->setRemoveMessage($message);
     }
 
-    public function whantToAddSnipp()
+    public function whantToAddCodeSnippet()
     {
-        return $this->addCodeSnippView->doUserWhantToAddSnipp();
+        return $this->addCodeSnippetView->doUserWhantToAddCodeSnippet();
     }
     public function getTitle()
     {
-        return $this->addCodeSnippView->getTitleOfCodeSnipp();
+        return $this->addCodeSnippetView->getTitleOfCodeSnippet();
     }
-    public function getCodeSnipp()
+    public function getCodeSnippet()
     {
-        return $this->addCodeSnippView->getCodeSnipp();
+        return $this->addCodeSnippetView->getCodeSnippet();
     }
     public function getCodeType()
     {
-        return $this->addCodeSnippView->getCodeType();
+        return $this->addCodeSnippetView->getCodeType();
     }
 
     public function seeSnipps()
     {
-        return isset($_GET[$this->viewSnipp]);
+        return isset($_GET[$this->viewCodeSnippet]);
     }
 
     public function toRemove()
     {
-        return isset($_GET[$this->removeSnipp]);
+        return isset($_GET[$this->removeCodeSnippet]);
     }
 
     public function setTitle($title)
     {
-        $this->addCodeSnippView->setTitle($title);
+        $this->addCodeSnippetView->setTitle($title);
     }
-    public function setCodeSnipp($codeSnipp)
+    public function setCodeSnippet($codeSnipp)
     {
-        $this->addCodeSnippView->setCodeSnipp($codeSnipp);
+        $this->addCodeSnippetView->setCodeSnippet($codeSnipp);
     }
-    public function addCodeSnippMessage()
+    public function addCodeSnippetMessage()
     {
         return "code snipp have been add";
     }
-    public function removeCodeSnippMessage()
+    public function removeCodeSnippetMessage()
     {
         return "code snipp have been remove";
     }
@@ -150,10 +150,14 @@ class mainCodeSnippetsView
 
     public function changeHeaderAfterAddCodeSnipp()
     {
-        header("location: index.php?addsnipp");
+        header('location: index.php?'. $this->addCodeSnippet .'');
     }
     public function changeHeaderAfterRemoveCodeSnipp()
     {
-        header("location: index.php?removeSnipp");
+        header('location: index.php?'. $this->removeCodeSnippet.'');
+    }
+    public function changeHeaderIfUserIsNotLoggin()
+    {
+        header('location: index.php');
     }
 }

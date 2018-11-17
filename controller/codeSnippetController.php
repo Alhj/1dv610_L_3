@@ -30,11 +30,11 @@ class codeSnippetController
         if ($this->logginHandler->isUserLoggin()) {
 
 
-            $this->view->setMessageForAddCodeSnipp($this->SeasionInfoModel->getMessage());
+            $this->view->setMessageForAddCodeSnippet($this->SeasionInfoModel->getMessage());
 
-            $this->view->setMessageViewRemoveSnipp($this->SeasionInfoModel->getMessageRemoveCodeSnipp());
+            $this->view->setMessageViewRemoveCodeSnippet($this->SeasionInfoModel->getMessageRemoveCodeSnipp());
 
-            if ($this->view->whantToAddSnipp()) {
+            if ($this->view->whantToAddCodeSnippet()) {
                 $this->userWhantToAddCodeSnipp();
             }
 
@@ -52,17 +52,17 @@ class codeSnippetController
         } else {
             $message = $this->view->UserNotLoggin();
             $this->SeasionInfoModel->setMessageUserNotLoggin($message);
-            header("location: index.php");
+
         }
     }
     private function userWhantToAddCodeSnipp()
     {
         try {
             $title = $this->view->getTitle();
-            $snipp = $this->view->getCodeSnipp();
+            $snippet = $this->view->getCodeSnippet();
             $codeType = $this->view->getCodeType();
 
-            $codeSnipp = new \model\CodeSnipp($title, $snipp, $codeType);
+            $codeSnipp = new \model\CodeSnipp($title, $snippet, $codeType);
 
             if ($this->jsonModel->doUserExist($this->SeasionInfoModel->getUserName())) {
                 $user = $this->jsonModel->getUser($this->SeasionInfoModel->getUserName());
@@ -74,23 +74,23 @@ class codeSnippetController
 
             $this->jsonModel->addCodeSnipps($user);
 
-            $this->SeasionInfoModel->setMessage($this->view->addCodeSnippMessage());
+            $this->SeasionInfoModel->setMessage($this->view->addCodeSnippetMessage());
 
             $this->view->changeHeaderAfterAddCodeSnipp();
 
-        } catch (\snipMissingInput $e) {
+        } catch (\codesnipetMissingInput $e) {
 
-            $this->view->setErrorMessageAddSnippView($e);
+            $this->view->setErrorMessageAddSnippetView($e);
 
             $title = $this->view->getTitle();
 
             $this->view->setTitle($title);
         } catch (\titleMissingInput $e) {
-            $this->view->setErrorMessageAddSnippView($e);
+            $this->view->setErrorMessageAddSnippetView($e);
 
-            $codeSnipp = $this->view->getCodeSnipp();
+            $codeSnipp = $this->view->getCodeSnippet();
 
-            $this->view->setCodeSnipp($codeSnipp);
+            $this->view->setCodeSnippet($codeSnipp);
         }
     }
 
@@ -105,7 +105,7 @@ class codeSnippetController
 
         $this->jsonModel->removeUserSnipps($this->view->getSpot(), $this->SeasionInfoModel->getUserName());
 
-        $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippMessage());
+        $this->SeasionInfoModel->setMessageRemoveCodeSnipp($this->view->removeCodeSnippetMessage());
         $this->view->changeHeaderAfterRemoveCodeSnipp();
     }
 

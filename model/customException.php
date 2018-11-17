@@ -12,7 +12,7 @@ class LogginField extends Exception
 class noInputInRegister extends Exception
 {
 }
-class snipMissingInput extends Exception
+class codeSnipetMissingInput extends Exception
 {
 }
 class titleMissingInput extends Exception

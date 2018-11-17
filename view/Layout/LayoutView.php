@@ -66,13 +66,13 @@ class LayoutView
   {
     if ($isLoggedIn) {
       return '
-       <a href="index.php?addsnipp"> addSnipp </a>
-       <a href="index.php?removeSnipp"> removesnipp</a>  
-       <a href="index.php?ShowSnipps"> see snipps</a>
+       <a href="index.php?addCodeSnippet"> addSnipp </a>
+       <a href="index.php?removeCodeSnippet"> removesnipp</a>  
+       <a href="index.php?ShowCodeSnippets"> see snipps</a>
       '
       ;
     } else {
-      return '<a href="index.php?ShowSnipps"> see snipps</a>';
+      return '<a href="index.php?ShowCodeSnippets"> see snipps</a>';
     }
   }
 }
