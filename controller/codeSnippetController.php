@@ -5,7 +5,7 @@ namespace controler;
 require_once('./model/application/JsonFile.php');
 require_once('./model/application/SeasionInfoModel.php');
 
-class SnippHandlerController
+class codeSnippetController
 {
 
     private $jsonModel;
@@ -15,7 +15,7 @@ class SnippHandlerController
 
     private $view;
 
-    public function __construct(\view\mainCodeSnippsView $snippsView)
+    public function __construct(\view\mainCodeSnippetsView $snippsView)
     {
         $this->jsonModel = new \model\JsonFile();
         $this->SeasionInfoModel = new \model\SesionInfoModel();
@@ -50,7 +50,8 @@ class SnippHandlerController
         } elseif ($this->view->seeSnipps()) {
             $this->userWhantToSeeCodeSnipps();
         } else {
-            $this->SeasionInfoModel->setMessageUserNotLoggin();
+            $message = $this->view->UserNotLoggin();
+            $this->SeasionInfoModel->setMessageUserNotLoggin($message);
             header("location: index.php");
         }
     }

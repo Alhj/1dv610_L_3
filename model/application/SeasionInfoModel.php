@@ -52,9 +52,9 @@ class SesionInfoModel
         return $message;
     }
 
-    public function setMessageUserNotLoggin()
+    public function setMessageUserNotLoggin($theMessage)
     {
-        $_SESSION[$this->userNotLoggin] = "user not loggin";
+        $_SESSION[$this->userNotLoggin] = $theMessage;
     }
     public function getMessage()
     {

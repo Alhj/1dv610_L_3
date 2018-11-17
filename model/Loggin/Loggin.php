@@ -6,6 +6,7 @@ class loggin
 {
 
    private $getInfo;
+
    private static $loggin = "LogginHandler::loggin";
 
     public function __construct()

@@ -2,7 +2,7 @@
 
 namespace view;
 
-class mainCodeSnippsView
+class mainCodeSnippetsView
 {
     private $jsonInfo;
 
@@ -16,9 +16,9 @@ class mainCodeSnippsView
 
     public function __construct()
     {
-        $this->removeSnippView = new \view\removeCodeSnippView();
-        $this->addCodeSnippView = new \view\addCodeSnippView();
-        $this->showAllCodeSnipps = new \view\ShowAllCodeSnipps();
+        $this->removeSnippView = new \view\removeCodeSnippetView();
+        $this->addCodeSnippView = new \view\addCodeSnippetView();
+        $this->showAllCodeSnipps = new \view\ShowAllCodeSnippets();
     }
 
     public function whantToDoWithSnipp()
@@ -142,6 +142,10 @@ class mainCodeSnippsView
     public function removeCodeSnippMessage()
     {
         return "code snipp have been remove";
+    }
+    public function UserNotLoggin()
+    {
+        return "user not loggin";
     }
 
     public function changeHeaderAfterAddCodeSnipp()

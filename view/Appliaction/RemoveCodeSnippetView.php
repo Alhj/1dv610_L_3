@@ -2,11 +2,11 @@
 
 namespace view;
 
-class removeCodeSnippView
+class removeCodeSnippetView
 {
 
     private $removeSpot = "removeSnippView::removeSpot";
-    private $dealteSnip = "removeSnippView::dealteSnipt";
+    private $dealteCodeSnipet = "removeSnippView::dealteSnipt";
     private $message = "removeSnippView::message";
     
     private $theMessage = ""; 
@@ -17,11 +17,11 @@ class removeCodeSnippView
     {
         return '
         <a href="index.php"> go back</a>
-            '. $this->genereateUserCodeSnipsHTML() .'
+            '. $this->genereateUserCodeSnipetstHTML() .'
         ';
     }
 
-    private function genereateUserCodeSnipsHTML()
+    private function genereateUserCodeSnipetstHTML()
     {
         $spot = 0;
         $string = '
@@ -34,11 +34,11 @@ class removeCodeSnippView
                 <form method = "post">
                     <h2> title: ' . $snipp->title . '</h2>
                     <p>
-                    ' . 'snipp: ' . $snipp->CodeSnipp . '
+                    ' . 'snipp: ' . $snipp->CodeSnippet . '
                     </p>
                     <input name="'. $this->removeSpot . '" type="hidden" value="'. $spot .'">
 
-                    <input name="'. $this->dealteSnip . '" type="submit" value="dealte">
+                    <input name="'. $this->dealteCodeSnipet . '" type="submit" value="dealte">
                 </form>
                 <br>
             ';
@@ -48,7 +48,7 @@ class removeCodeSnippView
     }
     public function doYouWhantToDelate()
     {
-        return isset($_POST[$this->dealteSnip]);
+        return isset($_POST[$this->dealteCodeSnipet]);
     }
 
     public function GetSpot()

@@ -2,7 +2,7 @@
 
 namespace view;
 
-class ShowAllCodeSnipps
+class ShowAllCodeSnippets
 {
     private $jsonInfo;
 
@@ -20,14 +20,15 @@ class ShowAllCodeSnipps
         ';
         if (!empty($this->jsonInfo)) {
             foreach ($this->jsonInfo as $user) {
-                foreach($user->CodeSnipps as $snipp)
+                foreach($user->CodeSnipps as $codeSnippet)
                 $string .= '
                 <fieldset>
-                    <h2> title: ' . $snipp->title . '</h2>
+                    <h2> title: ' . $codeSnippet->title . '</h2>
                     <h4> author: ' . $user->User . '</h4>
                     <p>
-                    ' . 'snipp: ' . $snipp->CodeSnipp . '
+                    ' . 'snipp: ' . htmlspecialchars_decode($codeSnippet->CodeSnippet, ENT_NOQUOTES) . '
                     </p>
+                    <h4> codeType: ' . $codeSnippet->codeType . '</h4>
                 </fieldset>
                 <br>
                 ';

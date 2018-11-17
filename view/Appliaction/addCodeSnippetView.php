@@ -2,33 +2,33 @@
 
 namespace view;
 
-class addCodeSnippView
+class addCodeSnippetView
 {
-    private Static $Codesnipp = "addSnippView::snipp";
-    private Static $title = "addSnippView::title";
-    private Static $message = "addSnippView::message";
-    private Static $submitSnip = "addSnippView::submitSnip";
-    private Static $deskriton = "addSnippView::descriton";
-    private static $CodeType = "addSnippView::CodeType";
+    private Static $Codesnippet = "addSnippetView::snippet";
+    private Static $title = "addSnippetView::title";
+    private Static $message = "addSnippetView::message";
+    private Static $submitSnip = "addSnippetView::submitCodeSnippet";
+    private Static $deskriton = "addSnippetView::descriton";
+    private static $CodeType = "addSnippetView::CodeType";
 
     private $UserTitle = "";
-    private $CodeSnipp = "";
-    private $codeSnippDeskriton = "";
+    private $CodeSnippet = "";
+    private $codeSnippetDeskriton = "";
 
     private $theMessage = "";
 
     public function render()
     {
-        return $this->generateAddCodeSnippHTML();
+        return $this->generateAddCodeSnippetHTML();
     }
 
-    private function generateAddCodeSnippHTML()
+    private function generateAddCodeSnippetHTML()
     {
         return
             '
             <a href="index.php"> go back</a>
             <h2>Add snipp</h2>
-            <p>write a title for you codeSnipp and the code for the code snipp here then you can also chose type <br>
+            <p>write a title for you codeSnippet and the code for the code snipp here then you can also chose type <br>
             you can also cose the code type  where to code comming from
             </p>
             <h4 id ="' . self::$message . '">' . $this->theMessage . '</h4>
@@ -37,8 +37,8 @@ class addCodeSnippView
                     <label for = "' . self::$title . '">title</label>
                     <input id = "' . self::$title . '" name = "' . self::$title . '" type = "text" value = "' . $this->UserTitle . '">
                     <br>
-                    <label for = "' . self::$Codesnipp . '">Code</label>
-                    <textarea name = "' . self::$Codesnipp . '" rows="4" cols="40">' . $this->CodeSnipp . '</textarea>
+                    <label for = "' . self::$Codesnippet . '">Code</label>
+                    <textarea name = "' . self::$Codesnippet . '" rows="4" cols="40">' . $this->CodeSnippet . '</textarea>
                     <br>
                     <br>
                     <select name ="'.self::$CodeType.'">
@@ -71,7 +71,7 @@ class addCodeSnippView
     {
         return isset($_POST[self::$submitSnip]);
     }
-    public function getTitleOfCodeSnipp()
+    public function getTitleOfCodeSnippet()
     {
         if (isset($_POST[self::$title])) {
             return $_POST[self::$title];
@@ -80,10 +80,10 @@ class addCodeSnippView
         }
     }
 
-    public function getCodeSnipp()
+    public function getCodeSnippet()
     {
-        if (isset($_POST[self::$Codesnipp])) {
-            return htmlspecialchars($_POST[self::$Codesnipp]);
+        if (isset($_POST[self::$Codesnippet])) {
+            return htmlspecialchars($_POST[self::$Codesnippet],  ENT_QUOTES);
         } else {
             return "";
         }
@@ -108,8 +108,8 @@ class addCodeSnippView
     {
         $this->UserTitle = $title;
     }
-    public function setCodeSnipp($codeSnipp)
+    public function setCodeSnippet($codeSnippet)
     {
-        $this->CodeSnipp = $codeSnipp;
+        $this->CodeSnippet = $codeSnippet;
     }
 }

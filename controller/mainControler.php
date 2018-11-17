@@ -6,10 +6,10 @@ require_once('./view/Loggin/LoginView.php');
 require_once('./view/Layout/DateTimeView.php');
 require_once('./view/Layout/LayoutView.php');
 require_once('./view/Loggin/RegisterView.php');
-require_once('./view/Appliaction/mainCodeSnippesView.php');
-require_once('./view/Appliaction/RemoveCodeSnippView.php');
-require_once('./view/Appliaction/addCodeSnippView.php');
-require_once('./view/Appliaction/ShowAllCodeSnipps.php');
+require_once('./view/Appliaction/mainCodeSnippetsView.php');
+require_once('./view/Appliaction/RemoveCodeSnippetView.php');
+require_once('./view/Appliaction/addCodeSnippetView.php');
+require_once('./view/Appliaction/ShowAllCodeSnippets.php');
 
 
 require_once('./model/Loggin/newUser.php');
@@ -22,7 +22,7 @@ require_once('env.php');
 
 
 require_once('./controller/loginControler.php');
-require_once('./controller/codeSnippController.php');
+require_once('./controller/codeSnippetController.php');
 require_once('./controller/RegisterNewUserControler.php');
 
 class mainController
@@ -37,7 +37,7 @@ class mainController
     private $logginAndOutCheck;
 
     private $LogginController;
-    private $SnippHandlerController;
+    private $codeSnippetController;
     private $RegisterNewUserControler;
 
     public function __construct()
@@ -45,11 +45,11 @@ class mainController
         $this->logginView = new \view\LoginView();
         $this->dateTimeView = new \view\DateTimeView();
         $this->layoutView = new \view\LayoutView();
-        $this->snippsView = new \view\mainCodeSnippsView();
+        $this->snippsView = new \view\mainCodeSnippetsView();
         $this->registerView = new \view\RegisterView();
 
         $this->LogginController = new \controler\logginControler($this->logginView);
-        $this->SnippHandlerController = new \controler\SnippHandlerController($this->snippsView);
+        $this->SnippHandlerController = new \controler\codeSnippetController($this->snippsView);
         $this->RegisterNewUserControler = new \controler\RegisterNewUserControler($this->registerView);
     }
 
