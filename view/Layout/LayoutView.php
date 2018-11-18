@@ -24,11 +24,11 @@ class LayoutView
           <h1>Assignment 3</h1>
           ' . $this->link($this->isLoggedIn->isUserLoggin()) . '
           ' . $this->renderIsLoggedIn($this->isLoggedIn->isUserLoggin()) . '
+          ' . $this->WhatToDoWithSnipp($this->isLoggedIn->isUserLoggin()) . '
           <div class="container">
               ' . $v->response($this->isLoggedIn->isUserLoggin()) . '
               
               ' . $dtv->show() . '
-              ' . $this->WhatToDoWithSnipp($this->isLoggedIn->isUserLoggin()) . '
           </div>
          </body>
       </html>
@@ -66,13 +66,15 @@ class LayoutView
   {
     if ($isLoggedIn) {
       return '
-       <a href="index.php?addCodeSnippet"> addSnipp </a>
-       <a href="index.php?removeCodeSnippet"> removesnipp</a>  
-       <a href="index.php?ShowCodeSnippets"> see snipps</a>
+       <a href="index.php?addCodeSnippet"> add codeSnippet </a>
+       <br>
+       <a href="index.php?removeCodeSnippet"> remove codesnippet</a>
+       <br>  
+       <a href="index.php?ShowCodeSnippets"> see code snippets</a>
       '
       ;
     } else {
-      return '<a href="index.php?ShowCodeSnippets"> see snipps</a>';
+      return '<a href="index.php?ShowCodeSnippets"> see code snippets</a>';
     }
   }
 }

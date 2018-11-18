@@ -5,8 +5,6 @@ namespace model;
 class newUser
 {
 
-    private $wrongMessage = "";
-
     public function userInfoSet($userName, $password)
     {
         $this->checkData($userName, $password);

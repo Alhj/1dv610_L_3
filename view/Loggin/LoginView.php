@@ -84,9 +84,9 @@ class LoginView
 		return '
 			<h3>what you can do on the side:</h3>
 
-			<p> when you are loggin you can make code snipp and remove code snipp you have make.
+			<p> when you are loggin you can make code snippet and remove code snippet you have make.
 			
-			<br> But you can always watch others persons code snipp</p>
+			<br> But you can always watch others persons code snippet</p>
 			<form method="post"> 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
