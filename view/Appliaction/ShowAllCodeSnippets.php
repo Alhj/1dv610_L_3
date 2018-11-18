@@ -26,7 +26,7 @@ class ShowAllCodeSnippets
                     <h2> title: ' . $codeSnippet->title . '</h2>
                     <h4> author: ' . $user->User . '</h4>
                     <p>
-                    ' . 'snipp: ' . htmlspecialchars_decode($codeSnippet->CodeSnippet, ENT_NOQUOTES) . '
+                    ' . 'snipp: ' . $codeSnippet->CodeSnippet . '
                     </p>
                     <h4> codeType: ' . $codeSnippet->codeType . '</h4>
                 </fieldset>
