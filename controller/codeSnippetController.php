@@ -86,7 +86,7 @@ class codeSnippetController
 
             $this->view->setTitle($title);
         } catch (\titleMissingInput $e) {
-            $this->view->setErrorMessageAddSnippetView($e);
+            $this->view->setErrorMessageAddCodeSnippetView($e);
 
             $codeSnipp = $this->view->getCodeSnippet();
 

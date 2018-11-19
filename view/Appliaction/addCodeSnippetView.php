@@ -41,6 +41,7 @@ class addCodeSnippetView
                     <textarea name = "' . self::$Codesnippet . '" rows="4" cols="40">' . $this->CodeSnippet . '</textarea>
                     <br>
                     <br>
+                    <label for = "'.self::$CodeType.'">code type</label>
                     <select name ="'.self::$CodeType.'">
                         <option value = "Other">Other</option>
                         <option value= "JavaScript">javaScript</option>

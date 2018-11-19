@@ -25,9 +25,7 @@ class ShowAllCodeSnippets
                 <fieldset>
                     <h2> title: ' . $codeSnippet->title . '</h2>
                     <h4> author: ' . $user->User . '</h4>
-                    <p>
-                    ' . 'snipp: ' . $codeSnippet->CodeSnippet . '
-                    </p>
+                    <pre>'.'<strong>snipp:</strong>' . $codeSnippet->CodeSnippet . '</pre>
                     <h4> codeType: ' . $codeSnippet->codeType . '</h4>
                 </fieldset>
                 <br>

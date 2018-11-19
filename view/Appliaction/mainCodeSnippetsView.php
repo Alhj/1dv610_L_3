@@ -26,16 +26,16 @@ class mainCodeSnippetsView
         $whatUserWhantsToDo = false;
 
         if (isset($_GET[$this->addCodeSnippet])) {
-            $whatUserWhantsToDo  = true;
+            $whatUserWhantsToDo = true;
         }
         if (isset($_GET[$this->viewCodeSnippet])) {
-            $whatUserWhantsToDo  = true;
+            $whatUserWhantsToDo = true;
         }
         if (isset($_GET[$this->removeCodeSnippet])) {
-            $whatUserWhantsToDo  = true;
+            $whatUserWhantsToDo = true;
         }
 
-        return $whatUserWhantsToDo ;
+        return $whatUserWhantsToDo;
     }
 
     public function response($userLoggin)
@@ -56,6 +56,10 @@ class mainCodeSnippetsView
             ';
         }
     }
+    private function NewSnipps()
+    {
+        return $this->addCodeSnippetView->render();
+    }
 
     public function setErrorMessageAddCodeSnippetView($errorType)
     {
@@ -70,16 +74,6 @@ class mainCodeSnippetsView
     public function getSpot()
     {
         return $this->removeCodeSnippetView->GetSpot();
-    }
-
-    private function NewSnipps()
-    {
-        return $this->addCodeSnippetView->render();
-    }
-
-    private function removeCodeSnippetRender()
-    {
-        $this->removeSnipp->renderDelate($this->jsonInfo);
     }
 
     public function setJsonInfoForViewAllCodeSnipps($jsonInfomration)
@@ -150,11 +144,11 @@ class mainCodeSnippetsView
 
     public function changeHeaderAfterAddCodeSnipp()
     {
-        header('location: index.php?'. $this->addCodeSnippet .'');
+        header('location: index.php?' . $this->addCodeSnippet . '');
     }
     public function changeHeaderAfterRemoveCodeSnipp()
     {
-        header('location: index.php?'. $this->removeCodeSnippet.'');
+        header('location: index.php?' . $this->removeCodeSnippet . '');
     }
     public function changeHeaderIfUserIsNotLoggin()
     {
