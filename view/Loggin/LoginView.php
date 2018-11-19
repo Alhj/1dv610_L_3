@@ -150,14 +150,6 @@ class LoginView
 		return isset($_POST[$this->keep]);
 	}
 
-	public function getCookieUserName()
-	{
-		if (isset($_COOKIE[$this->cookieName])) {
-			return $_COOKIE[$this->cookieName];
-		}
-		return "";
-	}
-
 	public function logginMessage($withMessage)
 	{
 		if ($withMessage) {
