@@ -27,6 +27,7 @@ class RegisterNewUserControler
                 $registerProblem = $this->checkNewUser->userInfoSet($userName, $password);
             } catch (\noInputInRegister $e) {
                 $this->view->errorMessage($e);
+                $this->view->setUserName($this->view->getUserName());
             } catch (\userNameMissing $e) {
                 $this->view->errorMessage($e);
                 $this->view->setUserName($this->view->getUserName());
